@@ -1,2 +1,2 @@
 # bananascrum
-Banana Scrum - Rails based Scrum tool
+Banana Scrum - a Rails based Scrum tool
