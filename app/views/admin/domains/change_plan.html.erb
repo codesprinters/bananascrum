@@ -1,0 +1,48 @@
+<% content_for :splitter_class do -%>hidden<% end -%>
+
+<div class="section">
+  <h2>Confirmation</h2>
+
+  <div class="info-pane plan-change">
+    
+    <div>
+      <div class="plan-wrapper plan-change">
+        <%= plan_header_for(@old_plan) %>
+      </div>
+
+      <%= image_tag('mud/plan_change_to.png', :alt => "Change plan", :class => "change-to-arrow" ) %>
+
+      <div class="plan-wrapper plan-change">
+        <%= plan_header_for(@plan) %>
+      </div>
+
+      <div style="clear: both"></div>
+    </div>
+
+    <p style="height: 30px;"> 
+      Click the button below to confirm the plan change.
+      <% if Domain.upgrading?(@old_plan, @plan) && @plan.paid? %>
+        Upgrade will be performed only after you confirm the agreement to be billed <%= plan_price(@plan.price) %> <%= @customer.pays_with_vat? ? " + #{format_price(@plan.tax_amount)} Vat" : '' %> per month on the PayPal page.
+      <% end %>
+    </p>
+
+    <% form_tag(@target_action, {:class => 'upgrade-plan-form'}) do -%>
+      <p>
+        <%= submit_tag 'Confirm', :class => "button #{@plan.paid? ? 'button-paypal' : 'button-green'}" %>
+      </p>
+    <% end %>
+    
+  </div>
+
+  <p class="footnote">
+    <% if Domain.upgrading?(@old_plan, @plan) && @plan.paid?  %>
+      After upgrading your domain you won't be able to downgrade until the next billing period starts on <%= @domain.billing_start_date_for_agreement.strftime(User.current.prefered_date_format) %>
+    <% end %>
+    
+  </p>
+</div>
+
+<div class="section blue-background">
+  <h2> Billing details </h2>
+  <%= render :partial => 'admin/customer/details', :locals => { :customer => @customer } %>
+</div>

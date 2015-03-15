@@ -1,0 +1,11 @@
+<tr class="<%= cycle("even", "odd") %> project-row row" id="project-row-<%=project.id%>">
+  <td><%= link_to(h(project.presentation_name), project_sprints_url(project)) -%></td>
+  <td><%=h project.name %></td>
+  <td><%=h(truncate(project.description, :length => 25)) %>&nbsp;</td>
+  <td><%=h project.display_timezone %></td>
+  <td class='centered team-members'><%=h project.users.to_a.length %></td>
+  <td class='centered'><%= archived_check_box(project) %></td>
+  <td class='centered'><%= functional_link_to('Edit', edit_admin_project_url(project.id), {:class => 'edit-project-link'}) %></td>
+  <td><%= functional_link_to 'Delete', admin_project_url(project.id), :class => "delete-project"  %></td>
+</tr>
+

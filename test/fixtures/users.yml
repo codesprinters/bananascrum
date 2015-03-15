@@ -1,0 +1,187 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+user_one:
+  domain: code_sprinters
+  login: "aczajka"
+  first_name: "Ania"
+  last_name: "Czajka"
+  email_address: "aczajka@op.pl"
+  password: <%= User.encrypted_password('alamakota','AZ') %>
+  salt: "AZ"
+  active_project: bananorama
+  type: Admin
+  active: true
+  last_news_read_date: 2008-01-14 21:59:43
+  last_login: 2008-01-14 20:00:00
+
+user_two:
+  domain: code_sprinters
+  login: "tester"
+  first_name: "testowy"
+  last_name: "toster"
+  email_address: "tester@testowy.com"
+  password: <%= User.encrypted_password('tester','test_salt') %>
+  salt: "test_salt"
+  active: true
+
+admin:
+  domain: code_sprinters
+  login: "admin"
+  first_name: "Admin"
+  last_name: "Adminowski"
+  email_address: "admin@admin.com"
+  password: <%= User.encrypted_password('test','salt') %>
+  salt: "salt"
+  active_project: bananorama
+  type: Admin
+  active: true
+  last_login: 2008-01-14 20:00
+
+janek:
+  domain: code_sprinters
+  login: "janek"
+  first_name: "Janek"
+  last_name: "Serce"
+  email_address: "jan.serce@walentynki.pl"
+  password: <%= User.encrypted_password('serce', 'salt') %>
+  salt: "salt"
+  active_project: bananorama
+  active: true
+
+banana_master:
+  domain: code_sprinters
+  login: "bmaster"
+  first_name: "John"
+  last_name: "Rambo"
+  email_address: "killer@large.wi"
+  password: <%= User.encrypted_password('serce','salt') %>
+  salt: "salt"
+  active_project: bananorama
+  active: true
+
+banana_owner:
+  domain: code_sprinters
+  login: "bowner"
+  first_name: "Rocky"
+  last_name: "Balboa"
+  email_address: "rocky@kicks.ass"
+  password: <%= User.encrypted_password('serce','salt') %>
+  salt: "salt"
+  active_project: bananorama
+  active: true
+  
+banana_team:
+  domain: code_sprinters
+  login: "blackpen"
+  first_name: "Fred"
+  last_name: "Rosmus"
+  email_address: "fred@onet.pl"
+  password: <%= User.encrypted_password('serce','salt') %>
+  salt: "salt"
+  active_project: bananorama
+  active: true
+  
+banana_teamer:
+  domain: code_sprinters
+  login: "jezyk"
+  first_name: "Jeremi"
+  last_name: "rolers"
+  email_address: "jeremi@onet.pl"
+  password: <%= User.encrypted_password('serce','salt') %>
+  salt: "salt"
+  active_project: bananorama
+  active: true
+
+# don't add projects to this user (in fixtures)
+# he is assigned to 'second' project only
+developer_of_second_only:
+  domain: code_sprinters
+  login: "second"
+  first_name: "Always"
+  last_name: "Second"
+  email_address: "second@anywhere.com"
+  password: <%= User.encrypted_password('serce','salt') %>
+  salt: "salt"
+  active_project: second
+  active: true
+  last_login: 2008-01-14 20:00
+
+# don't add projects to this user (in fixtures)
+unemployed:
+  domain: code_sprinters
+  login: "unemployed"
+  first_name: "work"
+  last_name: "less"
+  email_address: "work@less.com"
+  password: <%= User.encrypted_password('serce','salt') %>
+  salt: "salt"
+  active: true
+dilbert:
+  domain: comic
+  login: dilbert
+  first_name: Dilbert
+  last_name: Smith
+  email_address: "dilbert@corporation.com"
+  password: <%= User.encrypted_password('dilbert', 'salt') %>
+  salt: salt
+  active: true
+
+block_user_account:
+  domain: code_sprinters
+  login: coli
+  first_name: Coliber
+  last_name: Smith
+  email_address: "coliber@corporation.com"
+  password: <%= User.encrypted_password('coliber', 'salt') %>
+  salt: salt
+  active: true
+  blocked: true
+  
+unblock_user_account:
+  domain: code_sprinters
+  login: colin
+  first_name: Coliber
+  last_name: Kowalski
+  email_address: "coliber@corporation.com"
+  password: <%= User.encrypted_password('coliber', 'salt') %>
+  salt: salt
+  active: true
+  blocked: false
+  
+simple_user:
+  domain: simple_domain
+  login: "simple"
+  first_name: "simple"
+  last_name: "simple"
+  email_address: "simple@op.pl"
+  password: <%= User.encrypted_password('alamakota','AZ') %>
+  salt: "AZ"
+  active: true
+  last_news_read_date: 2008-01-14 21:59:43
+  last_login: 2008-01-14 20:00:00
+  
+simple_admin:
+  domain: simple_domain
+  login: "simpleadmin"
+  first_name: "admin"
+  last_name: "simple"
+  email_address: "simpleadmin@op.pl"
+  type: Admin
+  password: <%= User.encrypted_password('alamakota','AZ') %>
+  salt: "AZ"
+  active: true
+  last_news_read_date: 2008-01-14 21:59:43
+  last_login: 2008-01-14 20:00:00
+
+comic_user:
+  domain: comic
+  type: Admin
+  login: "comic"
+  first_name: "comic"
+  last_name: "comic"
+  email_address: "comic@op.pl"
+  password: <%= User.encrypted_password('alamakota','AZ') %>
+  salt: "AZ"
+  active: true
+  active_project: comic_project
+  last_news_read_date: 2008-01-14 21:59:43
+  last_login: 2008-01-14 20:00:00

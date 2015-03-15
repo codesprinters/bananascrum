@@ -1,0 +1,27 @@
+<table class="data" cellSpacing='0px'>
+  <tr>
+    <th class="a">Limit</th>
+    <th class="a">Current usage</th>
+    <th class="a">Maximum</th>
+  </tr>
+  <tr class="even">
+    <td>Number of active users</td>
+    <td><%= @domain.users.not_blocked.count %></td>
+    <td><%= plan_limit(@current_plan.users_limit) %></td>
+  </tr>
+  <tr class="odd">
+    <td>Number of active projects</td>
+    <td><%= @domain.projects.not_archived.count %></td>
+    <td><%= plan_limit(@current_plan.projects_limit) %></td>
+  </tr>
+  <tr class="even">
+    <td>Disk space</td>
+    <td><%= number_to_human_size @domain.clips_bytes %></td>
+    <td><%= plan_mbytes_limit(@current_plan.mbytes_limit) %></td>
+  </tr>
+  <tr class="odd">
+    <td>Number of items</td>
+    <td><%= @domain.items.count %></td>
+    <td><%= plan_limit(@current_plan.items_limit) %></td>
+  </tr>
+</table>

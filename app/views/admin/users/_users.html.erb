@@ -1,0 +1,22 @@
+<div class="table-wrapper">
+  <% round_box do %>
+    <table class="data" cellSpacing='0px'>
+      <thead>
+        <tr>
+          <th class="sortable" style="width: 80px">Login</th>
+          <th class="sortable" style="width: 80px">First name</th>
+          <th class="sortable" style="width: 80px">Last name</th>
+          <th class="sortable" style="width: 160px">E-mail</th>
+          <th>Last login</th>
+          <th style="width: 50px">Admin?</th>
+          <th style="width: 50px"><%= (defined?(block_column_label) && block_column_label) || 'Block' -%></th>
+          <th style="width: 50px">Delete</th>
+        </tr>
+      </thead>
+    
+      <tbody>
+        <%= render :partial => "admin/users/user", :collection => users %>
+      </tbody>
+    </table>
+  <% end %>
+</div>

@@ -1,0 +1,45 @@
+<li id="impediment-<%= impediment_new.id%>" class="impediment <%= (impediment_new.is_open? ? "" : "impediment-closed") -%> expandable collapsed">
+  <% round_box("#B3C2C4") do %>
+    <div class="impediment-top">
+      <a href="#" class="expandable-link"><%= expandable_image_tag(:expanded => false) %></a>
+      <div class="done-mark"><%= image_tag('mud/done_mark.png', :class => "done-mark-icon") %></div>
+      <span class="impediment-name highlight"><%= h impediment_new.summary -%></span>
+
+      <div class="controls">
+        <span class="right">
+          <% if impediment_new.creator -%>
+            <%=h impediment_new.creator.login -%>
+          <% end -%>
+        </span>
+        <%= image_tag('mud/trash.png', :alt => "Delete this impediment", :class => "trash delete-impediment", :height => 17, :width => 13) %>
+      </div>
+      <div style="clear: both;height: 1px;"></div>
+    </div>
+    <div class="toggable-visibility">
+      <div class="tabbed-content impediment-tabs-<%=impediment_new.id-%>">
+        <ul class="tabs-links ignore-hashpart" id="impediment-tabs-<%=impediment_new.id-%>">
+          <li class="tab current-tab">
+            <%- round_tab do %>
+              <%= link_to("Description", "#impediment-description-#{impediment_new.id}") %>
+            <%- end %>
+          </li>
+          <li class="tab">
+            <%- round_tab do %>
+              <%= link_to("History", "#impediment-comments-#{impediment_new.id}") %>
+            <%- end %>
+          </li>
+        </ul>
+        <div style="clear: both;"> </div>
+        <div class="tabs-contents">
+          <div class="tab-content current-tab-content impediment-description highlight" id="impediment-description-<%=impediment_new.id-%>">
+            <%= render :partial => "shared/redcloth_description", :locals => { :description => impediment_new.readable_description } -%>
+          </div>
+
+          <div class="tab-content" id="impediment-comments-<%=impediment_new.id-%>">
+            <%= render :partial => "impediments/comments_with_form", :locals => { :impediment => impediment_new } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <%- end %>
+</li>

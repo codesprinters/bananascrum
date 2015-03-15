@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project basedir="." default="dist" name="Juggernaut">
+  <description>Combine Ruby and Java source with the jruby-complete jar</description>
+  <target name="dist" description="Create the deliverable jar">
+    <taskdef name="jarjar" 
+             classname="com.tonicsystems.jarjar.JarJarTask" 
+             classpath="vendor/jarjar-1.0rc7.jar"/>
+    <mkdir dir="pkg"/>
+    <jarjar destfile="pkg/livesync.jar">
+      <manifest>
+        <attribute name="Main-Class" value="livesync.LiveSyncRunner"/>
+      </manifest>
+      <fileset dir="classes"/>
+      <zipfileset dir="vendor/gems" prefix="vendor/gems"/>
+      <zipfileset src="vendor/jruby-complete-1.1.2.jar" />
+    </jarjar>
+  </target>
+</project>

@@ -1,0 +1,51 @@
+<% content_for :title do -%>
+  Sprints List
+<% end -%>
+<% content_for :js_variables do -%>
+  <% javascript_tag do %>
+    <%= "bs.dateFormat = '#{User.current.js_prefered_date_format}';" %>
+    <%= "bs.sprint.freeDays = #{@current_project.free_days.to_json};" %>
+  <% end -%>
+<% end -%>
+
+<% content_for :splitter_class do -%>
+  <%="hidden"-%>
+<% end -%>
+
+<div class="section">
+  <h2> Sprints list </h2>
+
+  <ul id="navcontainer">
+    <li><%= functional_link_to "New sprint", new_project_sprint_path(@current_project), :class => 'new-sprint-link' %></li>
+  </ul>
+
+  <div style="clear:both"> </div>
+
+  <div class="table-wrapper">
+    <% round_box do %>
+
+      <table class="data sprints-list" cellSpacing='0px'>
+        <tr>
+          <th>No</th>
+          <th>Name</th>
+          <th>Start date</th>
+          <th>End date</th>
+          <th>Effort [<%= h Project.current.backlog_unit %>]</th>
+          <th>Team Size</th>
+          <th>Plan</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+
+        <%= render :partial => "sprint", :collection => @sprints %>
+
+      </table>
+    <% end %>
+  </div>
+
+</div>
+
+<% if @calendar_url then %>
+  <p class="ical-for-project"><%= link_to("iCal sprint calendar", @calendar_url) %> for the project</p>
+<% end %>
+

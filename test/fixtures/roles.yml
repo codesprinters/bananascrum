@@ -1,0 +1,15 @@
+scrum_master:
+  code: scrum_master
+  name: Scrum Master
+  description: Scrum Master
+
+product_owner: 
+  code: product_owner
+  name: Product Owner
+  description: Product Owner
+
+team_member:
+  code: team_member
+  name: Team Member
+  description: Team Member
+

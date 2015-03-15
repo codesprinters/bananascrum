@@ -1,0 +1,20 @@
+<% if @current_project.has_any_graph_selected? %>
+  <div class="burnchart-border">
+    <% round_box do %>
+      <div class="burnchart-container">
+        <% round_box('#B0BBBD') do %>
+          <div class="burnchart">
+            <div id="burnchart-chart">
+              <div id="no-flash">
+                <noscript>Nice charts should be shown here, but they are not. You either have JavaScript turned off or an old version of Adobe's Flash Player. <a href="http://www.adobe.com/go/getflashplayer/">Get the latest Flash player</a>.</noscript>
+              </div>
+            </div>
+          </div>
+          <%= yield %>
+
+          <div style="clear: both;"> </div>
+        <%- end %>
+      </div>
+    <%- end %>
+  </div>
+<% end %>

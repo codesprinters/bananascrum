@@ -1,0 +1,16 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title><%= title(yield :title) %></title>
+    <%= stylesheet_link_tag('print', :media => :print) %>
+    <%= stylesheet_link_tag('print') %>
+    <script type="text/javascript">
+      window.onload = function () {
+        window.print();
+      }
+    </script>
+  </head>
+  <body>
+    <%= yield %>
+  </body>
+</html>

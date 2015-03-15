@@ -1,0 +1,36 @@
+<% content_for :splitter_class do -%>hidden<% end -%>
+
+<div class="section">
+  <h2>Confirmation</h2>
+
+  <div class="info-pane plan-change">
+
+    <div>
+      <div class="plan-wrapper plan-change">
+        <%= plan_header_for(@plan) %>
+      </div>
+
+      <div style="clear: both"></div>
+    </div>
+
+    <p>
+      After clicking button below you will be moved to the PayPal page. Your Banana Scrum account will be ready for use once you confirm the agreement to be billed <%= plan_price(@plan.price) %> <%= @customer.pays_with_vat? ? " + #{format_price(@plan.tax_amount)} Vat" : '' %> per month through your PayPal account.
+    </p>
+
+    <% form_tag(:action => 'setup_agreement', :controller => 'admin/payments') do -%>
+      <p style="margin-top:30px;">
+        <%= submit_tag "Confirm", :class => "button button-paypal" %>
+      </p>
+    <% end %>
+  </div>
+
+  <p class="footnote">
+    After setting up the payment with PayPal you will start your 30-day free trial period. You will not be charged if you remove your account before the end the trial (that is before <%= Domain.current.billing_start_date_for_agreement.strftime("%d-%m-%Y") %>).
+  </p>
+</div>
+
+<div class="section blue-background">
+  <h2> Billing details </h2>
+  <%= render :partial => 'admin/customer/details', :locals => { :customer => @customer } %>
+</div>
+

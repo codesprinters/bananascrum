@@ -1,0 +1,17 @@
+<div class="log-details section blue-background with-padding">
+  <h2> <%= log_creator(@log) %> <%= log_text(@log, :show_details_link => false) %> </h2>
+  Time stamp:  <%= @log.created_at.strftime("#{User.current.prefered_date_format} %H:%M") -%>
+  <%if %w(update delete).include?(@log.action) %>
+    <div class="field-set">
+    <h3>Old fields:</h3>
+    <%= render :partial => "field", :collection => @fields.map{|field| { :name => field.name, :value => field.old_value }} -%>
+    </div>
+  <%end%>
+  
+  <%if %w(update create).include?(@log.action) %>
+    <div class="field-set">
+    <h3>New fields:</h3>
+    <%= render :partial => "field", :collection => @fields.map{|field| { :name => field.name, :value => field.new_value }} -%>
+    </div>
+  <%end%>
+</div>  

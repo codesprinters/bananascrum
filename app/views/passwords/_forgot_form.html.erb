@@ -1,0 +1,8 @@
+<% form_tag(reset_profile_password_path, :method => 'post', :class=> "login-form") do -%>
+  <p>Enter the login and click Continue.</p>
+  <p>We'll email you a link to a page where you can easily create a new password.</p>
+  <p><label for="login">Login</label><br/>
+  <%= text_field_tag 'login', params[:login] %></p>
+
+  <p><%= submit_tag 'Continue', :class => "button button-medium" %></p>
+<% end -%>

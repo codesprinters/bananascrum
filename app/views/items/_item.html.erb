@@ -1,0 +1,45 @@
+
+<% cache :id => item.id, :controller => :items, :action => :show, :action_suffix => :old do %>
+  <li class="<%= backlog_item_class(item) %> expandable visible collapsed" id="item-<%= h item.id%>" >
+    <input type="hidden" name="estimate" value="<%= h Item.readable_estimate(item.estimate) %>" />
+  
+    <div class="controls">
+      <%= render :partial => 'items/item_tags', :locals => {:item => item} %>
+      <div class="total-tasks-effort">(<span class="total-tasks-value">0</span><span class="task-unit"> <%=h Project.current.task_unit %></span>)</div>
+      [<span class="right item-estimate highlight<%= ' infinite' if item.can_have_infinite_estimate? %>"><%= item.more_intish_estimate %></span> <%= h Project.current.backlog_unit %>]
+      <%= image_tag('icons/trash.gif',:alt => "Delete this backlog item", :height => 11, :width => 10, :class => "trash delete-item") %>
+      <%= assign_arrow(item) %>
+      <%= drop_arrow(item) %>
+    </div>
+  
+    <a href="#" class="expandable-link"><%= expandable_image_tag(:expanded => false) %></a>
+    <span class="item-user-story highlight" title="Click to edit"><%= h item.user_story %></span>
+    
+    <%= image_tag('icons/attachment.gif', :class => "attachment-icon #{ "hidden" if item.clips.empty? }") -%>
+    
+    <%= image_tag('spinner.gif', :class => "spinner") %>
+    <div class="toggable-visibility">
+      <div class="item-description">
+  
+        <a class="more-less-button" href="#">Show more</a>
+        <div class="item-description-text highlight truncated">
+          <%= render :partial => "shared/redcloth_description", :locals => { :description => item.readable_description } %>
+        </div>
+        <%= render :partial => 'shared/redcloth_legend'%>
+      </div>
+      <div style="clear:both"></div>
+      <%= attachment_list(item) %>
+      <%= new_object_menu_links(item, new_layout = false) %>
+      <%= item_logs(item) %>
+      
+      <div class="new-task form-container" style="display: none;"></div>
+  
+      <div class="new-attachment form-container" style="display:none"></div>
+  
+      <ul class="tasks">
+        <%= render(:partial => 'items/task', :collection => item.tasks) %>
+      </ul>
+    </div> <!-- end of div.toggable-visibility -->
+  </li>
+<% end %>
+

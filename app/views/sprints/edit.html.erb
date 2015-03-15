@@ -1,0 +1,7 @@
+<div class="section blue-background">
+<h2>Sprint Editing: <%= @sprint.name %></h2>
+<% form_tag(project_sprint_url(@sprint.project, @sprint), {:class => 'new-sprint', :method => :put}) do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'OK', :class => "button button-small" %>
+<% end %>
+</div>

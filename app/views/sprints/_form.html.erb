@@ -1,0 +1,28 @@
+<%= error_messages_for 'sprint' %>
+
+<!--[form:sprint]-->
+
+<p><label for="sprint_sequence_number">Number</label><br/>
+<%= text_field 'sprint', 'sequence_number', :class => "short-input"%></p>
+
+
+<p><label for="sprint_name">Name</label><br/>
+<%= text_field 'sprint', 'name'  %></p>
+
+<p><label for="sprint_goals">Sprint goals</label><br/>
+<%= text_area 'sprint', 'goals' %></p>
+
+<p class="auto-width"><label for="sprint_from_date">From</label><br/>
+<%= text_field_tag "sprint[from_date]", @sprint.from_date.strftime(User.current.prefered_date_format), :class => 'date-field' %>
+</p>
+
+<p class="auto-width"><label for="sprint_to_date">To</label><br/>
+<%= text_field_tag "sprint[to_date]", @sprint.to_date.strftime(User.current.prefered_date_format), :class => 'date-field' %>
+</p>
+
+<p class="sprint-length">
+</p>
+
+<%= hidden_field 'sprint', 'project_id' %>
+<br/>
+<!--[eoform:sprint]-->

@@ -1,0 +1,33 @@
+<% @tabindex ||= 0 %>
+<div class="table-wrapper with-right-margin">
+<table class="data project-settings">
+  <tr>
+    <th style="width:65%;" class="description">Setting</th>
+    <th class="value">Value</th>
+  </tr>
+
+  <% for setting in Project.settings %>
+    <tr class="<%= cycle("even", "odd") %>">
+      <td><%= h Project::SETTINGS_LABELS[setting] %></td>
+      <td class="settings-form">
+        <%= text_field :project, setting, :tabindex => @tabindex += 1 %>
+      </td>
+    </tr>
+  <% end %>
+
+  <tr class="<%= cycle("even", "odd") %>">
+    <td>Used estimate</td>
+    <td>
+      <%= select :project, :estimate_sequence, Project::ESTIMATE_SEQUENCES.map {|a| a.reverse}, :selected => @project.estimate_presentation %>
+    </td>
+  </tr>
+
+  <tr class="<%= cycle("even", "odd") %>">
+    <td>Allow users to edit finished sprints</td>
+    <td>
+      <%= check_box(:project, :can_edit_finished_sprints) %>
+    </td>
+  </tr>
+</table>
+
+</div>

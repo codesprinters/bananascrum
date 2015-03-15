@@ -1,0 +1,24 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+password_to_reset:
+  reset_pwd: true
+  user: admin
+  key: hugeandcomplicatedkey
+  domain: code_sprinters
+   
+password_to_reset_disabled:
+  reset_pwd: true
+  user: block_user_account
+  key: hugeandcomplicatedkeytwo
+  domain: code_sprinters
+  
+password_to_reset_without_key:
+  reset_pwd: true
+  user: user_one
+  domain: code_sprinters
+  
+# one:
+#   column: value
+#
+# two:
+#   column: value

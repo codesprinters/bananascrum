@@ -1,0 +1,64 @@
+<% content_for :js_variables do -%>
+  <%= juggernaut_tag %>
+  <%= javascript_tag "bs._team = #{user_asignment_json_hash @current_project};" %>
+<% end %>
+
+<% content_for :splitter_class do -%>
+  <%="hidden"-%>
+<% end -%>
+<ul class="backlog-items">
+  <li class="<%= backlog_item_class(@item) %> visible single-item" id="item-<%= h @item.id%>" >
+    <input type="hidden" name="estimate" value="<%= h Item.readable_estimate(@item.estimate) %>" />
+  
+    <div class="single-item-page-header">
+      <%= render :partial => "items/controls", :locals => { :item => @item } %>
+      <span class="item-user-story highlight" title="Click to edit"><%= h @item.user_story %></span>
+      <div style="clear: both;"></div>
+    </div>
+    <div class="item-content">
+      <div style="clear:both;height:1px"></div>
+      <%= render :partial => "items/description_field", :locals => { :item => @item } %>
+      
+      <% single_item_box("<span>Tasks</span> #{new_task_link(@item)}") do %>
+        <%=  -%>
+        <div style="clear: both;"></div>
+        <div class="new-task form-container" style="display: none;"></div>
+        <ul class="tasks">
+          <%= render(:partial => 'items/task_new', :collection => @item.tasks) %>
+        </ul>  
+      <% end %>
+      
+      <% single_item_box("<span>Comments(</span><span class='number-of-comments'>#{@item.comments.count}</span><span>)</span>") do %>
+        <%= render(:partial => "comments/comments_with_form", :locals => {:comment => @item.comments.new}) %>
+      <% end %>
+          
+      <% single_item_box("<span>Attachments</span>#{attach_file_link(@item)}") do %>
+        <div style="clear: both;"></div>
+        <div class="new-attachment form-container" style="display:none"></div>
+        <%= attachment_list(@item) %>
+      <% end %>
+      
+      <% single_item_box("<span>History</span>") do %>
+        <div id="item-history">
+          <form action='<%=project_item_logs_path(@current_project.name, @item)-%>' class="log-filter-form">
+            <label for="user_filter"> Show changes by:
+              <%= select_tag("user_filter", options_for_select([["Everybody", ""]]) + options_from_collection_for_select(@users_for_log_filter, "id", "full_name"), :autocomplete => "off") %>
+            </label>
+            <label for="task-updates">
+              Show tasks updates:
+              <%= check_box_tag "estimate_updates", 1, true %>
+            </label>
+            <input class="button button-medium" type="submit" value="Apply filters" name="apply-filters" />
+            
+          </form>
+          <ul class="item-logs">
+            <%= render :partial => "items/log", :collection => @logs %>
+          </ul>
+          <%= link_to "Show more", project_item_logs_path(@current_project.name, @item), :class => "show-more-logs" -%>
+          <%= link_to "Show all (<span class='more-logs-count'>#{@log_count}</span> more)", project_item_logs_path(@current_project.name, @item), :class => "show-more-logs all" -%>
+        </div>
+      <% end %>
+    <div class="item-footer"></div>
+    </div>
+  </li>
+</ul>

@@ -1,0 +1,37 @@
+<% content_for :title do -%>
+  Remove domain request
+<% end -%>
+
+<% content_for :splitter_class do %>
+  hidden no-min-height
+<%end%>
+
+
+<div class="section with-padding">
+
+  <h2> Confirmation </h2>
+
+  <div class="info-pane delete-domain-container">
+
+    <% form_tag admin_remove_domain_path, :method => "DELETE" do |f| -%>
+      <% unless @delete_request.nil? %>
+        <p>The deletion verification key is correct. You may click the button below to delete your domain permanently.</p>
+        <p class="last-warning">This is your last chance to change your mind. After you click the button below there is no undo and no way to get your data back.</p>
+        <%= hidden_field_tag :key, h(@delete_request.key) %>
+        <%= submit_tag 'Delete domain', :class => 'button button-red delete-domain-button centered' %>
+      <% else %>
+        <p id="domain-remove-info">You need a valid key. Please paste validation key from mail you have received </p>
+        <p class="last-warning">
+          This is your last chance to change your mind.
+          After you enter a valid key and click the button below there is no undo and no way to get your data back.
+        </p>
+        <div class="domain-remove-container">
+          <%= key_form_field(f, :label => false) %>
+          <%= submit_tag 'Delete domain', :class => 'button button-red delete-domain-button' %>
+          <div style="clear: both;"></div>
+        </div>
+      <% end %>
+      <div style="clear: both;"></div>
+    <% end -%>
+  </div>
+</div>

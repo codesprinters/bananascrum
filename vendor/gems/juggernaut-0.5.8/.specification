@@ -1,0 +1,98 @@
+--- !ruby/object:Gem::Specification 
+required_ruby_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - '>='
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+email: info@eribium.org
+cert_chain: []
+
+summary: FIX (describe your package)
+post_install_message: 
+extra_rdoc_files: 
+- History.txt
+- Manifest.txt
+- README.txt
+homepage: http://juggernaut.rubyforge.org
+signing_key: 
+name: juggernaut
+rdoc_options: 
+- --main
+- README.txt
+rubyforge_project: juggernaut
+autorequire: 
+licenses: []
+
+executables: 
+- juggernaut
+description: FIX (describe your package)
+specification_version: 2
+default_executable: juggernaut
+files: 
+- History.txt
+- Manifest.txt
+- README.txt
+- Rakefile
+- bin/juggernaut
+- lib/juggernaut.rb
+- lib/juggernaut/client.rb
+- lib/juggernaut/message.rb
+- lib/juggernaut/miscel.rb
+- lib/juggernaut/runner.rb
+- lib/juggernaut/server.rb
+- lib/juggernaut/utils.rb
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - '>='
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+extensions: []
+
+rubygems_version: 1.3.3
+requirements: []
+
+authors: 
+- Alex MacCaw
+date: 2008-08-28 22:00:00 Z
+platform: ruby
+test_files: []
+
+version: !ruby/object:Gem::Version 
+  version: 0.5.8
+require_paths: 
+- lib
+dependencies: 
+- !ruby/object:Gem::Dependency 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - '>='
+      - !ruby/object:Gem::Version 
+        version: 0.10.0
+    version: 
+  type: :runtime
+  version_requirement: 
+  name: eventmachine
+- !ruby/object:Gem::Dependency 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - '>='
+      - !ruby/object:Gem::Version 
+        version: 1.1.2
+    version: 
+  type: :runtime
+  version_requirement: 
+  name: json
+- !ruby/object:Gem::Dependency 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - '>='
+      - !ruby/object:Gem::Version 
+        version: 1.7.0
+    version: 
+  type: :development
+  version_requirement: 
+  name: hoe
+bindir: bin
+has_rdoc: true

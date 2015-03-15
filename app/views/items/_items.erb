@@ -1,0 +1,18 @@
+<ul class="backlog-items product-backlog-not-on-planning <%="read-only" if @current_project.archived? -%>" id="backlog-items">
+  <% if @items.empty? %>
+    <span class="empty-backlog-note"> This backlog has no items yet. <%= functional_link_to 'Add first one ', new_project_item_url(@current_project), :class => 'new-backlog-item'  %> now.</span>
+  <% else %>
+    <% @items.each do |item| -%>
+      <% if item.item? -%>
+        <% old_layout_only do %>
+          <%= render(:partial => 'items/item', :object => item) %>
+        <% end %>
+        <% new_layout_only do %>
+          <%= render(:partial => 'items/item_new', :object => item ) %>
+        <% end %>
+      <% else -%>
+        <%= render :partial => 'items/planning_marker', :locals => { :planning_marker => item } %>
+      <% end -%>
+    <% end -%>
+  <% end %>
+</ul>

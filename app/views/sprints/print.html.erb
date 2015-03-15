@@ -1,0 +1,58 @@
+<% content_for :title do -%>
+  Sprint: <%= @sprint.name %>
+<% end -%> 
+
+
+<% if !@sprint.goals.blank? %> 
+  <h2>Sprint goals: <%=h @sprint.goals %></h2>
+<% end %>
+<% if !@sprint.users.blank? %> 
+  <h2>Developers participating in this sprint: <span class="participants"><%=h @sprint.participants %></span></h2>
+<% end %>
+
+<div class='information'>
+  Sprint dates: <%=h @sprint.from_date.strftime(User.current.prefered_date_format) %> — <%=h @sprint.to_date.strftime("%d-%m-%Y") %>
+</div>
+
+
+
+<!-- Impediments -->
+<%# container needed for switching visibility, hidden if there aren't any impediments %>
+<% if !@impediments.length.blank? %>
+  <div id="impediments_container" class="expandable collapsed">
+    <h2 class="impediments" id="impediments">
+      Impediments
+    </h2>
+    <div class="toggable-visibility">
+      <ul id="impediments-list" class="impediments">
+        <% @impediments.each do |impediment| %>
+          <%= render(:partial => "impediments/printable_impediment",  :locals => { :impediment => impediment }) %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>
+
+<table width="100%" class="items-count-container">
+  <tr>
+    <td width="35%">Sprint backlog</td>
+    <td class="sprint items-count">
+      Total:
+        <span id="sprint-items-total-count" class="items-total-count"></span><%= pluralize(@sprint_stats[:total_items], "item") %>,
+        <span id="sprint-items-not-estimated-count" class="items-not-estimated-count"></span><%= @sprint_stats[:not_estimated_items] %> not estimated,
+        <span id="sprint-items-effort" class="items-effort"></span>
+        <%= @sprint_stats[:total_sp] %> <%= h Project.current.backlog_unit %>,
+        <span id="sprint-tasks-count" class="tasks-count"></span> <%= @sprint_stats[:total_tasks] %> tasks,
+        <span id="sprint-tasks-effort" class="tasks-effort"><%= @sprint_stats[:total_hours] %></span>
+        <%= h Project.current.task_unit %>
+    </td>
+  </tr>
+</table>
+
+
+<div class="expandable-list">
+  <ul class="backlog-items" id="assigned-backlog-items">
+    <%= render(:partial => 'items/printable_item', :collection => @assigned_items, :as => :item) %>
+    <li id="empty-sprint-msg" class="nosort" <%= 'style= "display: none;"' if @assigned_items && @assigned_items.length > 0%>> No backlog items to display.</li>
+  </ul>
+</div>

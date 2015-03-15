@@ -1,0 +1,40 @@
+<div class="tags-for-item">
+  <ul class="tags-list">
+    <% new_layout_only do  %>
+      <%= render :partial => 'items/item_tag_new', :collection => item.tags, :locals => {:item => item} %>
+    <%- end %>
+    <% old_layout_only do  %>
+      <%= render :partial => 'items/item_tag', :collection => item.tags, :locals => {:item => item} %>
+    <%- end %>
+  </ul>
+
+  <% if(defined?(read_only) && read_only == true) %>
+    <%# render nothing %>
+  <% else %>
+    <div class="assign-tag-form">
+      <% old_layout_only do %>
+        <% functional_link_to(new_project_item_backlog_item_tag_url(item.project, item), :class => 'assign-tag-form-link') do %>
+          <% #FIXME: change this icon to div with classes %>
+          <%= image_tag('icons/add_tag.gif', {
+              :alt => "Assign tag",
+              :height => 16,
+              :width => 16,
+              :title => "Assign tag"
+            }) -%>
+        <%- end %>
+      <%- end %>
+      <% new_layout_only do %>
+        <% functional_link_to(new_project_item_backlog_item_tag_url(item.project, item), :class => 'assign-tag-form-link') do %>
+          <% #FIXME: change this icon to div with classes %>
+          <%= image_tag('mud/add_tag.png', {
+              :alt => "Assign tag",
+              :height => 17,
+              :width => 16,
+              :title => "Assign tag"
+            }) -%>
+          <div style='clear: both; height: 1px;'></div>
+        <%- end %>
+      <%- end %>
+    </div>
+  <% end %>
+</div>

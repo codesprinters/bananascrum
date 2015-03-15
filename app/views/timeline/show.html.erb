@@ -1,0 +1,61 @@
+<% content_for :title do -%>
+  Timeline
+<% end -%>
+
+<% content_for :splitter_class do -%>
+  <%="hidden"-%>
+<% end -%>
+
+<% content_for :js_variables do -%>
+  <%= juggernaut_tag %>
+  <%= javascript_tag "bs.burnchart._data['sprintsload'] = #{@sprints_load_chart_data}" %> 
+  <%= javascript_tag "bs.burnchart._data['projectburnup'] = {}" %>
+  <%= javascript_tag "bs.burnchart._cookieName = 'project-chart-type'" %>
+<% end %>
+
+<% if @past_sprints.size > 0 -%>
+  <% timeline_section(:title => 'Past Sprints', :header_class => 'past-sprints-timeline', :expanded => false, :content_class => "sprints-list past-sprints-list", :expand_links => true) do %>
+    <ul class="backlog-items read-only long-term-view markers-hidden markers-permanently-hidden">
+      <%= render :partial => 'items/planning_marker' %>
+    </ul>
+    <%= render :partial => 'timeline/sprint', :collection => @past_sprints, :locals => {:read_only => true} %>
+  <% end %>
+<% end -%>
+
+<% timeline_section(:title => 'Project graphs and statistics', :expanded => true, :content_class => "chart-section") do %>
+  <%= render :partial => 'chart_tabs', :layout => 'shared/burnchart' %>
+  <%= render :partial => "statistics" %>
+<% end %>
+
+<% if @ongoing_sprints.size > 0 -%>
+  <% timeline_section(
+    :title => 'Ongoing Sprints', :header_class => 'ongoing-sprints-timeline',
+    :expanded => true, :content_class => " sprints-list current-sprints-list sprint-items-container", :expand_links => true) do %>
+
+    <ul class="backlog-items read-only long-term-view markers-hidden markers-permanently-hidden">
+      <%= render :partial => 'items/planning_marker' %>
+    </ul>
+    <%= render :partial => 'timeline/sprint', :collection => @ongoing_sprints %>
+  <% end %>
+<% end -%>
+
+
+<% if @items.size > 0 -%>
+  
+  <% timeline_section(:title => 'Product backlog', :header_class => 'product-backlog-items product-backlog-timeline', :expanded => true, :content_class => "long-term-view markers-hidden", :expand_links => true, :velocity_widget => true) do %>
+    <div class="items-container">
+      <ul class="planning-marker-top" id="planning-marker-top">
+        <%= render :partial => 'items/planning_marker' %>
+      </ul>
+
+      <%= render :partial => 'items/items' %>
+
+      <ul class="planning-marker-bottom" id="planning-marker-bottom">
+        <%= render :partial => 'items/planning_marker', :locals => { :planning_marker => @project.last_planning_marker }%>
+      </ul>
+    </div>
+  <% end %>
+  
+<% else %>
+  <p>You have no items assigned to product backlog. Go to <%= link_to('product backlog', project_items_path(@project)) -%> to create some.</p>
+<% end -%>

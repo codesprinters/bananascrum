@@ -1,0 +1,64 @@
+require "rake/clean"
+
+JRUBY_VERSION = "1.1.2"
+EVENTMACHINE_VERSION = "0.12.10-java"
+
+def jruby
+  "vendor/jruby-#{JRUBY_VERSION}/bin/jruby"
+end
+
+def jrubyc
+  "vendor/jruby-#{JRUBY_VERSION}/bin/jrubyc"
+end
+
+task :default => "dist:build"
+
+desc "Run the application from the filesystem"
+task :run do
+  sh "#{jruby} lib/livesync_wrapper.rb"
+end
+
+namespace :java do
+  output_directory = "classes"
+
+  desc "Compile java executable stub class"
+  task :stub => :clean do 
+    mkdir_p output_directory
+    sh %+javac -target 1.5 -d #{output_directory} -classpath vendor/jruby-complete-#{JRUBY_VERSION}.jar lib/LiveSyncRunner.java+
+  end
+
+  desc "Clean all build files"
+  task :rb => :clean do
+    prefix = "livesync"
+    sh "cp lib/livesync_wrapper.rb #{output_directory}/#{prefix}"
+  end
+
+  desc "Build gems that require java extensions"
+  task :gems => :clean do
+    sh "cd vendor/gems/eventmachine-#{EVENTMACHINE_VERSION} && rake java:build"
+  end
+
+  desc "Compile all source files into class files"
+  task :compile => ["java:stub", "java:gems", "java:rb"]
+
+  CLEAN.include output_directory
+end
+
+namespace :dist do
+  desc "Build the deliverable jar"
+  task :build => [:clean, 'java:compile'] do
+    build_cmd = "ant dist"
+    if PLATFORM =~ /mswin/
+      sh(build_cmd  + '&') # makes windows wait until build is done
+    else
+      sh build_cmd 
+    end
+  end
+  
+  desc "Run the application from the deliverable jar"
+  task :run => 'dist:build' do
+    system "java -jar pkg/livesync.jar"
+  end
+
+  CLEAN.include "pkg"
+end

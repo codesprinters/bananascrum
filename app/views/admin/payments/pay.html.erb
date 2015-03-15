@@ -1,0 +1,40 @@
+<% content_for :splitter_class do -%>hidden<% end -%>
+
+<div class="section">
+  <h2>Payment process is not completed</h2>
+
+  <div class="info-pane plan-change">
+
+    <% if @plan %>
+      <div style="margin-top: 10px;">
+        <div class="plan-wrapper plan-change">
+          <%= plan_header_for(@plan) %>
+        </div>
+        <div style="clear: both"></div>
+      </div>
+    <% end %>
+
+    <p>
+      We haven't received the confirmation from PayPal that the payment setup process was completed. Please continue to PayPal in order to set up payment for your selected plan.
+    </p>
+
+    <% form_tag(:action => 'setup_agreement', :controller => 'admin/payments') do -%>
+      <p style="margin-top: 30px;">
+        <%= image_submit_tag "https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" %>
+      </p>
+    <% end %>
+
+  </div>
+
+  <p class="footnote">
+    <% if Domain.upgrading?(@old_plan, @plan) %>
+      After upgrading your domain you won't be able to downgrade until the next billing period starts on <%= @domain.billing_start_date_for_agreement.strftime(User.current.prefered_date_format) %><br/>
+    <% end -%>
+    If in doubt feel free to contact us at <a href="mailto:info@codesprinters.com">info@codesprinters.com</a>.
+  </p>
+</div>
+
+<div class="section blue-background">
+  <h2> Billing details </h2>
+  <%= render :partial => 'admin/customer/details', :locals => { :customer => @customer } %>
+</div>

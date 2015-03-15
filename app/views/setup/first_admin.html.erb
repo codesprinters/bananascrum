@@ -1,0 +1,30 @@
+<% content_for :title do -%>
+First admin account
+<% end -%>
+<% content_for :splitter_class do -%>hidden<% end %>
+
+<div class="section blue-background with-padding">
+  <h2>Please fill out the following form to register your account.</h2>
+  <%= form_tag register_first_admin_path, :class => 'new-user' %>
+    <%= error_messages_for('admin') %>
+  
+    <p><%= label :first_name, "First name" %><br/>
+    <%= text_field :admin, :first_name %></p>
+
+    <p><%= label :last_name, "Last name" %><br/>
+    <%= text_field :admin, :last_name %></p>
+
+    <p><%= label :login, "Login" %><br/>
+    <%= text_field :admin, :login %></p>
+
+    <p><%= label :user_password, "Password" %><br/>
+    <%= password_field :admin, :user_password %></p>
+
+    <p><%= label :user_password_confirmation, "Confirm password" %><br/>
+    <%= password_field :admin, :user_password_confirmation %></p>
+
+    <p><%= label :email_address, "Email address" %><br/>
+    <%= text_field :admin, :email_address %></p>
+    <p style="margin-top: 15px;"><%= submit_tag 'Create', :class => "button button-medium" %></p>
+  </form>
+</div>  

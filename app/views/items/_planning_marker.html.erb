@@ -1,0 +1,26 @@
+<% if Domain.current.plan.timeline_view %>
+  <li class="long-term-view-element backlog-element marker" <%= "id=\"marker-#{planning_marker.id}\"" if planning_marker and planning_marker.class == PlanningMarker -%> >
+    <div class="marker-content">
+      <div class="marker-edge left"></div>
+      <div class="marker-edge right"></div>
+      <div class="marker-middle"></div>
+      <div class="triangle"></div>
+    </div>
+    <div class="marker-info">
+      <% round_box do %>
+        <div class="info-content">
+          <% if planning_marker -%>
+            <div class="sprint-name">
+              <%= h planning_marker.effort %> <%= h planning_marker.project.backlog_unit %> 
+            </div>
+            <div class="sprint-stats">
+              <%= h(truncate(planning_marker.sprint_name, :length => 16)) -%><br />
+              <%= h planning_marker.sprint_to_date %>
+            </div>
+            <div style="clear: both"> </div>
+          <% end -%>
+        </div>
+      <% end %>
+    </div>
+  </li>
+<% end -%>

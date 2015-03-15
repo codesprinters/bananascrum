@@ -1,0 +1,39 @@
+<% form_tag project_tasks_url(@current_project), :method => 'post' do %>
+<% new_layout_only do %>
+  <%= round_box('#E8EEEF') %>
+<%- end %>
+
+<div class="error-container">
+  <%# This is inside partial, so we can send only errors via ajax -%>
+  <%= render :partial => 'tasks/form_error_messages' %>
+</div>
+
+<p class="new-task-summary">
+  <label for="summary_<%= @item.id.to_s %>">Summary</label><br/>
+  <%= text_field "task", "summary" ,:id => ("summary_" + @item.id.to_s) %>
+</p>
+
+<div class="new-task-bottom">
+  <div class="estimate-and-users">
+    <%= hidden_field "task", 'item_id', :value => @item.id, :id => nil %>
+    <span class="new-task-estimate">
+      <label for="estimate_<%= @item.id.to_s %>">Estimate</label>
+      <%= text_field "task", "estimate", :id => ("estimate_" + @item.id.to_s), :class => "new-task-estimate" %>
+    </span>
+
+    <span class="new-task-users">
+      <label for="task-users">Assigned users</label>
+      <%= text_field_tag "task-users", nil, :autocomplete => "off" %>
+    </span>
+
+    <span class="new-task-leave-open">
+      <%= leave_open_checkbox %>
+    </span>
+  </div>
+  <div class="new-task-submit">
+    <%= submit_tag 'Create', :class => "button button-small" %>
+    <a class="hide-form" href="#">Cancel</a>
+  </div>
+  <div style="clear:left"></div>
+</div>
+<% end %>

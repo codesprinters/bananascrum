@@ -1,0 +1,8 @@
+# Please fill the following fields with proper values for your DB
+# Also, don't change adapter as currently only jdbcmysql is supported
+production:
+  database: bananascrum_db
+  adapter: jdbcmysql
+  username: bananascrum_user
+  password: banana_password
+  encoding: utf8

@@ -1,0 +1,18 @@
+<ul class='nav'>
+  <% unless @current_project.archived %>
+    <li class="button button-medium">
+      <a href='#' id="manage-tags-link">Manage tags</a>
+    </li>
+  <% end %>
+  <li class="button button-medium" id="uncheck-tags-button">
+    <a href='#' id="uncheck-tags-link">Uncheck tags</a>
+  </li>
+  <% old_layout_only do %>
+    <li class="tag-cloud-controls">
+      <form action="#" class ="assign-tag-form" >
+        <label for="create-tag">Add new tag: <input type="text" name="tag" class="tag"/> </label>
+        <input type="submit" class="button" value="OK" />
+      </form>
+    </li>
+  <% end %>
+</ul>

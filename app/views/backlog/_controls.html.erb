@@ -1,0 +1,22 @@
+<ul class="navcontainer" id="navcontainer">
+  <% unless @current_project.archived %>
+    <li class="button button-small">
+      <%= functional_link_to 'Bulk add', bulk_add_project_backlog_url(@current_project), :class => 'bulk-add-items' %>
+    </li>
+  <% end %>
+  
+  <li class="button button-small">
+    <%= link_to("Print", print_project_backlog_url(@current_project), :rel => "external")%>
+  </li>
+  <li class="button button-medium">
+    <%= functional_link_to("Index cards", index_index_cards_url(:project_id => @current_project.name, :context => 'backlog'), :class => 'index-cards')%>
+  </li>
+  <li class="button button-medium">
+    <%= link_to("Export CSV", export_to_csv_project_backlog_url(@current_project)) %>
+  </li>
+  <% unless @current_project.archived %>
+    <li class="button button-medium">
+      <%= functional_link_to("Import CSV", import_csv_from_file_project_backlog_url(@current_project), :class => 'attach-import-file-link')%>
+    </li>
+  <% end %>
+</ul>

@@ -1,0 +1,22 @@
+<ul class="impediment-comments">
+  <% impediment.impediment_logs.each do |comment| %>
+    <%= render :partial => "impediments/comment_new", :object => comment %>
+  <% end %>
+</ul>
+
+<form action="#" class="new-impediment-comment">
+  <p>
+    <label>Comment:</label>
+    <br/>
+    <textarea rows="5" name="comment" id="comment" cols="40"></textarea>
+  </p>
+</form>
+
+<div class="navcontainer impediment-action-buttons">
+  <ul>
+    <li class="button button-large"><%= functional_link_to 'Post comment', create_comment_project_impediment_url(@current_project, impediment), :class => 'post-impediment-comment'%></li>
+    <li class='close-impediment button button-large'><%= functional_link_to 'Close impediment', status_project_impediment_url(@current_project, impediment), :class => 'close-impediment' %></li>
+    <li class='reopen-impediment button button-large'><%= functional_link_to 'Reopen impediment', status_project_impediment_url(@current_project, impediment), :class => 'reopen-impediment' %></li>
+  </ul>
+</div>
+

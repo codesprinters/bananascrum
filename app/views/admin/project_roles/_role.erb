@@ -1,0 +1,11 @@
+<td class="role">
+  <%=h role_assigment.role.name %>
+  <% functional_link_to(admin_project_role_assignment_url(project, role_assigment)) do %>
+    <% old_layout_only do %>
+      <%= image_tag('icons/trash.gif', :alt => "Remove this role", :height => 11, :width => 10, :class => "trash remove-role") %>
+    <% end %>
+    <% new_layout_only do %>
+      <%= image_tag('mud/trash.png', :alt => "Remove this role", :class => "trash remove-role") %>
+    <% end %>
+  <% end %>
+</td>

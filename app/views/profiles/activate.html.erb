@@ -1,0 +1,27 @@
+<% content_for :title do -%>
+Activation
+<% end -%>
+
+<% content_for :splitter_class do %>
+hidden no-min-height
+<% end %>
+
+<div class="section with-padding">
+  <h2> Domain activation </h2>
+
+  <div class="info-pane domain-activation-pane">
+    <% form_for(@activation, :url => activate_profile_url, :html => { :method => 'post', :class => "double-submit-blocked domain-activation #{"create-customer-first" if @is_paypal_form} "})  do |f| %>
+      <% if @user %>
+        <p class="domain-activate-key-correct">Validation key is correct, click the button below to activate the account</p>
+        <%= f.hidden_field :key, :name => "key"  %>
+        <%= f.submit 'Activate', :class => "button button-green" %>
+      <% else %>
+        <p>To activate your Banana Scrum account please paste the key you've received by email.</p>
+        <div class="domain-activate-container">
+          <%= key_form_field(f, :label => false) %>
+          <%= f.submit 'Activate', :class => "button button-green" %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+open_created:
+  impediment: open
+  impediment_action: created
+  comment: Created
+  created_at: <%= Time.current - 5.hours %>
+  updated_at: <%= Time.current - 5.hours %>
+  domain: code_sprinters
+
+closed_created:
+  impediment: closed
+  impediment_action: created
+  comment: Created
+  created_at: <%= Time.current - 5.hours %>
+  updated_at: <%= Time.current - 5.hours %>
+  domain: code_sprinters
+
+closed_closed:
+  impediment: closed
+  impediment_action: closed
+  comment: closed
+  created_at: <%= Time.current - 4.hours %>
+  updated_at: <%= Time.current - 4.hours %>
+  domain: code_sprinters

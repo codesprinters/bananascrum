@@ -1,0 +1,15 @@
+<div class="section with-padding blue-background">
+<h2>Import CSV</h2>
+<% form_tag(import_csv_project_backlog_path(@current_project), {:multipart => true, :class => 'import-form'}) do %>  
+  <p>        
+    <label for="csv">Select a file to upload (maximum size is 5MB)</label><br/>
+    <button class="upload button button-medium" name="csv">Select file</button>
+
+    <%= image_tag("spinner.gif", { :class => "icon import-spinner", :height => 16, :width => 16, :style => "display: none" }) %>
+
+    <%= image_tag("spinner.gif", { :class => "icon", :height => 16, :width => 16, :style => "display: none" }) %>
+  </p>
+  
+<% end -%>
+
+</div>

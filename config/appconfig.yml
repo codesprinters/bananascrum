@@ -1,0 +1,57 @@
+# Defaults for every environment
+defaults: &defaults
+  # Should the application try to use activation links to sent emails the users. 
+  send_emails: true
+  # Mail to which emails to be sent while running in development env.
+  development_mail: bananascrum@codesprinters.com
+  # Mail which will apear in 'from' field in mails
+  home_mail: noreply@bananascrum.com
+  # Domain name for demo domain http://demo.bananascrum.com/
+  demo_domain: demo
+  # address of the site. don't give http or / at the end
+  banana_domain: bananascrum.com
+  # default domain name used in jruby version
+  default_domain: bananascrum
+  # Whether to enable changing plans
+  payments_enabled: false
+  # enable/disable ssl
+  ssl_enabled: false
+  google_analytics_enabled: false
+  livesync_enabled: true
+
+  # default path for attachments
+  attachments_path: ':rails_root/uploads/attachments'
+
+  remote_urls:
+    # Link to the site with bananascrum terms of use
+    :terms_of_use: http://www.bananascrum.com/component/content/article/34-info/46-banana-scrum-terms-of-service
+    # Link to the site with info about bananascrum
+    :about_page: http://www.bananascrum.com
+    # Redcloth syntax
+    :redcloth: http://www.bananascrum.com/docs/35-docs/47-textile-integrated-in-banana-scrum
+  
+development:
+  banana_domain: localhost
+  default_domain: bananascrum
+  <<: *defaults
+
+test:
+  banana_domain: localhost
+  default_domain: cs
+  <<: *defaults
+
+staging:
+  ssl_enabled: true
+  banana_domain: staging.bananascrum.com
+  attachments_path: '/home/projects/bananascrum/uploads/attachments'
+  <<: *defaults
+
+production:
+  ssl_enabled: true
+  banana_domain: bananascrum.com
+  <<: *defaults
+
+selenium:
+  banana_domain: localhost
+  default_domain: cs
+  <<: *defaults

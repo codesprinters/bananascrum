@@ -1,0 +1,97 @@
+/*
+ * Copyright (c) 2007 Josh Bush (digitalbush.com)
+ * 
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without
+ * restriction, including without limitation the rights to use,
+ * copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following
+ * conditions:
+
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * OTHER DEALINGS IN THE SOFTWARE. 
+ */
+ 
+/*
+ * Version: Beta 1
+ * Release: 2007-06-01
+ *
+ * Heavily tweaked by Code Sprinters
+ */ 
+(function($) {
+  var map = new Array();
+  $.watermark = {
+    showAll:function(){
+      for (var i=0; i<map.length; i++) {
+        if (map[i].obj.val() == "") {
+          map[i].obj.val(map[i].text);
+          map[i].obj.css("color", map[i].watermarkColor);
+        } else {
+          map[i].obj.css("color", map[i].defaultColor);
+        }
+      }
+    },
+    hideAll:function(){
+      for (var i=0; i<map.length; i++) {
+        if (map[i].obj.val() == map[i].text)
+          map[i].obj.val("");
+      }
+    }
+  }
+	
+  $.fn.watermark = function(text, color) {
+    if (!color) color = "#aaa";
+    
+    return this.each(
+      function() {
+        var input = $(this);
+        var defaultColor = input.css("color");
+        var flagClass = 'has-watermark';
+
+        map[map.length] = {
+          text: text,
+          obj: input,
+          defaultColor: defaultColor,
+          watermarkColor: color
+        };
+        
+        function clearMessage() {
+          if (input.val() == text) {
+            input.val("");
+            input.removeClass(flagClass);
+          }
+
+          input.css("color", defaultColor);
+        }
+
+        function insertMessage() {
+          if (input.val().length == 0 || input.hasClass(flagClass)) {
+            input.css("color", color);
+            input.val(text);
+            input.addClass(flagClass);
+          } else {
+            input.css("color", defaultColor);
+            input.removeClass(flagClass);
+          }
+        }
+
+        input.focus(clearMessage);
+        input.blur(insertMessage);
+        input.change(insertMessage);
+				
+        insertMessage();
+      }
+    );
+  };
+})(jQuery);

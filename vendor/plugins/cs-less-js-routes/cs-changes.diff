@@ -1,0 +1,25 @@
+diff --git a/trunk/vendor/plugins/cs-less-js-routes/lib/less/js_routes.rb b/trunk/vendor/plugins/cs-less-js-routes/lib/less/js_routes.rb
+index 65c0d0a..3cfcff5 100644
+--- a/trunk/vendor/plugins/cs-less-js-routes/lib/less/js_routes.rb
++++ b/trunk/vendor/plugins/cs-less-js-routes/lib/less/js_routes.rb
+@@ -108,16 +108,17 @@ JS
+         s = get_js_helpers
+         ActionController::Routing::Routes.routes.each do |route|
+           name = ActionController::Routing::Routes.named_routes.routes.index(route).to_s
+-          next if name.blank?
++          next if name.blank? || name.match(/\Aformatted/)
+ # s << build_path( route.segments)
+ # s << "\n"
+ # s << route.inspect# if route.instance_variable_get(:@conditions)[:method] == :put
+           s << "/////\n//#{route}\n" if @@debug
+           s << <<-JS
+ function #{name}_path(#{build_params route.segments}){ return '#{build_path route.segments}';}
+-function #{name}_ajax(#{build_params route.segments, 'params'}, options){ return less_ajax('#{build_path route.segments}', verb, params, options);}
+-function #{name}_ajaxx(#{build_params route.segments, 'params'}, options){ return less_ajaxx('#{build_path route.segments}', verb, params, options);}
+ JS
++# function #{name}_ajax(#{build_params route.segments, 'params'}, options){ return less_ajax('#{build_path route.segments}', verb, params, options);}
++# function #{name}_ajaxx(#{build_params route.segments, 'params'}, options){ return less_ajaxx('#{build_path route.segments}', verb, params, options);}
++# JS
+         end
+         File.open("#{Rails.public_path}/javascripts/less_routes.js", 'w') do |f|
+           f.write s

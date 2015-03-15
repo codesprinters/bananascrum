@@ -1,0 +1,25 @@
+<li id="tag-<%= tag.id %>" class="tag-cloud-item">
+  <% round_box do %>
+    <div id="set-tag-color-<%= tag.id %>" class="set-tag-color tag-cloud-controls tag-color-<%= tag.color_no %>">
+      <%= round_box("#CDDADC") %>a
+    </div>
+
+    <div class="tag tag-color-<%= tag.color_no %>">
+      <div class="single-pixel" style="top:0;left:0;"></div>
+      <div class="single-pixel" style="top:0;right:0;"></div>
+      <div class="single-pixel" style="bottom:0;left:0;"></div>
+      <div class="single-pixel" style="bottom:0;right:0;"></div>
+      <span class='tag-name' title="Click to cycle filters"><%= h truncate(tag.name, :length => 30) -%></span>
+    </div>
+
+
+    <div class='tag-cloud-controls delete-tag'>
+      <%= functional_link_to("", project_tag_path(@current_project, tag), :class => 'destroy') %>
+    </div>
+    <% if tag.description.blank? %>
+      <a class="set-tag-description-link tag-cloud-controls" href="#" title="Set tag description."><%= image_tag('mud/edit.png') -%></a>
+    <% end %>
+    <span class='tag-description tag-cloud-controls'><%= h tag.description -%></span>
+    <div style="clear: both;"></div>
+  <% end %>
+</li>

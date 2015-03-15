@@ -1,0 +1,72 @@
+<% content_for :title do -%>
+  Product Backlog
+<% end -%>
+
+<% content_for :js_variables do -%>
+  <% javascript_tag do -%>
+    <%= "bs._team = #{user_asignment_json_hash(@current_project)};" %>
+    <%= "bs._backlog_unit = #{Project.current.backlog_unit.to_json};" %>
+  <% end -%>
+  <%= juggernaut_tag %>
+<% end -%>
+
+
+<h2>Tags</h2>
+<%= render :partial => 'tags/tag_cloud' %>
+<%# margin 0 because of tag cloud%>
+<h2>
+  <table width="100%">
+    <tr>
+      <td width="53%">Unassigned backlog</td>
+      <td class="backlog items-count" id="items-count"><%= render(:partial => 'items/items_count') %>
+      </td>
+    </tr>
+  </table>
+</h2>
+
+<ul id="navcontainer">
+  <% unless @current_project.archived %>
+    <li>
+      <%= functional_link_to 'New backlog item', new_project_item_url(@current_project), :class => 'new-backlog-item' %>
+    </li>
+    <li>
+      <%= functional_link_to 'Bulk add', bulk_add_project_backlog_url(@current_project), :class => 'bulk-add-items' %>
+    </li>
+  <% end %>
+
+  <li>
+    <%= link_to("Export to CSV", export_to_csv_project_backlog_url(@current_project)) %>
+  </li>
+  <% unless @current_project.archived %>
+    <li>
+      <%= functional_link_to("Import CSV", import_csv_from_file_project_backlog_url(@current_project), :class => 'attach-import-file-link')%>
+    </li>
+  <% end %>
+  <li>
+    <%= link_to("Print preview", print_project_backlog_url(@current_project), :rel => "external")%>
+  </li>
+  <li><%= image_tag("spinner.gif", { :class => "icon", :id => "spinner", :height => 16, :width => 16, :style => "display: none" }) %></li>
+  <%= render :partial => 'shared/juggernaut_status' %>
+</ul>
+
+
+<% content_for :right_content do %>
+  <%= render :partial => "backlog/controls", :layout => "items/stats_info_box", :locals => { :title => "Stats & Controls" } %>
+  <%= render :partial => "shared/tag_info_box" %>
+  <%= render :partial => "shared/juggernaut_info_box" %>
+<% end %>
+
+<div id="new-item-form" class="form-container" style="display: none"></div>
+<div id="import-csv-form" class="form-container" style="display: none"></div>
+
+<div class="expandable-list">
+  <span class='expand-links'>
+    <a href="#" class="expand-list">Expand all</a> /
+    <a href="#" class="collapse-list">Collapse all</a>
+  </span>
+
+  <div style="clear:both;"> </div>
+  <%= render :partial => 'items/items' %>
+
+</div>
+

@@ -1,0 +1,142 @@
+<% content_for :title do -%>
+  Sprint Planning: <%= @sprint.name %>
+<% end -%>
+
+<% content_for :js_variables do -%>
+  <%= javascript_tag "bs._team = #{user_asignment_json_hash @sprint.project};" %>
+  <%= javascript_tag "bs._sprintId = #{@sprint.id};" %>
+  <%= javascript_tag "bs._project = #{@sprint.project.name.to_json};" %>
+  <%= javascript_tag "bs.burnchart._data = #{@chart_data.to_json};" %>
+  <%= javascript_tag "bs.burnchart.forceChart = 'workload';" %>
+
+  <%= juggernaut_tag %>
+<% end -%>
+
+
+<% if @current_project.graph_visible?("Workload") %>
+  <%= render :partial => 'sprints/chart_tabs', :layout => 'shared/burnchart' %>
+<% end %>
+
+<% old_layout_only do %>
+  <div id="navcontainer">
+    <ul>
+      <%= render :partial => 'shared/juggernaut_status' %>
+    </ul>
+  </div>
+  <div class="expandable collapsed">
+    <h2>
+      <a href="#" class="expandable-link"><%= expandable_image_tag(:expanded => false) %></a>
+      Tags
+    </h2>
+    <div class="toggable-visibility">
+      <%= render :partial => 'tags/tag_cloud' %>
+    </div>
+  </div>
+
+  <h2>
+    <table width="100%">
+      <tr>
+        <td width="50%">Backlog items in this sprint</td>
+        <td class="sprint items-count">
+          <%= render(:partial => 'sprints/items_count') %>
+        </td>
+      </tr>
+    </table>
+  </h2>
+
+  <div class="expandable-list">
+    <span class='expand-links'>
+      <a href="#" class="expand-list">Expand all</a> /
+      <a href="#" class="collapse-list">Collapse all</a>
+    </span>
+    <ul class="assigned-backlog-items backlog-items <%="read-only" if @current_project.archived? || !@sprint.can_be_edited_by?(User.current) -%>" id="assigned-backlog-items">
+      <li id="empty-sprint-msg" class='nosort' <%= 'style= "display: none;"' if @assigned_items && @assigned_items.length > 0%>>  No backlog items were assigned to this sprint yet ...</li>
+      <%= render(:partial => 'items/item', :collection => @assigned_items) %>
+    </ul>
+  </div>
+
+  <h2>
+    <table width="100%">
+      <tr>
+        <td width="50%">Product backlog</td>
+        <td class="backlog items-count" id="items-count">
+          <%= render(:partial => 'items/items_count',
+            :locals => {:project => @sprint.project}) %>
+        </td>
+      </tr>
+    </table>
+  </h2>
+<% end %>
+
+<% new_layout_only do %>
+  <div class="expandable-list timeline planning-items-container">
+    <%= round_box %>
+    <div class="timeline-header">
+      <span class="timeline-header-title"><%=h @sprint.name %></span>
+      <span class='expand-links'>
+        <a href="#" class="expand-list">Expand all</a> /
+        <a href="#" class="collapse-list">Collapse all</a>
+      </span>
+      <div style="clear: both"></div>
+    </div>
+    <div class="sprints-list toggable-visibility">
+      <% round_box('#B0BBBD') do %>
+        <ul class="assigned-backlog-items backlog-items <%="read-only" if @current_project.archived? || !@sprint.can_be_edited_by?(User.current) -%>" id="assigned-backlog-items">
+          <li id="empty-sprint-msg" class='nosort' <%= 'style= "display: none;"' if @assigned_items && @assigned_items.length > 0%>>  No backlog items were assigned to this sprint yet ...</li>
+          <%= render(:partial => 'items/item_new', :collection => @assigned_items ) %>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<% content_for :right_content do %>
+  <%= render :partial => "sprints/about", :locals => { :title => "#{@sprint.name} stats" } %>
+  <%= render :partial => "shared/tag_info_box" %>
+  <%= render :partial => "items/stats_info_box" %>
+  <%= render :partial => "shared/juggernaut_info_box" %>
+<% end %>
+
+<% old_layout_only do %>
+  <ul id="navcontainer">
+    <li>
+      <%= functional_link_to 'New backlog item', new_project_item_url(@current_project), :class => 'new-backlog-item'%>
+    </li>
+  </ul>
+  <div style="clear: both; height: 1px"> </div>
+  <div id="new-item-form" class="form-container" style="display: none"></div>
+  <div class="expandable-list">
+    <span class='expand-links'>
+      <a href="#" class="expand-list">Expand all</a> /
+      <a href="#" class="collapse-list">Collapse all</a>
+    </span>
+    <div style="clear: both"></div>
+    <ul class="backlog-items <%="archived" if @current_project.archived? -%>" id="backlog-items">
+      <%= render(:partial => 'items/item', :collection => @items) %>
+    </ul>
+  </div>
+<% end %>
+
+<% new_layout_only do %>
+  <div class="expandable-list timeline planning-items-container">
+    <%= round_box %>
+    <div class="timeline-header">
+      <span class="timeline-header-title">Product backlog</span>
+      <span class='expand-links'>
+        <a href="#" class="expand-list">Expand all</a> /
+        <a href="#" class="collapse-list">Collapse all</a>
+      </span>
+      <%= functional_link_to 'New backlog item', new_project_item_url(@current_project), :class => 'new-backlog-item new-item-link new-backlog-item-btn' %>
+      <div style="clear: both; height: 1px;"></div>
+    </div>
+    <div class="sprints-list toggable-visibility">
+      <% round_box('#B0BBBD') do %>
+        <div id="new-item-form" class="form-container" style="display: none"></div>
+        <ul class="backlog-items <%="archived" if @current_project.archived? -%>" id="backlog-items">
+          <%= render(:partial => 'items/item_new', :collection => @items) %>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+

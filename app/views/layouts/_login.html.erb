@@ -1,0 +1,12 @@
+<% content_for(:js_variables) do %>
+  <%= javascript_tag("bs.showIE6Warning = true;") %>
+<% end %>
+
+<% content_for :splitter_class do -%>
+  <%="hidden login-screen"-%>
+<% end -%>
+
+<%= yield %>
+
+<div id="commercial-wrapper"></div>
+<div style="clear:both;"></div>

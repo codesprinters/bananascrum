@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+<%# Please, do not escape title! Helpers will do the job %>
+    <title><%= title(yield(:title)) %></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <%= stylesheet_link_tag 'new', 'facebox_new', 'date_picker_new', 'jquery.autocomplete', :cache => 'new_all' %>
+    <%= stylesheet_link_tag('print', :media => :print) %>
+    <% if User.current and User.current.theme_id -%>
+      <link type="text/css" media="screen" rel="stylesheet" href="<%= theme_path(User.current.theme.slug) -%>" />
+    <% end -%>
+  </head>
+
+  <body>
+    <div id="beyond-outer">
+      <div id="flash-container" style="display: <%= flash.blank? ? "none" : "block" %>;">
+        <div id="flash-inner-container">
+
+          <div id="flash-left"></div>
+          <% unless flash.blank? %>
+            <div id='flash' class="flash <%= flash.has_key?(:persistant) ? 'persistant' : '' %>"><%= h(flash.values.join("\n")) %></div>
+          <% end %>
+          <div id="flash-right"></div>
+        </div>
+      </div>
+      <div id="outer">
+
+        <div id="header">
+          <div class="header-left">
+
+            <span class="domain-name"><%= link_to (h Domain.current.try(:full_name) || "Banana Scrum"),"/" %></span><span id="development-info"><%= development_info %></span>
+            <% if User.current %>
+              <div class="project-select">
+                <span>Project:</span> <%= project_select %>
+              </div>
+            <% end %>
+          </div>
+          <div class="header-right">
+            <div class="login-links"><%= new_login_info_content %></div>
+            <div style="clear:right"></div>
+            <div id="right-tabs">
+              <%= generate_menu @current_project %>
+              <%= yield :tabs %>
+            </div>
+          </div>
+        </div>
+
+        <div id="main-panel">
+          <div class="main-panel-top"></div>
+          <div class="main-panel-content">
+
+            <%= generate_notice %>
+
+            <div class="pretty-hr"></div>
+
+            <div id="splitter" class="<%=  (yield :splitter_class) or 'right-visible'-%>">
+              <div id="left-content">
+                <%= yield %>
+              </div>
+              <div id="split-bar"> </div>
+              <div id="right-content">
+                <div id="right-content-container">
+                  <%= yield :right_content %>
+                </div>
+                <div id="right-content-shadow"></div>
+              </div>
+              <div style="clear: both;"> </div>
+            </div>
+          </div>
+
+          <div style="clear: both; *height:1px;"> </div>
+          <div id="footer"><%= banana_version %> &copy; 2008-2010 <a href="http://www.codesprinters.com" rel="external">Code Sprinters</a>.
+            Visit <a href="<%= AppConfig.remote_urls[:about_page] %>" rel="external">Banana Scrum homepage</a>!
+          </div>
+        </div>
+      </div>
+    </div>
+
+<%# we want to load js at the end of loading page  %>
+    <%= javascript_include_tag 'jquery-1.4.4.min', 'jquery.cseditable', 'jquery-ui-1.8.11.custom.min','jquery.blockUI',
+      'jquery.cookie', 'ajaxupload', 'jquery.autocomplete', 'facebox', 'date', 'jquery.datePicker',
+      'jquery.cs_plugins', 'cs-jquery.watermarkinput', 'json2', 'swfobject',
+      'jquery.template', 'jquery.dropshadow', 'jquery.tablesort', 'jquery.tagLabel', 'jquery.selectCheckbox', 'jquery.cssortable', :cache => 'jquery_all' %>
+    <%= javascript_include_tag 'application',
+      'backlog/backlog', 'backlog/impediment', 'backlog/item', 'backlog/sprint', 'backlog/task',
+      'attachments', 'tags', 'admin_panel', 'dialog', 'comments', 'burnchart', 'tabs',
+      'juggernaut/json', 'juggernaut/juggernaut', 'juggernaut/jquerynaut', 'bs/mutex', 'bs/callbacks',
+      'backlog/bindings', 'backlog/marker', 'profile', 'item_logs', :cache => true %>
+    <%= javascript_include_tag 'less_routes' %>
+
+    <% javascript_tag do -%>
+      <%= "bs._token = #{form_authenticity_token.to_json};" if protect_against_forgery? %>
+      <%= "bs._project = #{Project.current.name.to_json};" if Project.current %>
+      <%= "bs._projectEsimates = #{Project.current.estimate_sequence.to_json};" if Project.current %>
+      <%= "bs._sessionId = #{@juggernaut_session.id};" if @juggernaut_session %>
+      <%= "bs._layout = 'new';" %>
+      <%= "bs._rootPath = '#{root_path.chomp('/')}';" %>
+      <%= "bs._burnchartPath = '#{burnchart_path}';" %>
+    <% end -%>
+
+    <%= yield :js_variables %>
+  </body>
+</html>

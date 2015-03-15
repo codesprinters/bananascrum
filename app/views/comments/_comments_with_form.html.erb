@@ -1,0 +1,14 @@
+<% old_layout_only do %>
+  <h1>Backlog item: <%=h truncate(comment.item.user_story) %></h1>
+  <ul class="comments">
+    <%= render :partial => 'comments/comment', :collection => comment.item.comments.reverse %>
+  </ul>
+<% end %>
+<% new_layout_only do %>
+  <div class="comments">
+    <%= render :partial => 'comments/comment_new', :collection => comment.item.comments.reverse %>
+  </div>
+<% end %>
+<% unless @current_project.archived %>
+  <%= render(:partial => 'comments/form', :locals => {:comment => comment}) %>
+<%end %>

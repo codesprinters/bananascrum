@@ -1,0 +1,14 @@
+<tr id="sprint-<%=sprint.id-%>" class="<%= cycle("even", "odd") %> <%= 'current-sprint' if @ongoing_sprints.include?(sprint) %> sprint-row">
+  <td align="right"><%= h(sprint.sequence_number) unless sprint.sequence_number.blank? %></td>
+  <td><%= link_to h(sprint.name), project_sprint_url(sprint.project, sprint) %></td>
+  <td><%=h sprint.from_date.strftime(User.current.prefered_date_format) %></td>
+  <td><%=h sprint.to_date.strftime(User.current.prefered_date_format) %></td>
+  <td><%=h sprint.items_estimated_effort %></td>
+  <td><%=h sprint.users.count %></td>
+  
+  <% unless sprint.project.archived %>
+    <td><strong><%= link_to 'Plan', plan_project_sprint_url(sprint.project, sprint), {:class => 'planning-link'} %></strong></td>
+    <td><%= functional_link_to 'Edit', edit_project_sprint_url(sprint.project, sprint), :class => "edit-sprint-link" %></td>
+    <td class="trash"><%= functional_link_to 'Delete', project_sprint_url(sprint.project, sprint), :id => "delete_sprint_#{sprint.id}", :class => "delete-sprint" %></td>
+  <%end%>
+</tr>

@@ -1,0 +1,61 @@
+simple_plan:
+  name: Simple plan
+  valid_from: 2008-01-01
+  users_limit: 2
+  projects_limit: 1
+  mbytes_limit: 0
+
+not_started_yet:
+  name: Not started yet
+  valid_from: <%= Date.today+14.days %>
+  users_limit: 3
+  projects_limit: 4
+  items_limit: 10
+
+already_ended:
+  name: Already ended
+  valid_from: <%= Date.today-30.days %>
+  valid_to: <%= Date.today-10.days %>
+  users_limit: 10
+  items_limit: 10
+
+already_started:
+  name: Already started
+  valid_from: <%= Date.today-30.days %>
+  valid_to: <%= Date.today+10.days %>
+  users_limit: 10
+  items_limit: 10
+
+big_plan:
+  name: Big plan
+  valid_from: "2008-01-01"
+  users_limit: 300
+  projects_limit: 400
+  mbytes_limit: 2000
+  items_limit: 1000
+
+no_limits_for_registration:
+  name: <%= Plan::NO_LIMIT_PLAN_NAME %>
+  valid_from: 2008-01-01
+
+no_limits: # it is safe to switch to this plan, as it is not used
+  name: Unused
+  valid_from: 2008-01-01
+
+plan_with_ssl:
+  name: Plan with ssl
+  ssl: true
+  valid_from: "2008-01-01"
+  users_limit: 300
+  projects_limit: 400
+  mbytes_limit: 2000
+  items_limit: 1000
+
+plan_with_timeline_view:
+  name: Plan with timeline view
+  timeline_view: true
+  valid_from: "2008-01-01"
+  users_limit: 300
+  projects_limit: 400
+  mbytes_limit: 2000
+  items_limit: 1000

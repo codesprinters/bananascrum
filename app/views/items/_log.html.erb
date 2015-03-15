@@ -1,0 +1,12 @@
+<% if text = log_text(log) %> 
+<% 
+  # Do not display logs for which we dont have a proper text (eg. sprint deleted, task deleted). This check is just in case the SQL query is incorrect 
+%>
+  <li id="item-log-<%=log.id-%>" class="item-log">
+    <div class="log-text">
+      <%= log_creator(log) %> <%= text %>
+    </div>
+    <%= date_field(log) %>
+    <div style="clear: both"> </div>
+  </li>
+<% end %>

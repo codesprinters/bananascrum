@@ -1,0 +1,8 @@
+class <%= class_name %> < ActiveRecord::Base
+  # If you are *REALLY REALLY* sure this object is not bound to a specific domain,
+  # then remove this line. Otherwise, remove this comment
+  include DomainChecks # security checks
+  
+  
+  attr_accessible()
+end

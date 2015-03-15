@@ -1,0 +1,45 @@
+<li class="<%= backlog_item_class(item) %> visible" id="item-<%= h item.id%>" >
+  <div>
+    <span class="item-title"><%= h item.user_story %></span>
+    <div class="tags-and-estimate">
+      <ul class="tags-list">
+        <% item.tags.each do |tag| %>
+          <li class="tag tag-<%= tag.id %>">
+            <span><%=h tag.name%></span>
+          </li>
+        <% end %>
+      </ul>
+
+      <div class="item-estimate-container">[<span class="item-estimate <%= ' infinite' if item.can_have_infinite_estimate? %>"><%= item.more_intish_estimate %></span> <%= h Project.current.backlog_unit %>]</div>
+    </div>
+    <div class="clear"></div>
+  </div>
+
+  <div>
+    <div class="item-description">
+      <div class="item-description-text">
+        <%= render :partial => "shared/redcloth_description", :locals => { :description => item.readable_description } %>
+      </div>
+    </div>
+
+    <%= attachment_names_list(item)%>
+
+    <div class="item-log">
+      <% unless item.creator.blank? %>
+        Created by <%= h item.creator.login %>  &mdash;
+      <% end %>
+      <% unless item.update? %>
+        [<%= h item.created_on %>]
+      <% end %>
+      <% if item.last_updated_by %>
+        Last modified by <%= h item.last_updated_by.login %>
+        [<%= h item.update_item_log.created_at %>]
+      <% end %>
+    </div>
+    <div class="clear-right"></div>
+
+    <ul class="tasks">
+      <%= render(:partial => 'items/printable_task', :collection => item.tasks, :as => :task) %>
+    </ul>
+  </div>
+</li>

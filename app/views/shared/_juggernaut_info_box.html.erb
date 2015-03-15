@@ -1,0 +1,14 @@
+<% if AppConfig::livesync_enabled %>
+  <div class="expandable info-box collapsed" id="juggernaut-info-box">
+    <% round_box do %>
+      <h2 class="live-sync-status">
+        <a href="#" class="expandable-link"><%= expandable_image_tag(:expanded => false) %></a>
+        <span>Live sync status</span><span class="juggernaut-status-disconnected" id="juggernaut-status"></span>
+      </h2>
+      <div class="toggable-visibility">
+        Currently online:
+        <span class="juggernaut-users"></span>
+      </div>
+    <%- end %>
+  </div>
+<% end %>

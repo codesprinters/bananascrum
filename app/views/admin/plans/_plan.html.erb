@@ -1,0 +1,18 @@
+<div class="plan-wrapper">
+  <%= plan_header_for(plan) %>
+  <div class="plan-content">
+    <%= plan_limit_box("Users", plan.users_limit)-%>
+    <%= plan_limit_box("Projects", plan.projects_limit)-%>
+    <%= plan_limit_box_mb("Storage", plan.mbytes_limit)-%>
+    <%= plan_limit_box("Backlog items", plan.items_limit)-%>
+    <%= plan_limit_box_boolean("SSL", plan.ssl)-%>
+    <%= plan_limit_box_boolean("Timeline", plan.timeline_view)-%>
+    
+    <div class="plan-button-background">
+      <%= plan_button(plan, @current_plan, @not_available_plans) -%>
+      <div style="clear: both;"></div>
+    </div>
+    
+  </div>
+  <div class="plan-footer <%=plan.name.downcase-%>"></div>
+</div>

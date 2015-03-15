@@ -1,0 +1,52 @@
+<% form_for :item, :url => project_items_url(@current_project), :method => 'post' do |form| %>
+  <div class="new-item">
+    <div class="error-container">
+      <%= error_messages_for 'item' %>
+    </div>
+    <div class="new-item-subform new-item-left">
+      <div>
+        <label for="item_user_story">User story<br/>
+          <%= form.text_field :user_story, :size => 47 %></label>
+      </div>
+      <div>
+        <label for="item_description">Description<br/>
+          <%= form.text_area :description, :rows => 5 %></label>
+      </div>
+    </div>
+
+    <div class="new-item-subform new-item-right">
+      <div>
+        <label for="item_estimate" class="right">Estimate</label><br/>
+        <%= form.select :estimate, select_item_estimate_choices(false) %> <%=h Project.current.backlog_unit %>
+      </div>
+
+      <div class="new-item-tag-dropdown">
+        <label>Tags</label>
+        <%= tag_list_select %>
+      </div>
+
+      <div>
+        <label for="new_item_tag" class="right">New tag</label>
+        <%= text_field_tag "new_item_tag", nil, :class=>'new-tag-input has-watermark' %>
+      </div>
+      <div style="clear: both; height: 1px;" ></div>
+
+    </div>
+      
+    <div style="clear: both; height: 1px;" ></div>
+    <%= hidden_field 'item', 'project_id' %>
+    <%= render :partial => 'shared/redcloth_legend' %>
+    <div style="clear: left" />
+    <div class="new-item-form-controls">
+      <%= submit_tag 'Create', :class => "button button-small" %>
+      <a class="hide-form button button-small" href="#">Cancel</a><br/>
+      <%= leave_open_checkbox %>
+      <label>
+        <%= check_box_tag 'backlog-end', 1, params[:'backlog-end'], :class => 'leave-open' -%>
+        Add at the end of the backlog
+      </label>
+    </div>
+    <div style="clear: both; height: 1px;" ></div>
+  </div>
+<% end %>
+

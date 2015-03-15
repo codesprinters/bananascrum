@@ -1,0 +1,16 @@
+<fieldset>
+<legend><strong>Role assignment</strong></legend>
+<p>
+  <label for="assign-members">Assign Team Members</label> <br />
+  <%= text_field_tag("assign-members", nil, :autocomplete => "off", :tabindex => @tabindex += 1 ) %>
+</p>
+<p>
+  <label for="assign-scrum-masters">Assign Scrum Masters</label> <br />
+  <%= text_field_tag("assign-scrum-masters", nil, :autocomplete => "off", :tabindex => @tabindex += 1 ) %>
+</p>
+<p>
+  <label for="assign-product-owners">Assign Product Owners</label> <br />
+  <%= text_field_tag("assign-product-owners", nil, :autocomplete => "off", :tabindex => @tabindex += 1 ) %>
+</p>
+<br/>
+</fieldset>

@@ -1,0 +1,47 @@
+<% content_for :title do -%>
+  <% content_for(:title, "Editing user: #{@user.login}") %>
+<% end -%>
+
+<% unless User.is_current?(@user) %>
+<ul id="navcontainer" class="with-margin" >
+  <% if AppConfig.send_emails %>
+    <li>
+      <%= functional_link_to("Reset password", reset_admin_user_password_path(@user), :id => "reset-password", :class => "button button-large") %>
+    </li>
+  <% else %>
+    <li>
+      <%= link_to("Change password", new_admin_user_password_path(@user), :class => "button button-large", :rel => "facebox") %>
+    </li>
+  <% end %>
+</ul>
+<% end %>
+
+<div class="section blue-background with-padding">
+  <h2>
+    <% new_layout_only do %>
+      <%= round_box('#D6E1E3') %>
+    <% end %>
+    Editing user <%=h @user.full_name %>
+  </h2>
+
+  <p style="margin-bottom: 10px;">
+    <b>Last login:</b>
+    <% if !@user.last_login.nil? %>
+      <%= h (@user.last_login or "User never logged in" ) %>
+    <% else %>
+      Never
+    <% end %>
+  </p>
+
+  <% form_for :user, :url => admin_user_url(@user), :html => {:method => :put} do |f| %>
+    <%= render :partial => 'shared/users/form', :locals => {:f => f} %>
+    
+    <p>
+      <%= f.submit 'OK', :class => "button button-small" %>
+    </p>
+  <% end %>
+</div>
+
+<div class="section blue-background with-padding">
+  <%= render :partial => '/admin/users/project_assignments' %>
+</div>

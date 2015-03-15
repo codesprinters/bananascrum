@@ -1,0 +1,11 @@
+<tr id="user-row-<%= user.id-%>" class="<%= cycle("even", "odd") %> <%= ' admin' if user.admin? %> user-row row" >
+  <td><%= functional_link_to(h(user.login), edit_admin_user_path(user), {:class => 'edit-user-link', :title => 'Click to edit'}) %></td>
+
+  <td><%=h user.first_name %></td>
+  <td><%=h user.last_name %></td>
+  <td><%= mail_to user.email_address %></td>
+  <td><%= user.last_login ? time_ago_in_words(user.last_login) + " ago" : "Never" %></td>
+  <td class="centered"><%= admin_check_box(user) %></td>
+  <td class="centered"><%= block_arrow(user) %></td>
+  <td><%= functional_link_to('Delete', admin_user_path(user), :class => "delete-user") %></td>
+</tr>

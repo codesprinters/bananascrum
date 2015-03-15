@@ -1,0 +1,26 @@
+<% task = @task.nil? ? task_new : @task -%>
+<% content_tag :li, task_li_hash(task) do -%>
+  <% new_layout_only do %>
+    <%= round_box("#E8EEEF")  %>
+    <div class="tick"> </div>
+  <%- end %>
+
+  <input type="hidden" name="task_estimate" value="<%= h task.estimate %>" />
+  <div class="task-summary highlight" title="Click to edit"><%=h task.summary %></div>
+  <div class="controls">
+    <div class="task-estimate-container">(<span class="task-estimate highlight" title="Click to edit"><%= h task.estimate %></span><%=h Project.current.task_unit %>)</div>
+    <div class="task-users-container">
+      [<span class="task-users highlight" title="Click to edit"><%= get_users_logins(task) %></span>]
+    </div>
+    <% new_layout_only do %>
+      <%= image_tag('mud/trash.png',:alt => "Delete this task", :class => "trash delete-task") %>
+    <%- end %>
+    <% old_layout_only do %>
+      <%= image_tag('icons/trash.gif',:alt => "Delete this task", :height => 11, :width => 10, :class => "trash delete-task") %>
+    <%- end %>
+
+  </div>
+
+  <div style="clear: both;height: 1px;"></div>
+<% end -%>
+

@@ -1,0 +1,21 @@
+<li class="file">
+  <% round_box('#E8EEEF') do %>
+    <% url = project_attachment_url(Project.current, file) %>
+    <%= link_to(file.content_file_name, url) %><span class="file-size"><%= file.size_with_units %></span>
+    <% functional_link_to(url, :title => "Remove #{file.content_file_name} file?", :class => 'destroy') do %>
+      <% new_layout_only do %>
+        <%= image_tag('mud/trash.png', {
+          :alt => "Remove this file",
+          :class => "trash"
+        }) %>
+      <%- end %>
+      <% old_layout_only do %>
+        <%= image_tag('icons/trash.gif', {
+          :alt => "Remove this file",
+          :height => 11, :width => 10,
+          :class => "trash"
+        }) %>
+      <%- end %>
+    <% end %>
+  <%- end %>
+</li>

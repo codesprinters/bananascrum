@@ -1,0 +1,13 @@
+<% tag ||= item_tag %>
+<li class="tag tag-color-<%= tag.color_no %> tag-<%= tag.id %>">
+  <span class="tag-name" title="<%=h tag.description -%>"><%=h tag.name -%></span>
+  <% functional_link_to(project_item_backlog_item_tag_url(item.project, item, tag), :class => 'deattach-tag-link') do -%>
+    <%= image_tag('icons/delete_tag.gif', {
+        :alt => "Remove this tag",
+        :height => 16,
+        :width => 16,
+        :title => "Remove tag from item",
+        :class => "trash"
+      }) -%>
+  <%- end %>
+</li>

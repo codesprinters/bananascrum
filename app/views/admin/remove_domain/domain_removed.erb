@@ -1,0 +1,17 @@
+
+
+<% content_for :splitter_class do -%>hidden info<% end -%>
+
+<% content_for :title do -%>
+  Domain has been removed!
+<% end -%>
+
+<%= render :partial => 'shared/google_analytics' -%>
+<div class="section">
+  <h2>&nbsp</h2>
+  <div class="info-pane">
+    <%= image_tag("mud/remove_domain.png", :class => "info-pane-img") %>
+    <h1>Your domain was removed successfully.</h1>
+    <p>Thank you for using Banana Scrum</p>
+  </div>
+</div>

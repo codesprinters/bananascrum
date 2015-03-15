@@ -1,0 +1,3 @@
+Project documentation is generated using Sphinx (http://sphinx.pocoo.org) and
+written in reStructuredText markup. Use "make html" in order to generate HTML
+version in _build/html directory.

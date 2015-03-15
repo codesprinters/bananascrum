@@ -1,0 +1,7 @@
+<div class="section blue-background">
+<h2> Bulk add backlog items </h2>
+<% form_tag bulk_add_project_backlog_url(@current_project), :class => "bulk-add-form" do %>
+  <%= text_area_tag :text, "" %>
+  <%= submit_tag "Create", :class => "button button-medium" %>
+<% end %>
+</div>

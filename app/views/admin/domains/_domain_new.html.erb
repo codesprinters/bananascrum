@@ -1,0 +1,48 @@
+<div class="section blue-background">
+  <h2> Domain info</h2>
+  <div class="label-and-value">
+    <div class="label">Domain short name</div>
+    <div class="value"><%= h(domain.name) %></div>
+  </div>
+  <div class="label-and-value">
+    <div class="label">Domain full name</div>
+    <div title="Click to edit" class="value editable-domain-full-name"><%= h(domain.full_name) %></div>
+  </div>
+  <div style="clear: both;"></div>
+  <hr />
+  
+  <% if AppConfig.payments_enabled %>
+    <div class="label-and-value">
+      <div class="label">Current plan</div>
+      <div class="value plan-name-short <%= @current_plan.name.downcase -%>">&nbsp;<%= @current_plan.name %></div>
+    </div>
+    <div style="clear: both;"></div>
+    
+    <div class="label-and-value">
+      <div class="label">Plan limits</div>
+      <div class="table-wrapper">
+        <% round_box do %>
+          <%= render("/admin/plans/plan_usage") %>
+        <% end %>
+      </div>
+    </div>
+    <div style="clear: both;"></div>
+  <% end %>
+</div>
+
+<% if AppConfig.payments_enabled %>
+  <div class="section with-padding">
+    <h2>Available plans</h2>
+    <h1> 30-day Free Trial on All Accounts</h1>
+    <div class="ugrade-downgrade-plan">
+      <%= render :partial => "admin/plans/list_new" %>
+    </div>
+  </div>
+<% end %>
+
+<% unless domain.customer.dummy? %>
+  <div class="section blue-background">
+    <h2> Billing details </h2>
+    <%= render :partial => 'admin/customer/details', :locals => { :customer => domain.customer } %>
+  </div>
+<% end %>

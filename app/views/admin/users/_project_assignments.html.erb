@@ -1,0 +1,20 @@
+<% new_layout_only do %>
+  <%= round_box('#D6E1E3') %>
+<% end %>
+<h2>Assign project to user</h2>
+
+<div class="new-role-assignment">
+  <% form_tag(admin_user_role_assignments_url(@user), :method => 'post') do %>
+    <ul class="nav">
+      <li>Assign project:</li>
+      <li><%= select_tag :project_id, options_for_select(Domain.current.projects.find(:all).map { |p| [truncate(p.presentation_name, :length => 22), p.id] }) %></li>
+      <li> as </li>
+      <li><%= select_tag :role_id,
+          options_for_select(Role.find(:all).map { |r| [r.name, r.id] },
+          lambda {|x| x.nil? ? nil : x.id}.call(Role.find_by_code('team_member'))) %></li>
+      <li><%= submit_tag "Assign", :class => 'button button-small' %></li>
+    </ul>
+  <% end -%>
+</div>
+
+<%= render :partial => 'admin/users/projects' %>

@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title><%= title(yield :title) %></title>
+    <%= stylesheet_link_tag 'chart_fullscreen' %>
+  </head>
+  <body>
+    <div id="beyond-outer">
+      <div id="outer">
+
+        <div id="header">
+          <div class="header-left">
+            <span class="project-name"><%= h @sprint.project.name -%></span>
+            <span class="sprint-goal">Sprint goal: <%= h @sprint.name -%></span>
+          </div>
+          <div class="header-right">
+            <div class="login-links"><%= new_login_info_content %></div>
+            <div style="clear:right"></div>
+          </div>
+        </div>
+
+        <div id="main-panel">
+            <div id="left-content">
+              <%= yield %>
+            </div>
+        </div>
+      </div>
+    </div>
+
+<%# we want to load js at the end of loading page  %>
+    <%= javascript_include_tag 'jquery-1.4.2.min', 'jquery.cseditable', 'jquery-ui-1.7.custom.min','jquery.blockUI',
+      'jquery.cookie', 'ajaxupload', 'jquery.autocomplete', 'facebox', 'date', 'jquery.datePicker',
+      'jquery.cs_plugins', 'cs-jquery.watermarkinput', 'json2', 'swfobject',
+      'jquery.template', 'jquery.dropshadow', 'jquery.tablesort', 'jquery.tagLabel', 'jquery.selectCheckbox', 'jquery.cssortable', :cache => 'jquery_all' %>
+    <%= javascript_include_tag 'application',
+      'backlog/backlog', 'backlog/impediment', 'backlog/item', 'backlog/sprint', 'backlog/task',
+      'attachments', 'tags', 'admin_panel', 'dialog', 'comments', 'burnchart', 'tabs',
+      'juggernaut/json', 'juggernaut/juggernaut', 'juggernaut/jquerynaut', 'bs/mutex', 'bs/callbacks',
+      'backlog/bindings', 'backlog/marker', 'profile', 'item_logs', :cache => true %>
+    <%= javascript_include_tag 'less_routes' %>
+
+    <% javascript_tag do -%>
+      <%= "bs._token = #{form_authenticity_token.to_json};" if protect_against_forgery? %>
+      <%= "bs._project = #{Project.current.name.to_json};" if Project.current %>
+      <%= "bs._sessionId = #{@juggernaut_session.id};" if @juggernaut_session %>
+      <%= "bs._layout = 'new';" %>
+      <%= "bs._rootPath = '#{root_path.chomp('/')}';" %>
+      <%= "bs._burnchartPath = '#{burnchart_path}';" %>
+    <% end -%>
+
+    <%= yield :js_variables %>
+  </body>
+</html>

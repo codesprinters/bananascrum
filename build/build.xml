@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<project name="Bananascrum" default="war" basedir=".">
+
+  <property name="banana.war" location="bananascrum.war"/>
+  <property name="unpacked.dir" location="unpacked"/>
+
+  <target name="unwar" description="Extracts war file">
+    <unwar src="${banana.war}" dest="${unpacked.dir}" overwrite="true" />
+  </target>
+
+  <target name="config_db" depends="unwar" description="copy database.yml to config dir">
+    <copy file="database.yml" tofile="${unpacked.dir}/WEB-INF/config/database.yml" overwrite="true" />
+    <copy file="config.yml" tofile="${unpacked.dir}/WEB-INF/config/customconfig.yml" overwrite="true" />
+    <copy file="livesync_hosts.yml" tofile="${unpacked.dir}/WEB-INF/config/livesync_hosts.yml" overwrite="true" failonerror="false"/>
+    <copy file="import.sql" tofile="${unpacked.dir}/WEB-INF/db/initial/import.sql" overwrite="true" failonerror="false"/>
+  </target>
+
+  <target name="war" depends="config_db" description="Creates .war file">
+    <war destfile="${banana.war}" basedir="${unpacked.dir}" needxmlfile='false'/>
+    <delete dir="${unpacked.dir}" />
+  </target>
+
+  <target name="clean" description="Delete unpack directory">
+    <delete dir="${unpacked.dir}"/>
+    <delete file="${banana.war}" />
+  </target>
+</project>

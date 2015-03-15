@@ -1,0 +1,13 @@
+blue:
+  name: "Blue"
+  slug: "blue"
+  margin_background: "#728FD1"
+  content_background: "#BEC9E3"
+  buttons_background: "#F4DF63"
+  info_box_header_background: "#9EABCA"
+  inplace_hover_background: "#FFFFB9"
+  item_background: "#C9D4F0"
+  item_description_background: "#CED9B8"
+  task_even_background: "#B8C1CC"
+  task_odd_background: "#B1BEDC"
+

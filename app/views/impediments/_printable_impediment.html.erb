@@ -1,0 +1,32 @@
+<% impediment = @impediment.nil? ? impediment : @impediment -%>
+<li id="impediment-<%= impediment.id%>" class="impediment <%= (impediment.is_open? ? "" : "impediment-closed") -%> expandable collapsed">
+  <div class="controls">
+
+  <!-- Impediment creator and creation date -->
+    <span class="right">
+      <% if impediment.creator -%>
+        Created by <%= impediment.creator.login -%>
+      <% end -%>
+
+      <% if impediment.creation_date -%>
+        [<%= impediment.creation_date -%>]
+      <% end -%>
+    </span>
+  </div>
+
+  <!-- Impediment name -->
+  <span class="impediment-name highlight"><%= h impediment.summary -%></span>
+
+  <!-- Impediment description -->
+  <div class="toggable-visibility">
+    <!-- Impediment logs/comments -->
+    <ul class="comments">
+    <% logs= impediment.impediment_logs.sort_by{|i| (i.created_at ? i.created_at : Time.parse("01/01/00") )} -%>
+    <% # removing first log as it's displayed above
+       logs.delete_at(0) -%>
+    <% logs.each do |comment| -%>
+        <%= render(:partial => 'impediments/comment', :locals => {:comment => comment}) %>
+    <% end -%>
+    </ul>
+  </div> <!-- end of div.toggableImpedimentVisibility -->
+</li>

@@ -1,0 +1,44 @@
+production:
+  # Should the application try to use activation links sent to users by email
+  send_emails: false
+  
+  # Mail which will appear in 'from' field in mails
+  home_mail: bananascrum@your-company.com
+  # address of the site. don't give http or / at the end
+  # this is used for creating links within mails so users know where to go to login
+  banana_domain: localhost
+
+  # path for attachments
+  attachments_path: ':rails_root/uploads/attachments'
+
+  # Should ssl be used
+  ssl_enabled: false
+
+  # Should live sync server be enabled
+  # If you change it to true make sure that settings in juggernaut_hosts.yml and juggernaut.yml 
+  livesync_enabled: false
+
+  # Mail delivery method options
+  # You can pass options as following:
+  # sendmail is default, but you can change it to whatever you like and supported
+  # see EXAMPLES below:
+
+  # Using sendmail:
+  
+  #action_mailer.delivery_method: sendmail
+  #action_mailer.sendmail_settings:
+  #  :location: "/etc/bin/sendmail"
+  #  :arguments: "-t -i"
+
+  # Using SMTP server:
+
+  #action_mailer.delivery_method: smtp
+  #action_mailer.smtp_settings:
+  #  :address: smtp.server.com
+  #  :port: 25
+  #  :authentication: plain
+  #  :user_name: user
+  #  :password: pass
+
+
+  # For all options available see http://api.rubyonrails.org/classes/ActionMailer/Base.html

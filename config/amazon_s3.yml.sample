@@ -1,0 +1,24 @@
+# attachment_fu aws-s3 config file
+
+development:
+  bucket: cs_bananascrum_development
+  access_key_id: 
+  secret_access_key: 
+
+staging:
+  bucket: cs_bananascrum_staging
+  access_key_id: 
+  secret_access_key: 
+
+# Testing should be done locally
+#
+# test:
+#   bucket_name: cs_bananascrum_test
+#   access_key_id: 
+#   secret_access_key: 
+
+production: 
+  bucket: cs_bananascrum
+  access_key_id: 
+  secret_access_key: 
+

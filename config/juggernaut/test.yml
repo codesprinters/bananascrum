@@ -1,0 +1,41 @@
+  # ======================
+  # Juggernaut Options
+  # ======================
+
+  :subscription_url:  http://localhost:3006/juggernaut/subscribe
+
+  :logout_connection_url: http://localhost:3006/juggernaut/disconnected
+
+  :logout_url: http://localhost:3006/juggernaut/logged_out
+
+  :allowed_ips:
+              - 127.0.0.1
+
+  # === Miscellaneous ===
+
+  # timeout defaults to 10. A timeout is the time between when a client closes a connection
+  # and a logout_request or logout_connection_request is made. The reason for this is that a client
+  # may only temporarily be disconnected, and may attempt a reconnect very soon.
+  #
+  :timeout: 0
+
+  # store_messages defaults to false. If this option is true, messages send to connections will be stored.
+  # This is useful since a client can then receive broadcasted message that it has missed (perhaps it was disconnected).
+  #
+  :store_messages: false
+
+  # === Server ===
+
+  # Host defaults to "0.0.0.0". You shouldn't need to change this.
+  # :host: 0.0.0.0
+
+  # Port is mandatory
+  :port: 5666
+
+  # Defaults to value of :port. If you are doing port forwarding you'll need to configure this to the same
+  # value as :public_port in the juggernaut_hosts.yml file
+  # :public_port: 5001
+
+  :pid_path: tmp/pids/juggernaut_test.pid
+  :log_path: log/juggernaut_test.log
+  :debug: true

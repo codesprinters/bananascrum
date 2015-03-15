@@ -1,0 +1,15 @@
+<div class="navcontainer">
+  <ul>
+    <% unless @sprint.project.archived %>
+      <% unless @sprint.project.user_has_this_role_only?(User.current, "product_owner") %>
+        <li class="button button-small"><%= functional_link_to 'Edit', edit_project_sprint_url(@sprint.project, @sprint), :class => 'edit-sprint-link'%></li>
+        <li class="button button-small"><%= link_to 'Plan', plan_project_sprint_url(@sprint.project, @sprint) %></li>
+      <% end %>
+    <% end %>
+    <li class="button button-medium"><%= link_to 'Export as CSV', export_to_csv_project_backlog_url(@sprint.project, :sprint_id => @sprint.id) %></li>
+    <li class="button button-small"><%= link_to 'Print', print_project_sprint_url(@sprint.project, @sprint), :rel => "external" %></li>
+    <li class="button button-medium">
+    <%= functional_link_to("Index cards", index_index_cards_url(:project_id => @current_project.name, :sprint_id => @sprint.id, :context => 'sprint'), :class => 'index-cards')%>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,17 @@
+<% @plans.each do |plan| %>
+  <% next if plan == @free_plan %>
+  <%= render :partial => "admin/plans/plan", :object => plan %>
+<% end %>
+<div style="clear:both;"></div>
+
+<% if @free_plan  %>
+  <% if @show_free_plan %>
+    <div class="free-plan">
+      We also offer a <%= free_plan_link(@free_plan, @current_plan) -%>: <%= @free_plan.users_limit -%> users, <%= @free_plan.projects_limit -%> projects, <%=  plan_mbytes_limit(@free_plan.mbytes_limit) %> storage
+    </div>
+  <% else %>
+    <div class="free-plan">
+    We also offer a free plan (<%= @free_plan.users_limit -%> users, <%= @free_plan.projects_limit -%> projects, <%=  plan_mbytes_limit(@free_plan.mbytes_limit) %> storage, <%=  @free_plan.items_limit %> backlog items), but you can not switch to it at the moment.<br>Your account is too big or you have upgraded your account within the current billing cycle.
+    </div>
+  <% end %>
+<% end %>

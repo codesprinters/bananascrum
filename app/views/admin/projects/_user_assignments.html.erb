@@ -1,0 +1,22 @@
+
+
+<% unless @project.archived? -%>
+  
+  <h2>Assign user to project</h2>
+  <div class="new-role-assignment">
+    <% form_tag(admin_project_role_assignments_url(@project), :method => 'post') do %>
+      <ul class="nav">
+        <li>Assign user:</li>
+        <li><%= select_tag :user_id, options_for_select(Domain.current.users.find(:all).map { |u| [truncate(u.login, :length => 22), u.id] }) %></li>
+        <li> as </li>
+        <li><%= select_tag :role_id,
+            options_for_select(Role.find(:all).map { |r| [r.name, r.id] },
+            lambda {|x| x.nil? ? nil : x.id}.call(Role.find_by_code('team_member'))) %></li>
+        <li><%= submit_tag "Assign", :class => 'button button-medium' %></li>
+      </ul>
+    <% end -%>
+  </div>
+<% end -%>
+
+<h3>Users participating in this project</h3>  
+<%= render :partial => 'admin/projects/roles' %>

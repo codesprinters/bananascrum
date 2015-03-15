@@ -1,0 +1,20 @@
+<% content_for :title do -%>
+License information
+<% end -%>
+<% content_for :splitter_class do -%>hidden<% end %>
+
+<div class="section blue-background">
+  <h2>Please set/update your license information</h2>
+
+  <% form_tag(change_license_path, :class => 'new-user' ) do %>
+    <%= error_messages_for('license') %>
+  
+    <p><%= label :entity_name, 'Entity name' %><br/>
+    <%= text_field :license, :entity_name %></p>
+  
+    <p><%= label :license_key, "License key" %><br/>
+    <%= text_area :license, :key, :rows => 3, :cols => 80 %></p>
+  
+  <p style="margin-top: 15px;"><%= submit_tag 'Proceed', :class => "button button-medium" %></p>
+  <% end %>
+</div>

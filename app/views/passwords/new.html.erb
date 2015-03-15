@@ -1,0 +1,24 @@
+<% content_for :splitter_class do %>
+hidden no-min-height
+<% end %>
+
+<div class="section with-padding blue-background">
+  <h2>Enter your new password</h2>
+  
+  <% form_for(:user, :url => profile_password_url, :html => { :method => :post, :class => 'new-password double-submit-blocked' }) do |f| -%>
+  
+    <%= error_messages_for :user, :activation %>
+  
+    <% if @activation.new_record? %>
+      <p><%= label :activation, :key, "Activation key" %><br />
+      <%= text_field :activation, :key, :name => :key, :autocomplete => :off %></p>
+    <% else %>
+      Activation key is valid
+      <%= hidden_field_tag 'key', params[:key]  %>
+    <% end %>
+    <%= render :partial => 'shared/users/password_form', :locals => { :f => f } %>
+  
+    <p style="margin-top: 10px;"><%= f.submit 'OK', :class => "button button-small" %></p>
+  
+  <% end -%>
+</div>

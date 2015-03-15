@@ -1,0 +1,51 @@
+<% content_for :title do -%>
+  Sprint: <%= @sprint.name %>
+<% end -%> 
+
+<% content_for :js_variables do -%>
+  <%= javascript_tag "bs._team = #{user_asignment_json_hash @sprint.project};" %>
+  <%= javascript_tag "bs._sprintId = #{@sprint.id};" %>
+  <%= juggernaut_tag %>
+  <%= javascript_tag "bs.burnchart._data = #{@chart_data.to_json};" %>
+  <%= javascript_tag "bs.sprint.freeDays = #{@current_project.free_days.to_json};" %>
+  <%= javascript_tag "bs.dateFormat = '#{User.current.js_prefered_date_format}';" %>
+<% end -%>
+
+
+<% content_for :right_content do %>
+  <%= render :partial => "controls", :layout => "sprints/about" %>
+  <%= render :partial => "shared/tag_info_box" %>
+  <%= render :partial => "shared/juggernaut_info_box" %>
+  <%= render :partial => "impediments/info_box" %>
+<% end %>
+
+
+<div class="expandable-list sprint-items-container">
+  <%= round_box %>
+  <div class="sprint-header">
+    <span class="sprint-header-title"><%= @sprint.name -%></span>
+
+    <span class='expand-links'>
+      <a href="#" class="expand-list">Expand all</a> /
+      <a href="#" class="collapse-list">Collapse all</a>
+      <a href="#" id="hide-finished">Hide completed</a>
+    </span>
+    <% form_tag( {:action => 'show', :id => @sprint}, {:method => "get", :id => "filters-form"} ) do %>
+      <div class="nav">Filter:
+        <%= select_tag("filter", options_for_select(["All", "unassigned"]) + options_from_collection_for_select(@team_members, "id", "login")) %>
+      </div>
+    <% end %>
+    <div style="clear:both"></div>
+  </div>
+  <ul class="backlog-items assigned-backlog-items <%="read-only" if @current_project.archived? || !@sprint.can_be_edited_by?(User.current) -%>" id="assigned-backlog-items">
+    <% round_box('#B0BBBD') do %>
+      <%= render(:partial => 'items/item_new', :collection => @assigned_items) %>
+      <li id="empty-sprint-msg" class="nosort" <%= 'style= "display: none;"' if @assigned_items && @assigned_items.length > 0%>> No backlog items to display.</li>
+    <%- end %>
+  </ul>
+</div>
+
+
+<%= render :partial => 'sprints/chart_tabs', :layout => 'shared/burnchart' %>
+
+

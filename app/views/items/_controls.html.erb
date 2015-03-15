@@ -1,0 +1,15 @@
+<div class="controls">
+  <% locals = {:item => item}.merge(defined?(read_only) ? {:read_only => true} : {}) %>
+  <%= render :partial => 'items/item_tags', :locals => locals %>
+  <div class="total-tasks-effort">
+    (<span class="total-tasks-value">0</span><span class="task-unit"><%=h Project.current.task_unit %></span>)
+  </div>
+  <div class="item-estimate-container">
+    [<span class="right item-estimate highlight<%= ' infinite' if item.can_have_infinite_estimate? %>"><%= item.more_intish_estimate %></span>
+    <%= h Project.current.backlog_unit %>]
+  </div>
+  <%= image_tag('mud/trash.png',:alt => "Delete this backlog item", :height => 16, :width => 13, :class => "trash delete-item") %>
+  <%= drop_arrow(item) %>
+  <%= assign_arrow(item) %>
+  <div style='clear:both;margin: 0; height:1px\9;'></div>
+</div>

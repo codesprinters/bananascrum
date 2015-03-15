@@ -1,0 +1,24 @@
+<div class="expandable collapsed info-box" id="tag-info-box">
+  <% round_box do %>
+    <h2>
+      <a href="#" class="expandable-link"><%= expandable_image_tag(:expanded => false) %></a>
+      Tags
+    </h2>
+    <div class="toggable-visibility">
+      <hr/>
+      <div class='tag-cloud hidden-controlls' id='tag-cloud'>
+        
+        <form action="#" class ="assign-tag-form tag-cloud-controls editor-field" >
+          <label>Add new tag: </label><input type="text" name="tag"/> 
+          <input type="submit" class="button" value="OK" />
+        </form>
+      
+        <div style="clear:both; height: 3px;"></div>
+        <%= render :partial => 'tags/tag_cloud_list' %>
+        <div class="navcontainer">
+          <%= render :partial => 'tags/tag_manage_tags_link' %>
+        </div>
+      </div>
+    </div>
+  <%- end %>
+</div>

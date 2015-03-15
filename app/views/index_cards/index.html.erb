@@ -1,0 +1,24 @@
+<div id="card-settings-form">
+  <% form_tag(pdf_index_cards_path) do -%>
+    <p>This will generate a PDF with index cards to be printed, cut and used on a traditional board.</p><br/>
+
+    <p><%= label :paper, "Paper size:" %><br/>
+      <%= select_tag(:paper, '<option value="a4">A4</option><option value="letter">Letter</option>') %>
+    </p>
+    
+    <% if @context == 'sprint' %>
+      <p><%= label :contents, "Contents:" %><br/>
+      <%= select_tag(:contents, '<option value="items">Backlog item cards</option><option value="tasks">Task cards</option><option value="all">Task and backlog item cards</option>') %>
+      </p>
+    <% end %>
+
+    <%= hidden_field_tag('project_id', Project.current.name) %>
+    <%= hidden_field_tag('context', @context) %>
+
+    <% if @sprint_id %>
+      <%= hidden_field_tag('sprint_id', @sprint_id) %>
+    <% end %>
+
+    <p><%= submit_tag 'Generate', :class => "button button-medium" %></p>
+  <% end %>
+</div>

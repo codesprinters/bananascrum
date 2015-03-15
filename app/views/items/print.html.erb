@@ -1,0 +1,21 @@
+<h1 class="backlog-title">
+  Product Backlog for project <%= @current_project.name -%>
+</h1>
+
+
+<div class="printable-backlog">
+  <div class="effort-stats">
+    Total:
+    <span id="backlog-items-total-count" class="items-total-count"><%= @stats[:total_items] %></span>  items,
+    <span id="backlog-items-not-estimated-count" class="items-not-estimated-count"><%= @stats[:not_estimated] %></span> not estimated,
+    <span id="backlog-items-effort" class="items-effort"><%= @stats[:total_sp] %></span>
+    <%=h Project.current.backlog_unit %>
+  </div>
+  <ul class="backlog-items" id="backlog-items">
+    <% @items.each do |item| %>
+      <% if item.item? -%>
+        <%= render(:partial => 'printable_item', :locals => {:item => item}) %>
+      <% end %>
+    <% end %>
+  </ul>
+</div>

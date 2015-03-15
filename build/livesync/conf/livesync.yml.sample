@@ -1,0 +1,7 @@
+:subscription_url: http://localhost:8789/juggernaut/subscribe
+:logout_connection_url: http://localhost:8789/juggernaut/disconnected
+:logout_url: http://localhost:8789/juggernaut/logged_out
+:allowed_ips: 
+  - 127.0.0.1
+:port: 5001
+:log_path: ../logs/livesync.log

@@ -1,0 +1,23 @@
+<% content_for :title do -%>
+User profile
+<% end -%>
+
+<% content_for :splitter_class do %>
+  hidden no-min-height
+<%end %>
+
+<div class="section with-padding blue-background">
+<h2>Enter your new password</h2>
+
+<% form_for(:user, @user, :url => profile_password_url, :html => { :method => :put, :class => 'form-box' }) do  |f|%>
+
+  <%= f.error_messages %>
+  <p><%= f.label :old_password, "Old password" %><br/>
+  <%= f.password_field :old_password %></p>
+
+  <%= render :partial => 'shared/users/password_form', :locals => { :f => f } %>
+
+  <p style="margin-top: 25px"><%= f.submit 'Change', :class => "button button-medium" %>
+  <%= link_to 'Cancel', edit_profile_path, :class => "button" %></p>
+<% end -%>
+</div>

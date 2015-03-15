@@ -1,0 +1,107 @@
+--- !ruby/object:Gem::Specification 
+required_ruby_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - '>='
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+email: nick@nicksieger.com
+cert_chain: []
+
+summary: CI::Reporter allows you to generate reams of XML for use with continuous
+  integration systems.
+post_install_message: 
+extra_rdoc_files: 
+- History.txt
+- Manifest.txt
+- README.txt
+- LICENSE.txt
+homepage: http://caldersphere.rubyforge.org/ci_reporter
+signing_key: 
+name: ci_reporter
+rdoc_options: 
+- --main
+- README.txt
+rubyforge_project: caldersphere
+autorequire: 
+licenses: []
+
+executables: []
+
+description: CI::Reporter is an add-on to Test::Unit, RSpec and Cucumber that allows
+  you to generate XML reports of your test, spec and/or feature runs. The resulting
+  files can be read by a continuous integration system that understands Ant's JUnit
+  report XML format, thus allowing your CI system to track test/spec successes and
+  failures.
+specification_version: 2
+default_executable: 
+files: 
+- History.txt
+- Manifest.txt
+- README.txt
+- LICENSE.txt
+- Rakefile
+- stub.rake
+- lib/ci/reporter/core.rb
+- lib/ci/reporter/cucumber.rb
+- lib/ci/reporter/rake/cucumber.rb
+- lib/ci/reporter/rake/cucumber_loader.rb
+- lib/ci/reporter/rake/rspec.rb
+- lib/ci/reporter/rake/rspec_loader.rb
+- lib/ci/reporter/rake/test_unit.rb
+- lib/ci/reporter/rake/test_unit_loader.rb
+- lib/ci/reporter/report_manager.rb
+- lib/ci/reporter/rspec.rb
+- lib/ci/reporter/test_suite.rb
+- lib/ci/reporter/test_unit.rb
+- lib/ci/reporter/version.rb
+- spec/ci/reporter/cucumber_spec.rb
+- spec/ci/reporter/output_capture_spec.rb
+- spec/ci/reporter/rake/rake_tasks_spec.rb
+- spec/ci/reporter/report_manager_spec.rb
+- spec/ci/reporter/rspec_spec.rb
+- spec/ci/reporter/test_suite_spec.rb
+- spec/ci/reporter/test_unit_spec.rb
+- spec/spec_helper.rb
+- tasks/ci_reporter.rake
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - '>='
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+extensions: []
+
+rubygems_version: 1.3.3
+requirements: []
+
+authors: 
+- Nick Sieger
+date: 2009-05-04 22:00:00 Z
+platform: ruby
+test_files: 
+- spec/ci/reporter/cucumber_spec.rb
+- spec/ci/reporter/output_capture_spec.rb
+- spec/ci/reporter/rake/rake_tasks_spec.rb
+- spec/ci/reporter/report_manager_spec.rb
+- spec/ci/reporter/rspec_spec.rb
+- spec/ci/reporter/test_suite_spec.rb
+- spec/ci/reporter/test_unit_spec.rb
+version: !ruby/object:Gem::Version 
+  version: 1.6.0
+require_paths: 
+- bin
+- lib
+dependencies: 
+- !ruby/object:Gem::Dependency 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - '>='
+      - !ruby/object:Gem::Version 
+        version: 2.1.2
+    version: 
+  type: :runtime
+  version_requirement: 
+  name: builder
+bindir: bin
+has_rdoc: true

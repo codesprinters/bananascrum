@@ -1,0 +1,28 @@
+<%= error_messages_for 'form' %>
+
+<p><%= f.label :login, "Login" %><br/>
+<%= f.text_field :login, :disabled => defined?(disable_login) && disable_login %></p>
+
+<p><%= f.label :first_name, "First name" %><br/>
+<%= f.text_field :first_name %></p>
+
+<p><%= f.label :last_name, "Last name" %><br/>
+<%= f.text_field :last_name %></p>
+
+<p><%= f.label :email_address, "Email address" %><br/>
+<%= f.text_field :email_address %></p>
+
+<p>Theme<br/>
+  <%= f.select :theme_id,
+    options_for_select([["Old", "0"]] + Theme.find(:all).map { |t| [t.name, t.id] },
+    :selected => @user.theme_id)
+  %>
+</p>
+<p style="margin-top: 5px;">Date format<br/>
+  <%= f.select :date_format_preference, options_for_select(User::PREFERRED_DATE_FORMATS.map { |key,value| [Date.today.strftime(value), key] }, :selected => @user.date_format_preference) %>
+</p>
+
+<% if AppConfig.send_emails %>
+  <p style="margin: 10px 0;"><%= f.label :like_spam, "Email notifications" %> 
+  <%= f.check_box :like_spam %></p>
+<% end %>

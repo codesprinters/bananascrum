@@ -1,0 +1,24 @@
+<div class="expandable info-box collapsed" id="impediments-info-box">
+  <% round_box do %>
+    <h2>
+      <a href="#" class="expandable-link"><%= expandable_image_tag(:expanded => false) %></a>
+      Impediments
+      <%= image_tag('icons/error.png', :width => 16, :height => 16,
+        :style => 'vertical-align: top;' + (@has_opened_impediment ? '' : 'display: none;'),
+        :id => 'impediments-icon',
+        :alt => 'There are opened impediments.', :title => 'There are opened impediments.') %>
+    </h2>
+    <div class="toggable-visibility">
+
+      <ul id="impediments-list">
+        <%= render :partial => "impediments/impediment_new", :collection => @impediments %>
+      </ul>
+
+      <div class="navcontainer">
+        <ul>
+          <li><%= functional_link_to 'New impediment', new_project_impediment_url(@current_project), :id => "new-impediment", :class => "button button-large"%></li>
+        </ul>
+      </div>
+    </div>
+  <%- end %>
+</div>

@@ -1,0 +1,12 @@
+<% content_for :splitter_class do %>
+hidden no-min-height
+<% end %>
+
+<div class="section with-padding blue-background">
+  <h2>Enter new password for user <%= @user.full_name -%></h2>
+  <%= error_messages_for :user %>
+  <% form_for(:user, :url => admin_user_password_url(@user), :html => { :method => :post, :class => 'new-password double-submit-blocked' }) do |f| -%>
+    <%= render :partial => 'shared/users/password_form', :locals => { :f => f } %>
+    <p style="margin-top: 15px;"><%= f.submit 'Change', :class => "button button-medium" %></p>
+  <% end %>
+</div>

@@ -1,0 +1,22 @@
+Hello <%= @user.first_name %>,
+
+Admin of the ‘<%= h @user.domain.full_name %>’ account in Banana Scrum created a user account for you.
+<% if @user.note_for_user %>
+
+He left a note for you:
+<%= h @user.note_for_user %>
+<% end %>
+
+Your login name is <%= h @user.login %>.
+
+To login and set your password please click the following link:
+<%= new_profile_password_url(:key => @key, :host => ::AppConfig.banana_domain, :protocol => protocol_for_user(@user)) %>
+
+If you can't click the link above, go to page:
+<%= new_profile_password_url(:host => ::AppConfig.banana_domain, :protocol => protocol_for_user(@user)) %>
+and paste this verification key into the form:
+<%= @key %>
+
+To learn more about Banana Scrum and its features go to: http://www.bananascrum.com/
+
+<%= mail_footer %>

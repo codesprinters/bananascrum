@@ -1,0 +1,34 @@
+<table class="data plans">
+  <thead>
+    <tr>
+      <th>Plan name</th>
+      <th>Price</th>
+      <th>Users</th>
+      <th>Projects</th>
+      <th>Items</th>
+      <th>Disk space</th>
+      <th>SSL</th>
+      <th>Timeline view</th>
+      <th>&nbsp;</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% plans.each do |plan| %>
+      <tr class="<%= cycle("odd", "even", :name => "plans") %>">
+        <td class="plan-name"><%= h plan.name %></td>
+        <td><%= plan_price(plan.price) %></td>
+        <td><%= plan_limit(plan.users_limit) %></td>
+        <td><%= plan_limit(plan.projects_limit) %></td>
+        <td><%= plan_limit(plan.items_limit) %></td>
+        <td><%= plan_mbytes_limit(plan.mbytes_limit) %></td>
+        <td><%= plan_flag(plan.ssl) %></td>
+        <td><%= plan_flag(plan.timeline_view) %></td>
+
+        <td class="plan-switch-radio">
+          <%= yield("plan_#{plan.id}", plan) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

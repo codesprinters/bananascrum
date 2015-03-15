@@ -1,0 +1,22 @@
+<div class="table-wrapper">
+  <% round_box('#B3C2C4') do %>
+    <div class="section-table-wraper">
+      <% round_box("#AEA892") do %>
+        <table class="data backlog items-count">
+          <tr class="odd">
+            <td class="label"> total items </td>
+            <td class="centered"> <span class="items-total-count"> </span></td>
+          </tr>
+          <tr class="even">
+            <td class="label"> not estimated </td>
+            <td class="centered"> <span class="items-not-estimated-count"> </span></td>
+          </tr>
+          <tr class="odd">
+            <td class="label"> total <%= @current_project.backlog_unit -%> </td>
+            <td class="centered"> <span class="items-effort"> </span></td>
+          </tr>
+        </table>
+      <%- end %>
+    </div>
+  <%- end %>
+</div>

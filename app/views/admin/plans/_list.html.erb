@@ -1,0 +1,29 @@
+<h2>Current plan</h2>
+
+<strong><%= current_plan.name %></strong>
+<h2>Plan limits </h2>
+<%= render("/admin/plans/plan_usage") %>
+
+<h2>Avaliable plans</h2>
+<%= error_messages_for :domain %>
+
+<% form_tag(change_plan_admin_domain_path, :method => :put, 
+  :class => "change-plan-form #{'create-customer-first' if domain.customer.dummy}") do %>
+
+  <% render(:layout => 'plans/list', :locals => { :plans => plans }) do |name, plan| %>
+    <% radio_button = radio_button_tag('plan_id', plan.id, false, :checked => (plan == current_plan)) %>
+
+    <% if (plan == current_plan) %>
+      <%= radio_button %>
+      <i>It's yours!</i>
+    <% elsif !domain.can_change_plan_to?(plan) %>
+      <i>Can't currently downgrade plan</i>
+    <% elsif not_available_plans.member?(plan) %>
+      <i>Plan too small</i>
+    <% else %>
+      <%= radio_button %>
+    <% end %>
+  <% end %>
+
+  <%= submit_tag('Continue', :id => 'change-plan-button', :class => "button") %>
+<% end %>

@@ -1,0 +1,8 @@
+<div class="item-description">
+  <a class="more-less-button" href="#">Show more</a>
+  <div class="item-description-text highlight truncated">
+    <%= render :partial => "shared/redcloth_description", :locals => { :description => item.readable_description } %>
+  </div>
+  <%= render :partial => 'shared/redcloth_legend'%>
+</div>
+<div style="clear:both"></div>

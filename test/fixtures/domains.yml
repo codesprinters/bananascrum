@@ -1,0 +1,26 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+code_sprinters:
+  name: cs
+  full_name: Code Sprinters
+  plan: big_plan
+
+airbites:
+  name: abp
+  full_name: AirBites
+  plan: big_plan
+
+comic:
+  name: comic
+  full_name: Comic Association Inc
+  plan: big_plan
+
+simple_domain:
+  name: simple
+  full_name: Simple
+  plan: simple_plan
+
+default:
+  name: bananascrum
+  full_name: Banana Scrum
+  plan: big_plan

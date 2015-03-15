@@ -1,0 +1,26 @@
+* Fixed integration issues rspec 1.1.11.
+
+0.2.2
+* fixed a bug that was preventing webrick server runner to start [Jeremy Lightsmith]
+
+0.2.1
+* ExternalServerRunner start_server and stop_server commands are configurable
+
+0.2.0
+* Added ExternalServerRunner.
+* Removed mysql specific setup logic.
+
+0.1.1
+* Rspec support
+
+0.1.0
+* Renamed to Polonium
+* Methods renamed to match Test::Unit assertions
+* Page and Element delegate to Driver [Paired with Jeff Whitmore]
+
+0.0.2
+* Supports multiple sessions by instantiating multiple SeleniumDrivers
+* Added SeleniumDriver which holds most of the polling methods
+
+0.0.1
+* Initial Release. More documentation to come.

@@ -1,0 +1,14 @@
+<li class="impediment-comment">
+  <% round_box('#E8EEEF') do %>
+    <div class="comment-header">
+      <span class="impediment-action"><%= h comment_new.impediment_action.name -%> </span>
+      <% if comment_new.user %>
+         <span class="impediment-user">by <%= h comment_new.user.full_name -%> </span>
+      <% end %>
+      <span class="impediment-time"> <%= distance_of_time_in_words(comment_new.created_at, Time.now) %> ago</span>
+    </div>
+    <% unless comment_new.comment.blank? %>
+      <span class="comment-text"><%= h comment_new.comment -%></span>
+    <% end %>
+  <%- end %>
+</li>

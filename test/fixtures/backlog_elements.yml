@@ -1,0 +1,175 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+item_with_task:
+  user_story: "Simple item with task"
+  description: "Lorem ipsum..."
+  estimate: 13
+  project: bananorama
+  position: 0
+  domain: code_sprinters
+  type: Item
+  
+first:
+  user_story: "Get things done"
+  description: "Lorem ipsum..."
+  estimate: 100
+  project: bananorama
+  position: 1
+  domain: code_sprinters
+  type: Item
+
+item_with_nil_estimate:
+  user_story: "Item with null estimate"
+  description: "Lorem ipsum..."
+  estimate:
+  project: bananorama
+  position: 2
+  domain: code_sprinters
+  type: Item
+  
+item_with_nil_estimate_on_sprint:
+  user_story: nil item in sprint
+  description: bla bla
+  estimate: 5
+  sprint: sprint_to_test_task_filtering
+  project: bananorama
+  domain: code_sprinters
+  type: Item
+
+item_assigned:
+  user_story: first item in sprint
+  description: bla bla
+  estimate: 5
+  sprint: sprint_with_assigned_tasks
+  position_in_sprint: 0
+  project: bananorama
+  domain: code_sprinters
+  type: Item
+
+another_item_assigned:
+  user_story: second item assigned to a sprint
+  description: what can I say
+  estimate: 2
+  sprint: sprint_with_assigned_tasks
+  position_in_sprint: 1
+  project: bananorama
+  domain: code_sprinters
+  type: Item
+
+item_with_half_estimate:
+  user_story: item
+  estimate: 0.5
+  project: bananorama
+  position: 3
+  domain: code_sprinters
+  type: Item
+
+item_with_infinite_estimate:
+  user_story: Never ending story
+  estimate: <%= Item::INFINITY_ESTIMATE_REPRESENTATIVE %>
+  project: bananorama
+  position: 4
+  domain: code_sprinters
+  type: Item
+
+item_not_belonging_to_user:
+  user_story: "I'm not yours"
+  estimate: 1
+  sprint: sprint_to_test_task_filtering
+  project: bananorama
+  domain: code_sprinters
+  type: Item
+
+item_belonging_to_user:
+  user_story: "I'm yours"
+  estimate: 1
+  sprint: sprint_to_test_task_filtering
+  project: bananorama
+  domain: code_sprinters
+  type: Item
+
+item_assigned_and_liked:
+  user_story: Climbing Cerro Torre
+  description: Ślimak Bąk
+  estimate: null
+  sprint: sprint_with_assigned_tasks
+  position_in_sprint: 2
+  project: bananorama
+  domain: code_sprinters
+  type: Item
+
+another_item_assigned_and_liked:
+  user_story: 'Assigned and confirmed utf8 string: ółńŃĄŚıĘJĦÐĦŹŚŃ'
+  description: Siento llegar tarde
+  estimate: 13
+  sprint: sprint_with_assigned_tasks
+  position_in_sprint: 3
+  project: bananorama
+  domain: code_sprinters
+  type: Item
+
+item_dropped_from_sprint:
+  user_story: "I am dropped in the middle of sprint"
+  estimate: 0
+  sprint: sprint_with_dropped_item
+  project: bananorama
+  domain: code_sprinters
+  type: Item
+
+# please dont add logs to this one (in fixtures)
+item_without_logs:
+  user_story: "As a Backlog Item I don't have logs"
+  estimate: 5
+  project: bananorama
+  position: 5
+  domain: code_sprinters
+  type: Item
+
+item_with_simple_plan:
+  user_story: "Simple"
+  estimate: 7
+  project: simple_project
+  domain: simple_domain
+  type: Item
+
+item_with_big_plan:
+  user_story: "Big"
+  estimate: 5
+  project: comic_project
+  domain: comic
+  type: Item
+
+second:
+  user_story: "Get things done too "
+  description: "Lorem ipsum whatever it means ..."
+  estimate: 100
+  project: bananorama
+  domain: code_sprinters
+  sprint: sprint_in_april
+  type: Item
+
+item_from_second_project:
+  user_story: "As role I can action"
+  description: "Role can do action"
+  estimate: 5
+  project: second
+  domain: code_sprinters
+  type: Item
+
+item_for_sprint_one:
+  user_story: "Do stuff"
+  description: "one two three"
+  estimate: 2
+  project: bananorama
+  domain: code_sprinters
+  sprint: sprint_one
+  type: Item
+
+another_item_for_sprint_one:
+  user_story: "Do other stuff"
+  description: "three four five"
+  estimate: 5
+  project: bananorama
+  domain: code_sprinters
+  sprint: sprint_one
+  type: Item
+

@@ -1,0 +1,17 @@
+<div class="comment">
+  <% round_box('#E8EEEF') do %>
+    <div class="comment-header">
+      <div class="user-name">
+        <%= h comment_new.user.full_name %>
+      </div>
+      <div class="creation-time">
+        <%= comment_new.created_at.strftime("#{User.current.prefered_date_format} %H:%M") %>
+      </div>
+      <div class="comment-line"></div>
+    </div>
+
+    <div class='comment-body'>
+      <%= h(comment_new.text) -%>
+    </div>
+  <%- end %>
+</div>

@@ -1,0 +1,169 @@
+#facebox tr:first-child .b {
+  background:url(../images/mud/csg-4bd017f2f3886.png);
+  background-position: 0 -446px;
+}
+
+#facebox tr .b:first-child {
+  background:url(../images/mud/csg-4bd03225a8bd8.png);
+  background-position: 0 0;
+}
+
+
+#facebox tr .body+.b {
+  background:url(../images/mud/csg-4bd03225a8bd8.png);
+  background-position: -17px 0;
+}
+
+#facebox tbody tr .b {
+  background:url(../images/mud/csg-4bd017f2f3886.png);
+  background-position: 0 -426px;
+}
+
+#facebox .tl {
+  background:url(../images/mud/csg-4bd04681aff0b.png) no-repeat;
+  background-position: 0px -1482px; 
+}
+
+#facebox .tr {
+  background:url(../images/mud/csg-4bd04681aff0b.png);
+  background-position: -951px -329px;
+}
+
+#facebox .bl {
+  background:url(../images/mud/csg-4bd04681aff0b.png) no-repeat;
+  background-position: 0 -1300px;
+}
+
+#facebox .br {
+  background:url(../images/mud/csg-4bd04681aff0b.png) no-repeat;
+  background-position: -951px -309px;
+} 
+
+#facebox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 110;
+  text-align: left;
+  padding-bottom: 20px;
+}
+
+#facebox .popup {
+  position: relative;
+  overflow: auto;
+}
+
+#facebox table {
+  border-collapse: collapse;
+}
+
+#facebox td {
+  border-bottom: 0;
+  padding: 0;
+}
+
+#facebox .body {
+  padding: 1px;
+  background: #D6E1E3;
+  width: 550px;
+  color: #2E3C3F;
+  position: relative;
+  font-size: 13px;
+  display:block;
+}
+
+#facebox h2 {
+  margin-top: 0px;
+  margin:3px;
+  position: relative;
+}
+
+#facebox h3 {
+  font-weight: bold;
+  font-size: 12px;
+}
+
+#facebox .section.with-padding h2 {
+  margin-left:-12px;
+  margin-top:-12px;
+}
+
+#facebox a.close {
+  text-indent: 50px;
+  display: block;
+  right: -6px;
+  top: -5px;
+  height: 18px;
+  position: absolute;
+  overflow: hidden;
+  background: url(../images/mud/csg-4bd04681aff0b.png);
+  background-position: 0 -460px;
+  width: 16px;
+  cursor: pointer;
+}
+
+#facebox .comments {
+  max-height: 300px; 
+  position: relative;
+  overflow-y: auto;
+}
+
+#facebox .loading {
+  text-align: center;
+}
+
+#facebox .image {
+  text-align: center;
+}
+
+#facebox img {
+  border: 0;
+  margin: 0;
+}
+
+#facebox .tl, #facebox .tr, #facebox .bl, #facebox .br {
+  height: 15px;
+  width: 16px;
+  overflow: hidden;
+  padding: 0;
+}
+
+#facebox_overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height:100%;
+  width:100%;
+}
+
+#facebox textarea {
+  height: 80px;
+  width: 100%;
+}
+
+#facebox .section {
+  border:5px solid white;
+  margin-top:-5px;
+}
+
+#facebox .section:first-child {
+  margin-top:15px;
+}
+
+#facebox .tabs-contents .section {
+  margin-top: 0px;
+}
+.facebox_hide {
+  z-index:-100;
+}
+
+.facebox_overlayBG {
+  background-color: #000;
+  z-index: 99;
+  opacity: 0.6;
+}
+
+* html #facebox_overlay { /* ie6 hack */
+  position: absolute;
+  height: expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight + 'px');
+}

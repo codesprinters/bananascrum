@@ -1,0 +1,16 @@
+This directory contains all files and dependencies that are neccessary to
+build standalone juggernaut server that can be run from single jar archive.
+
+To build the executable jar file,
+- rake
+This places the livesync.jar artifact in the pkg directory.
+
+To run the application from the filesystem,
+- rake run
+
+To run the application from the jar,
+- java -jar livesync.jar -c path/to/config/file.yml
+You should be able to run this from anywhere on your filesystem; you don't need to be in the same directory.
+
+If you don't have config file you can generate sample one with
+- java -jar livesync.jar -g output_file.yml

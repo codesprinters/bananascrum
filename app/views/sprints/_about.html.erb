@@ -1,0 +1,28 @@
+<% title = ((title.try(:blank?)) ? title : "#{@sprint.name}") %>
+<div id="sprint-about" class="expandable info-box">
+  <% round_box do %>
+    <h2>
+      <a href="#" class="expandable-link"><%= expandable_image_tag(:expanded => true) %></a>
+      About <%= h(title) %>
+    </h2>
+
+    <div class="toggable-visibility sprint-about">
+      <hr/>
+      <div class='information sprint'>
+        <%= sprint_information(@sprint) %>
+      </div>
+
+      <div class="information sprint items-count">
+        <span>
+          <% unless @sprint.goals.blank? %>
+            <span id="sprint-goal-tab">Goal: </span> <span class="sprint-goals"><%=h @sprint.goals %></span><br/>
+          <% end %>
+          <%= render :partial => 'sprints/about_items_count' %>
+          <span id="participants-tab" class="<%= "hidden" if @sprint.users.blank? -%>">Team: </span><span class="participants"><%=h @sprint.participants %></span>
+        </span>
+        <div style="clear: both;"> </div>
+      </div>
+      <%= yield %>
+    </div>
+  <%- end %>
+</div>

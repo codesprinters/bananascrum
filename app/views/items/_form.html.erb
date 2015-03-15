@@ -1,0 +1,43 @@
+<% form_for :item, :url => project_items_url(@current_project), :method => 'post' do |form| %>
+  <div class="new-item">
+    <div class="error-container">
+      <%= error_messages_for 'item' %>
+    </div>
+    <div style="clear: both;" ></div>
+    <div class="new-item-table">
+      <label for="item_user_story">
+        User story
+      </label><br/>
+      <%= form.text_field :user_story %>
+      
+      <label for="item_estimate" class="right">
+        Estimate<br/>
+        <%= form.select :estimate, select_item_estimate_choices(false) %> <%=h Project.current.backlog_unit %>
+      </label>
+      <div style="clear: both;" />
+      <label for="item_description">
+        Description<br/>
+        <%= form.text_area :description %>
+      </label>
+      <div class="right">
+        Tags<br/>
+        <%= tag_list_select %>
+      </div>
+      <div style="clear: right;" />
+      <label for="new_item_tag" class="right">
+        New tag<br/>
+        <%= text_field_tag "new_item_tag", nil, :class=>'new-tag-input has-watermark' %>
+      </label>
+      <div style="clear: both;" />
+    </div>
+    <div>
+      <%= submit_tag 'Create', :class => "button" %>
+      <a class="hide-form" href="#">Cancel</a>
+      <%= hidden_field 'item', 'project_id' %>
+      <%= render :partial => 'shared/redcloth_legend' %>
+      <div style="clear: left" />
+      <%= leave_open_checkbox %>
+    </div>
+
+  </div>
+<% end %>

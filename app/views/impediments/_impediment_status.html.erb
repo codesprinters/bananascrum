@@ -1,0 +1,9 @@
+<% form_tag status_project_impediment_url(@current_project, impediment), :method => 'post', :class => 'impediment-status-form' do %>
+<p>
+Mark as <b><%= (impediment.current_status == "Opened" ? "closed" : "opened" )%></b> with comment: <%= text_field_tag 'comment'%>
+
+<%= hidden_field_tag 'impediment_status', (impediment.current_status == "Opened" ? "Closed" : "Opened" ), :class => 'impediment_status' %>
+<%= submit_tag 'OK', :class => "button" %>
+</p>
+
+<% end %>

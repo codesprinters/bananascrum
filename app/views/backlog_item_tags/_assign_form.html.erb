@@ -1,0 +1,6 @@
+<% form_tag(project_item_backlog_item_tags_url(@item.project, @item), :method => :post, :class => "editor-field") do %>
+  <%= text_field_tag(:tag, nil, :style => 'font-size: 10px;', :autocomplete => "off") %>
+
+  <%= submit_button('OK') %>
+  <a href="#" class="cancel hide-form">Cancel</a>
+<% end %>

@@ -1,0 +1,33 @@
+<% form_tag project_impediments_url(@current_project), :method => :post do %>
+
+ <div class="new-impediment">
+  <div class="error-container">
+    <%= render :partial => 'impediments/form_error_messages' %>
+  </div>
+  <table class="new-impediment-table">
+    <tr>
+      <td>
+        <label for="impediment_summary">Summary</label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= text_field 'impediment', 'summary' %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="impediment_description">Description</label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= text_area 'impediment', 'description' %>
+      </td>
+    </tr>
+  </table>
+  <p>
+    <%= submit_tag 'Create', :class => "button button-medium" %>
+  </p>
+</div>
+<% end %>

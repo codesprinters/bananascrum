@@ -1,0 +1,51 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+simple:
+  summary: "Simple task"
+  estimate: 9
+  position: 1
+  item: item_with_task
+  domain: code_sprinters
+
+complex:
+  summary: "Complex task"
+  estimate: 7
+  position: 0
+  item: item_with_task
+  domain: code_sprinters
+  
+
+task_for_user:
+  summary: "Task to be assigned to some user"
+  estimate: 2
+  item: item_assigned
+  domain: code_sprinters
+
+third:
+  summary: "Casual task"
+  estimate: 5
+  item: item_assigned
+  domain: code_sprinters
+
+first_users_task_one:
+  summary: "Some summary"
+  estimate: 2
+  item: item_belonging_to_user
+  domain: code_sprinters
+
+different_users_task_one:
+  summary: "Some summary"
+  estimate: 2
+  item: item_belonging_to_user
+  domain: code_sprinters
+
+different_users_task_two:
+  summary: "Some summary"
+  estimate: 2
+  item: item_not_belonging_to_user
+  domain: code_sprinters
+
+task_for_dropped_item:
+  summary: "Sad task"
+  estimate: 10
+  item: item_dropped_from_sprint
+  domain: code_sprinters

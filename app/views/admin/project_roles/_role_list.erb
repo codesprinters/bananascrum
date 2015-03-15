@@ -1,0 +1,8 @@
+<table class="rolelist">
+  <tr>
+    <%= render :partial => "admin/project_roles/role",
+      :collection => collection,
+      :as => :role_assigment,
+      :locals => {:project => project, :user => user} %>
+  </tr>
+</table>

@@ -1,0 +1,87 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+sprint_one:
+  name: name test sprint
+  from_date: <%= "2007-02-10".to_date %>
+  to_date: <%= "2007-03-10".to_date %>
+  goals: rule the world
+  project: bananorama
+  sequence_number: 1
+  domain: code_sprinters
+
+# Do not assign items to this sprint
+empty_sprint:
+  name: Sprint without items
+  from_date: <%= "2009-02-10".to_date %>
+  to_date: <%= "2009-03-10".to_date %>
+  goals: rule the world
+  project: bananorama
+  sequence_number: 2
+  domain: code_sprinters
+
+sprint_with_assigned_tasks:
+  name: sprint with backlog items
+  from_date: <%= "2007-01-06".to_date %>
+  to_date: <%= "2007-01-22".to_date %>
+  goals: world domination
+  project: bananorama
+  domain: code_sprinters
+
+sprint_to_test_task_filtering:
+  name: some test sprint
+  from_date: <%= "2007-12-20".to_date %>
+  to_date: <%= "2008-01-20".to_date %>
+  goals: faster world domination
+  project: bananorama
+  domain: code_sprinters
+
+sprint_in_second_project:
+  name: sprint1
+  from_date: <%= "2008-01-21".to_date %>
+  to_date: <%= "2008-01-23".to_date %>
+  goals: none
+  project: second
+  domain: code_sprinters
+
+sprint_with_dropped_item:
+  name: abandonned
+  from_date: <%= "2007-01-10".to_date %>
+  to_date: <%= "2007-01-13".to_date %>
+  goals: none
+  project: bananorama
+  domain: code_sprinters
+
+sprint_in_january:
+  sequence_number: 1
+  name: january
+  from_date: <%= "2008-01-01".to_date %>
+  to_date: <%= "2008-01-20".to_date %>
+  goals: none
+  project: project_for_sprints
+  domain: code_sprinters
+
+sprint_in_february:
+  sequence_number: 2
+  name: february
+  from_date: <%= "2008-02-10".to_date %>
+  to_date: <%= "2008-02-20".to_date %>
+  goals: none
+  project: project_for_sprints
+  domain: code_sprinters
+
+sprint_in_march:
+  sequence_number: 3
+  name: march
+  from_date: <%= "2008-03-10".to_date %>
+  to_date: <%= "2008-03-20".to_date %>
+  goals: none
+  project: project_for_sprints
+  domain: code_sprinters
+
+sprint_in_april:
+  sequence_number: 4
+  name: april
+  from_date: <%= "2008-04-10".to_date %>
+  to_date: <%= "2008-04-20".to_date %>
+  goals: none
+  project: bananorama  
+  domain: code_sprinters

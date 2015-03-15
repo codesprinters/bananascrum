@@ -1,0 +1,27 @@
+<li id="tag-<%= tag.id %>" class="tag-cloud-item tag tag-color-<%= tag.color_no %>">
+
+  <span class='tag-cloud-controls'>
+    <%- functional_link_to([@current_project, tag], :class => 'destroy') do -%>
+      <%=
+      image_tag('icons/trash.gif',
+        :alt => "Delete this tag",
+        :title => "Delete this tag",
+        :height => 11,
+        :width => 10,
+        :class => "trash")
+      -%>
+    <%- end -%>
+  </span>
+
+  <span class='tag-name' title="Click to cycle filters"><%= h tag.name -%></span>
+
+  <% if tag.description.blank? %>
+      <a class="set-tag-description-link tag-cloud-controls" href="#" title="Set tag description."><%= image_tag('icons/pencil.gif') -%></a>
+  <% end %>
+  <% new_layout_only do %>
+    <span id="set-tag-color-<%= tag.id %>" class="set-tag-color tag-cloud-controls tag-color-<%= tag.color_no %>">a</span>
+  <% end %>
+
+  <span class='tag-description tag-cloud-controls'><%= h tag.description -%></span>
+  <span class="tag-count-container">(<span class="tag-count"></span>)</span>
+</li>

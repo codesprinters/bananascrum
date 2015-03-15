@@ -1,0 +1,10 @@
+<% task = @task.nil? ? task : @task -%>
+<% content_tag :li, task_li_hash(task) do -%>
+  <div class="task-estimate-user">
+    <span class="task-estimate"><%=h task.estimate %></span>
+    <%=h Project.current.task_unit %>
+    [<span class="task-users"><%= get_users_logins(task) %></span>]
+  </div>
+  <span class="task-summary"><%=h task.summary %></span>
+<% end -%>
+

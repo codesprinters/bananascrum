@@ -1,0 +1,14 @@
+first_users_task_one:
+  task: first_users_task_one
+  user: user_one
+  domain: code_sprinters
+
+different_users_task_one:
+  task: different_users_task_one
+  user: user_two
+  domain: code_sprinters
+
+different_users_task_two:
+  task: different_users_task_two
+  user: user_two 
+  domain: code_sprinters

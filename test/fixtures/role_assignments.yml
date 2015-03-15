@@ -1,0 +1,37 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+scrum_master_in_bananascrum:
+  user: banana_master
+  project: bananorama
+  role: scrum_master
+  domain: code_sprinters
+
+product_owner_in_bananascrum:
+  user: banana_owner
+  project: bananorama
+  role: product_owner
+  domain: code_sprinters
+
+team_member_in_bananascrum:
+  user: banana_team
+  project: bananorama
+  role: team_member
+  domain: code_sprinters
+  
+other_team_member_in_bananascrum:
+  user: banana_teamer
+  project: bananorama
+  role: team_member
+  domain: code_sprinters
+
+team_member_in_second:
+  user: developer_of_second_only
+  project: second
+  role: team_member
+  domain: code_sprinters
+  
+team_member:
+  user: user_one
+  project: bananorama
+  role: team_member
+  domain: code_sprinters

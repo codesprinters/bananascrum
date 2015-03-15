@@ -1,0 +1,5 @@
+<ul class="backlog-items markers-hidden read-only long-term-view sprint-<%=sprint.id-%>">
+  <% locals = defined?(read_only) ? {:read_only => true} : {} %>
+  <%= render(:partial => 'items/item_new', :collection => sprint.items, :locals => locals) %>
+  <%= render(:partial => 'items/planning_marker', :locals => { :planning_marker => sprint.planning_marker }) unless sprint.items.empty? %>
+</ul>

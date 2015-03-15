@@ -1,0 +1,53 @@
+<% new_layout_only do %>
+  <div class="section">
+    <h2> Payments </h2>
+    <div class="table-wrapper">
+    <%= round_box %>
+<% end %>
+  
+<% old_layout_only do %>
+  <h2 style="margin-top: 25px;">Payments</h2>
+<% end %>
+<% if !payments.empty? %>
+<table class="data" cellSpacing='0px'>
+  <thead>
+    <tr>
+      <th>Plan name</th>
+      <th>Amount</th>
+      <th>Status</th>
+      <th>From date</th>
+      <th>To date</th>
+      <th>Issue date</th>
+      <th>Invoice</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% payments.each do |payment| %>
+    <tr class="<%= cycle('odd', 'even') %>">
+      <td><%=h payment.plan.name %></td>
+      <td>&euro;<%=h payment.amount %></td>
+      <td><%=h payment.status %></td>
+      <td><%=h payment.from_date.to_s(:db) %></td>
+      <td><%=h payment.to_date.to_s(:db) %></td>
+      <td><%=h payment.issue_date.to_s(:db) %></td>
+      <td>
+        <% if payment.invoice %>
+          <% if payment.invoice.has_pdf_files? %>
+            <%= link_to "Download", admin_invoice_path(payment.invoice), :class => 'pdf-download' %>
+          <% else %>
+            <span title="Invoices are generated daily at 11 pm UTC. Please come back tomorrow.">pending</span>
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<% else %>
+  <p>You have not made any payments yet.</p>
+<% end %>
+
+<% new_layout_only do %>
+  </div>
+</div>
+<% end %>

@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+<%# Please, do not escape title! Helpers will do the job %>
+    <title><%= title(yield :title) %></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <%= stylesheet_link_tag 'blue', 'facebox', 'date_picker', 'jquery.autocomplete', :cache => true %>
+    <%= stylesheet_link_tag('print', :media => :print) %>
+
+    <%= javascript_include_tag 'jquery-1.4.4.min', 'jquery.cseditable', 'jquery-ui-1.8.11.custom.min','jquery.blockUI',
+      'jquery.cookie', 'ajaxupload', 'jquery.autocomplete', 'facebox', 'date', 'jquery.datePicker',
+      'jquery.cs_plugins', 'cs-jquery.watermarkinput', 'json2', 'swfobject',
+      'jquery.template', 'jquery.dropshadow', 'jquery.tablesort', 'jquery.tagLabel', 'jquery.selectCheckbox', 'jquery.cssortable', :cache => 'jquery_all' %>
+    <%= javascript_include_tag 'application',
+      'backlog/backlog', 'backlog/impediment', 'backlog/item', 'backlog/sprint', 'backlog/task',
+      'attachments', 'tags', 'admin_panel', 'dialog', 'comments', 'burnchart', 'tabs',
+      'juggernaut/json', 'juggernaut/juggernaut', 'juggernaut/jquerynaut', 'bs/mutex', 'bs/callbacks',
+      'backlog/bindings', 'backlog/marker', 'profile', 'item_logs', :cache => true %>
+
+    <%= javascript_include_tag 'less_routes' %>
+
+    <% javascript_tag do -%>
+      <%= "bs._rootPath = '#{root_path.chomp('/')}';" %>
+      <%= "bs._burnchartPath = '#{burnchart_path}';" %>
+      <%= "bs._token = #{form_authenticity_token.to_json};" if protect_against_forgery? %>
+      <%= "bs._project = #{Project.current.name.to_json};" if Project.current %>
+      <%= "bs._projectEsimates = #{Project.current.estimate_sequence.to_json};" if Project.current %>
+      <%= "bs._sessionId = #{@juggernaut_session.id};" if @juggernaut_session %>
+      <%= "bs._layout = 'old';" %>
+      <%= "bs._rootPath = '#{root_path.chomp('/')}';" %>
+    <% end -%>
+
+    <%= yield :js_variables %>
+  </head>
+
+  <body>
+    <div id="outer">
+      <div id="top">
+        <div id="domain-name">
+          <%= h(domain_name) %> <span id="development-info"> <%= development_info %> </span>
+        </div>
+        <div id="login-info">
+          <%= login_info_content %>
+        </div>
+        <%= generate_menu @current_project %>
+        <%= yield :tabs %>
+      </div>
+
+      <%= generate_notice %>
+      
+      <div id="main-panel">
+        <div id="flash-container">
+          <% for name in [:notice, :warning, :error, :info, :persistant] %>
+            <% if flash[name] %>
+              <div id='flash-<%= name %>' class="flash"><%= h(flash[name]) %></div>
+            <% end %>
+          <% end %>
+        </div>
+        <%= title_heading(yield :title) %>
+        <%= yield %>
+        <div id="footer"><%= banana_version %> &copy; 2008-2010 <a href="http://www.codesprinters.com" rel="external">Code Sprinters</a>.
+          Some icons based on works of <a href="http://www.famfamfam.com/" rel="external">Mark James</a>.
+          Visit <a href="<%= AppConfig.remote_urls[:about_page] %>" rel="external">Banana Scrum homepage</a>!</div>
+      </div>
+      <div id="bottom-shadow"></div>
+    </div>
+  </body>
+</html>

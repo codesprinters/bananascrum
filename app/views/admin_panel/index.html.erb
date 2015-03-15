@@ -1,0 +1,41 @@
+<% content_for :splitter_class do %>
+  hidden
+<% end %>
+
+<% content_for :tabs do%>
+  <ul class="tabs-links" id="top-menu">
+    <% with_options :class => "tab" do |tab| %>
+      <li>
+        <% tab.link_to("#users") do %>
+          <div class="users">
+            Users
+          </div>
+        <% end %>
+        <div class="tab-underscore"></div>
+      </li>
+      <li>
+        <% tab.link_to("#projects", :class => "tab current-tab") do %>
+          <div class="projects">
+            Projects
+          </div>
+        <% end %>
+        <div class="tab-underscore"></div>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<div class="tabbed-content top-menu">
+
+  <div style="clear:left"></div>
+
+  <div class="tabs-contents">
+    <div id="users" class="tab-content"> 
+      <%= render :partial => "admin/users/users_list", :locals => {:users => @users} %>
+      <span class="empty-section-message" <%= 'style="display: none;"' unless @users.blank?-%>>There are no users</span>
+    </div>
+    <div id="projects" class="tab-content current-tab-content">
+      <%= render :partial => "/admin/projects/projects_list", :locals => { :projects => @projects } %>
+    </div>
+  </div>
+</div>

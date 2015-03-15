@@ -1,0 +1,64 @@
+<% content_for :title do -%>
+  Project: <%= @project.presentation_name -%> <%= @project.archived? ? '[Archived]' : '' %>
+<% end -%>
+
+<% content_for :js_variables do %>
+  <%= javascript_tag "bs._project = #{@project.name.to_json}" %>
+<% end %>
+<div class="tabbed-content project-edit-menu">
+  <ul class="tabs-links ignore-hashpart" id="project-edit-menu">
+    <li class="tab current-tab"> 
+      <%- round_tab do %>
+        <%= link_to "Details", "#details" %>
+      <% end%>
+    </li>
+    
+    <li class="tab">
+      <%- round_tab do %>
+        <%= link_to "Settings", "#settings" %>
+      <% end %>
+    </li>
+    <li class="tab">
+      <%- round_tab do %>
+        <%= link_to "Assignments", "#assignments" %>
+      <% end %>
+    </li>
+  </ul>
+
+
+  <div style="clear:left"></div>
+
+  <div class="tabs-contents">
+    <div class="tab-content section blue-background with-padding current-tab-content" id="details">
+      <% @tabindex = 0 %>
+      <h2>Editing project</h2>
+      <% form_tag(admin_project_url(@project.id), {:method => :put, :class => 'new-project'}) do %>
+        
+        <%= render :partial => 'form' %>
+        
+        <%= submit_tag 'OK', :class => "button button-small" %>
+      <%end%>
+    </div>
+
+    <div class="tab-content section blue-background with-padding" id="settings">
+      <h2>Project Settings</h2>
+      <% unless @project.archived? -%>
+        <ul class="nav">
+          <li>
+            <%= functional_link_to 'Reset project settings to defaults', reset_settings_to_defaults_admin_project_path(@project.id), :id => "reset-to-defaults" %>
+          </li>
+        </ul>
+      <% end %>
+      <% form_tag(admin_project_url(@project.id), {:method => :put}) do %>
+        <%= render :partial => 'settings_form' %>
+        <%= submit_tag 'OK', :class => "button button-small" %>
+      <% end %>
+    </div>
+    
+    <div class="tab-content section blue-background with-padding" id="assignments">
+      <%= render :partial => 'user_assignments' %>
+    </div>
+
+  </div>
+
+</div>

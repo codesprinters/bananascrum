@@ -1,0 +1,166 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+bananorama:
+  domain: code_sprinters
+  name: bananorama
+  presentation_name: The Bananorama
+  description: The Bananorama Project
+  calendar_key: fbb183264f6b4cb06dee0ba3e43408c7
+  archived: false
+  time_zone: Warsaw
+  free_days: 
+    0: '0'
+    1: '0'
+    2: '0'
+    3: '0'
+    4: '0'
+    5: '0'
+    6: '0'
+  estimate_sequence: ",0,0.5,1,2,3,5,8,13,20,40,100,9999"
+  
+
+# don't add sprints nor items to this one (in fixtures)
+destroyable:
+  domain: code_sprinters
+  name: imdoomed
+  presentation_name: Duke Nukem
+  description: Duke Nukem Forever
+  calendar_key: fbb183264f6b4cb06dee0ba3e43408c7
+  archived: false
+  time_zone: Warsaw
+  free_days: 
+    0: '0'
+    1: '0'
+    2: '0'
+    3: '0'
+    4: '0'
+    5: '0'
+    6: '0'
+  estimate_sequence: ",0,0.5,1,2,3,5,8,13,20,40,100,9999"
+
+second:
+  domain: code_sprinters
+  name: buond
+  presentation_name: Wiel Buond
+  description: Wiel Buond very important project
+  calendar_key: fbb183264f6b4cb06dee0ba3e43408c7
+  archived: false
+  time_zone: London
+  free_days: 
+    0: '0'
+    1: '0'
+    2: '0'
+    3: '0'
+    4: '0'
+    5: '0'
+    6: '0'
+  estimate_sequence: ",0,0.5,1,2,3,5,8,13,20,40,100,9999"
+
+first_in_abp_domain:
+  domain: airbites
+  name: abp_first
+  presentation_name: ABP domains first project
+  description: first project in airbites domain
+  calendar_key: fbb183264f6b4cb06dee0ba3e43408c7
+  archived: false
+  time_zone: London
+  free_days: 
+    0: '0'
+    1: '0'
+    2: '0'
+    3: '0'
+    4: '0'
+    5: '0'
+    6: '0'
+
+
+second_in_abp_domain:
+  domain: airbites
+  name: abp_second
+  presentation_name: ABP domains second project
+  description: second project in airbites domain
+  calendar_key: fbb183264f6b4cb06dee0ba3e43408c7
+  archived: false
+  time_zone: Warsaw
+  free_days: 
+    0: '0'
+    1: '0'
+    2: '0'
+    3: '0'
+    4: '0'
+    5: '0'
+    6: '0'
+
+
+project_for_sprints:
+  domain: code_sprinters
+  name: sprints
+  presentation_name: The Sprint Project
+  description: The Sprint Project
+  calendar_key: fbb183264f6b4cb06dee0ba3e43408c7
+  archived: false
+  time_zone: London
+  free_days: 
+    0: '0'
+    1: '0'
+    2: '0'
+    3: '0'
+    4: '0'
+    5: '0'
+    6: '0'
+
+
+archived_project:
+  domain: code_sprinters
+  name: archived
+  presentation_name: Archived Project
+  description: Archived Project
+  calendar_key: fbb183264f6b4cb06dee0ba3e43408c7
+  archived: true
+  time_zone: Santiago
+  free_days: 
+    0: '0'
+    1: '0'
+    2: '0'
+    3: '0'
+    4: '0'
+    5: '0'
+    6: '0'
+
+  
+simple_project:
+  domain: simple_domain
+  name: simple
+  presentation_name: simple
+  description: simple
+  calendar_key: fbb183264f6b4cb06dee0ba3e43408c7
+  archived: false
+  time_zone: Warsaw
+  free_days: 
+    0: '0'
+    1: '0'
+    2: '0'
+    3: '0'
+    4: '0'
+    5: '0'
+    6: '0'
+
+  
+comic_project:
+  domain: comic
+  name: comic
+  presentation_name: comic first project
+  description: first project in airbites domain
+  calendar_key: fbb183264f6b4cb06dee0ba3e43408c8
+  archived: false
+  time_zone: Warsaw
+  free_days: 
+    0: '0'
+    1: '0'
+    2: '0'
+    3: '0'
+    4: '0'
+    5: '0'
+    6: '0'
+
+

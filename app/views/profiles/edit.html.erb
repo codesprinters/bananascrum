@@ -1,0 +1,26 @@
+<div id="edit-profile">
+  <% content_for :title do -%>
+    User profile
+  <% end -%>
+  <% new_layout_only do %>
+    <% content_for :splitter_class do -%>hidden edit-profile<% end %>
+    <div class="section blue-background"><h2>Editing user profile: <%=h @user.login %></h2>
+  <% end %>
+
+  <div class="navcontainer" id="navcontainer">
+    <ul>
+      <li class="button button-large"> <%= link_to("Change password", edit_profile_password_path) %></li>
+    </ul>
+  </div>
+
+  <% form_for :user, :url => profile_url, :html => { :method => :put, :class => 'new-user' } do |f|%>
+    <%= render :partial => 'shared/users/form', :locals => {:f => f, :disable_login => !@user.admin?} %>
+    <p>
+      <%= f.submit 'OK', :class => "button button-small" %>
+    </p>
+  <% end %>
+
+  <% new_layout_only do %>
+    </div>
+  <% end %>
+</div>

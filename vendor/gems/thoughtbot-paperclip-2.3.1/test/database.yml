@@ -1,0 +1,4 @@
+test:
+  adapter: jdbcsqlite3
+  database: ":memory:"
+

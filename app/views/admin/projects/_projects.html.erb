@@ -1,0 +1,22 @@
+<div class="table-wrapper">
+  <% round_box do %>
+    <table class="data" cellSpacing='0px'>
+      <thead>
+        <tr>
+          <th style="width: 100px;">Project</th>
+          <th style="width: 80px;">Code name</th>
+          <th>Description</th>
+          <th style="width: 150px;">Time zone</th>
+          <th class="team-members" style="width: 100px;">Team members</th>
+          <th style="width: 60px;">Archived</th>
+          <th style="width: 60px;">Edit</th>
+          <th style="width: 60px;">Delete</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <%= render :partial => "admin/projects/project", :collection => projects %>
+      </tbody>
+    </table>
+  <% end %>
+</div>

@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+banana:
+  project: bananorama
+  name: banana tag
+  domain: code_sprinters
+
+banana_two:
+  project: bananorama
+  name: banana second tag
+  domain: code_sprinters
+  
+second:
+  project: second
+  name: second tag
+  domain: code_sprinters
+
+second_two:
+  project: second
+  name: second second tag
+  domain: code_sprinters

@@ -1,0 +1,14 @@
+<% form_tag(session_url, :method => 'post', :class => "login-form") do -%>
+  <p><label for="login">Login</label><br/>
+  <%= text_field_tag 'login', params[:login] %></p>
+
+  <p><label for="password">Password</label><br/>
+  <%= password_field_tag 'password', params[:password] %><br />
+  <% if AppConfig.send_emails %>
+    <%= link_to 'Forgot your password? Click here.', forgot_profile_password_url, :id => 'forgot-password'%></p>
+  <% end %>
+
+  <p>&nbsp;</p>
+
+  <%= submit_tag 'Log in', :class => "button button-small" %>
+<% end -%>

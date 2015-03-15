@@ -1,0 +1,11 @@
+<% tag ||= item_tag_new %>
+<li class="tag tag-color-<%= tag.color_no %> tag-<%= tag.id %>">
+  <% round_box("#CCDADC") do %>
+    <span class="tag-name" title="<%=h tag.description -%>"><%=h truncate(tag.name, :length => 25) -%></span>
+    <div class="tag-delete-container deattach-tag-link">|
+      <% functional_link_to(project_item_backlog_item_tag_url(item.project, item, tag)) do %>
+      <% end %>
+      <span class="tag-delete">x</span>
+    </div>
+<%- end  %>
+</li>

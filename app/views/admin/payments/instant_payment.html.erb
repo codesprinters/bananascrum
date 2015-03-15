@@ -1,0 +1,27 @@
+<% content_for :splitter_class do -%>hidden<% end -%>
+
+<div class="section outstanding-payment">
+  <h2>You have an outstading payment</h2>
+
+  <div class="info-pane">
+    <p class="billing-message">
+      Your account has an outstading balance of <%= number_to_currency(@payment.try(:amount), :unit => "&euro;") %><br/>
+      Use button bellow to charge your connected paypal account and unblock your domain.
+    </p>
+
+    <% form_tag(instant_payment_admin_payments_path, :class => 'instant-payment') do -%>
+      <p>
+        <%= image_submit_tag "https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" %>
+      </p>
+    <% end %>
+  </div>
+
+  <p class="footnote">
+    If in doubt feel free to contact us at <a href="mailto:info@codesprinters.com">info@codesprinters.com</a>.
+  </p>
+</div>
+
+<div class="section blue-background">
+  <h2> Billing details </h2>
+  <%= render :partial => 'admin/customer/details', :locals => { :customer => @customer } %>
+</div>

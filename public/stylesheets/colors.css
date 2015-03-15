@@ -1,0 +1,53 @@
+/* Body background */
+html, body {
+  background-color: #728FD1;
+}
+
+
+/* content bg color */
+.item .tabs-links .tab.current-tab, .item .tabs-links .tab.tab:hover,
+#right-tabs ul#top-menu li.current a, #right-tabs ul#top-menu li a:hover,
+#outer {
+  background-color: #BEC9E3;
+}
+
+/* Top bar background and buttons */
+.tabbed-content .tabs-links .tab,
+#right-tabs ul#top-menu li,
+.navcontainer li,
+#top-bar {
+  background-color: #F4DF63;
+}
+
+#right-content .info-box h2,
+#splitter #split-bar {
+  background-color: #9EABCA;
+}
+
+.highlight:hover {
+  background-color: #FFFFB9;
+}
+
+/* Item background color */
+.backlog-items .item {
+  background-color: #C9D4F0;
+}
+
+/* Item description color */
+.backlog-items .item .item-description {
+  background-color: #CED9B8;
+}
+
+/* Even task */
+.backlog-items .item .tasks .task.odd {
+  background-color: #B8C1CC;
+}
+
+.backlog-items .item .tasks .task.even {
+  background-color: #B1BEDC;
+}
+
+#development-info {
+  color: red;
+}
+

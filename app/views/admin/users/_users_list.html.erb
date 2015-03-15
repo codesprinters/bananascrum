@@ -1,0 +1,15 @@
+
+<div id="active-users" class="section active hide-table-only">
+  <h2>Active users</h2>
+  <ul id="navcontainer">
+    <li><%= functional_link_to('Add new user', new_admin_user_path, {:class => 'new-user-link'}) %></li>
+  </ul>
+  <div style="clear:both;"></div>
+  
+  <%= render :partial => 'admin/users/users', :object => users.not_blocked %>
+</div>
+
+<div id="blocked-users" class="section inactive" <%= users.blocked.empty? ? 'style="display: none;"' : '' -%>>
+  <h2>Blocked users</h2>
+  <%= render :partial => 'admin/users/users', :object => users.blocked, :locals => { :block_column_label => "Unblock" } %>
+</div>

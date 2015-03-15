@@ -1,0 +1,17 @@
+<% comment ||= @log -%>
+<% content_tag :li, :class => "comment" do -%>
+  <h3 style="margin-top:0">
+    <% unless comment.created_at.blank? %>
+      <%= comment.created_at %>
+    <% end %>
+    <% if comment.impediment_action %>
+      <%=h comment.impediment_action.name %> by
+    <% end%>
+    <% unless comment.user.blank? %>
+      <%=h comment.user.login %>
+    <% end%>
+  </h3>
+  <div>
+      <%= simple_format(h(comment.comment)) -%>
+  </div>
+<% end -%>

@@ -1,0 +1,10 @@
+Dear <%=h @user.full_name %>,
+
+You were assigned to project <%=h @project.presentation_name %> as <%=h @new_role.name %>.
+
+<%- if !@roles.empty? && @roles.size > 1 -%>
+Your other roles in this project are: <%=h @roles.map {|r| r.name}.join(', ') %>.
+<%- end -%>
+
+
+<%= mail_footer(:user => @user, :display_spam_info => true) %>

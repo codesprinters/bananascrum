@@ -1,0 +1,41 @@
+<% content_for :title do -%>
+  Choose project
+<% end -%>
+
+<% content_for :splitter_class do %>
+hidden
+<% end %>
+
+<div class="section with-padding">
+  <h2>Choose a project</h2>
+  
+  <% if @user.projects.empty? -%>
+    You are not currently assigned to any project.
+  <% else -%>
+    
+    <div class="table-wrapper with-right-margin">
+      <table class="data" cellSpacing="0px">
+        <tr>
+          <th>Project name</th>
+          <th>Description</th>
+        </tr>
+    
+        <% for project in @user.projects %>
+          <tr class="<%= cycle("even", "odd") %>">
+            <td><%=link_to project.presentation_name, project_items_url(:project_id => project.name) %>
+            </td>
+            <td><%=h project.description %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  <% end -%>
+  
+  <%  if ( @user.domain.projects.empty? ) -%>
+  <p>There are no projects in your domain.</p>
+  <%end%>
+  
+  <% if @user.kind_of? Admin then -%>
+    <p>You can <%= link_to 'Create a new one', admin_panel_path + "#projects" %></p>
+  <% end -%>
+</div>

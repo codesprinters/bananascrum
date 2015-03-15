@@ -1,0 +1,15 @@
+<% content_for :splitter_class do -%>hidden no-min-height<% end -%>
+
+<% content_for :title do %>
+  <%= @title %>
+<% end -%>
+
+<div class="section">
+  <h2>&nbsp</h2>
+  <div class="info-pane">
+    <%= image_tag("mud/info_exclamation.png", :class => "info-pane-img", :alt => "Oh no!") %>
+    <p style="margin-top: 25px; font-size:15px;">
+      <%= @message -%> <%= link_to " Go back", :back %>
+    </p>
+  </div>
+</div>

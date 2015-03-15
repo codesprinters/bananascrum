@@ -1,0 +1,14 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+open:
+  summary: Open impediment
+  description: A impediment that was just created.
+  project: bananorama
+  is_open: true
+  domain: code_sprinters
+
+closed:
+  summary: Closed impediment
+  description: A impediment that was created and closed.
+  project: bananorama
+  is_open: false
+  domain: code_sprinters

@@ -1,0 +1,17 @@
+<% content_for :splitter_class do -%>hidden<% end -%>
+<% content_for :title do -%>
+  Charts for sprint: „<%= @sprint.name %>”
+<% end -%>
+
+<% content_for :js_variables do -%>
+  <%= javascript_tag "bs._sprintId = #{@sprint.id};" %>
+  <%= javascript_tag "bs._chart_fullscreen = true;" %>
+  <%= juggernaut_tag %>
+  <%= javascript_tag "bs.burnchart._data = #{@chart_data.to_json};" %>
+  <%= javascript_tag "bs.sprint.freeDays = #{@current_project.free_days.to_json}" %>
+  <% #refresh once an hour %>
+  <%= javascript_tag "window.setInterval(function(){location.reload()}, 3600000)" %>
+<% end -%>
+
+<%= render :partial => 'sprints/chart_tabs', :layout => 'shared/burnchart', :locals => {:ommit_full_screen_link => true }%>
+

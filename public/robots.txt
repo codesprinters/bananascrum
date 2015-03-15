@@ -1,0 +1,4 @@
+# Ban all crawlers. We don't want them sniffing in Banana Scrum (and they
+# don't understand JavaScript)
+User-Agent: *
+Disallow: /

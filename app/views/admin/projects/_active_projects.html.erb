@@ -1,0 +1,8 @@
+<div id="active-projects" class="section active hide-table-only">
+  <h2>Active projects</h2>
+  <ul id="navcontainer">
+    <li><%= functional_link_to('Add new project', new_admin_project_url, {:class => 'new-project-link'}) %></li>
+  </ul>
+  <div style="clear:both;"></div>
+  <%= render :partial => 'admin/projects/projects', :object => projects.not_archived %>
+</div>

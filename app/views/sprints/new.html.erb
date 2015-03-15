@@ -1,0 +1,8 @@
+
+<div class="section blue-background">
+<h2>New sprints</h2>
+<% form_tag({:action => 'create'}, {:class => 'new-sprint '}) do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Create', :class => "button button-medium" %>
+<% end %>
+</div>

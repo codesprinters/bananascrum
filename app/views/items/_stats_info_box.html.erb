@@ -1,0 +1,15 @@
+<% title = (defined?(title) && !title.blank?) ? title : "Backlog stats" %>
+<div class="expandable info-box" id="backlog-stats-info-box">
+  <% round_box do %>
+    <h2>
+      <a href="#" class="expandable-link"><%= expandable_image_tag(:expanded => true) %></a>
+      <%= h(title) %>
+    </h2>
+    <div class="toggable-visibility">
+      <%= render :partial => "items/stats" %>
+
+      <%= yield %>
+
+    </div>
+  <%- end %>
+</div>

@@ -1,0 +1,16 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+simple_news:
+  text: This is a very intresting news.
+  created_at: <%= 1.year.ago %>
+  expiration_date: <%= 1.year.ago + 14.day %>
+
+other_news:
+  text: This is a not very intresting news.
+  created_at: <%= 5.day.ago %>
+  expiration_date: <%= 9.day.from_now %>
+
+expired_latest_news:
+  text: This is message for one day only
+  created_at: <%= 4.day.ago %>
+  expiration_date: <%= 1.day.ago %>

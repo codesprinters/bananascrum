@@ -1,0 +1,44 @@
+<% content_for :title do -%>
+  Product Backlog
+<% end -%>
+
+<% content_for :js_variables do -%>
+  <% javascript_tag do -%>
+    <%= "bs._team = #{user_asignment_json_hash(@current_project)};" %>
+    <%= "bs._backlog_unit = #{Project.current.backlog_unit.to_json};" %>
+  <% end -%>
+  <%= juggernaut_tag %>
+<% end -%>
+
+<% content_for :right_content do %>
+  <%= render :partial => "backlog/controls", :layout => "items/stats_info_box", :locals => { :title => "Backlog summary" } %>
+  <%= render :partial => "shared/tag_info_box" %>
+  <%= render :partial => "shared/juggernaut_info_box" %>
+<% end %>
+
+<div class="backlog-items-container expandable-list">
+  <% round_box do %>
+    <div class="backlog-header">
+      <span class="backlog-header-title">Product backlog</span>
+      <span class='expand-links'>
+        <a href="#" class="expand-list">Expand all</a> /
+        <a href="#" class="collapse-list">Collapse all</a>
+      </span>
+
+      <% unless @current_project.archived %>
+        <%= functional_link_to 'Add item', new_project_item_url(@current_project), :class => 'new-backlog-item new-item-link new-backlog-item-button'  %>
+      <% end %>
+      <div style="clear:both;height:1px;"> </div>
+    </div>
+    <div class="items-list toggable-visibility">
+      <div id="new-item-form" class="form-container" style="display: none"></div>
+      <div id="import-csv-form" class="form-container" style="display: none"></div>
+      <div class="items-list">
+        <% round_box('#B0BBBD') do %>
+          <%= render :partial => 'items/items' %>
+        <%- end %>
+      </div>
+    </div>
+  <%- end %>
+</div>
+

@@ -1,0 +1,27 @@
+<% if Domain.current.plan.timeline_view %>
+  <% unless @current_project.archived %>
+    <div class="velocity-widget long-term-view-element">
+      <% form_tag(h(distribute_project_planning_markers_path(@current_project)), :method => "POST", :class => 'distribute-markers') do %>
+        <input class="velocity-input" type="text" name="velocity" autocomplete="off" />
+        
+        <input type='text' style="display: none;" name='oDiscard'/> <!--this strange being solves strange behaviour of IE on single-field forms -->
+        <%= submit_tag("Distribute", :class => 'button button-medium') %>
+      <% end %>
+
+      <%= functional_link_to("Remove markers", destroy_all_project_planning_markers_path(@current_project), :class => "button button-large remove-markers", :title => 'Removes all plan markers.') %>
+
+      <div style="clear:right"></div>
+      <span id="total-number-of-sprints"></span>
+    </div>
+    <div style="clear:right"></div>
+  <% end %>
+
+  <% content_for :js_variables do -%>
+    <% javascript_tag do %>
+      <%= "bs.marker.enableMarkers = true;" %>
+      <%= "bs._backlog_unit = #{Project.current.backlog_unit.to_json};" %>
+      <%= "bs._sprintsAfterToday = #{@sprints_after_today_json};" unless @sprints_after_today_json.nil? %>
+      <%= "bs._lastSprintNumber = #{@last_sprint_number};" unless @last_sprint_number.nil? %>
+    <% end %>
+  <% end %>
+<% end %>

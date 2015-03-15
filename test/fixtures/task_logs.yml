@@ -1,0 +1,56 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+one:
+  task: task_for_user
+  estimate_old: null
+  estimate_new: 9
+  timestamp: 2007-01-06
+  sprint: sprint_with_assigned_tasks
+  domain: code_sprinters
+
+two:
+  task: task_for_user
+  estimate_old: 9
+  estimate_new: 3
+  timestamp: 2007-01-20
+  sprint: sprint_with_assigned_tasks
+  domain: code_sprinters
+
+three:
+  task: task_for_userUnit test should remain unit
+  estimate_old: 3
+  estimate_new: 0
+  timestamp: 2007-01-30
+  sprint: sprint_with_assigned_tasks
+  domain: code_sprinters
+
+four:
+  task: third
+  estimate_old: null
+  estimate_new: 7
+  timestamp: 2007-01-15
+  sprint: sprint_with_assigned_tasks
+  domain: code_sprinters
+
+five:
+  task: third
+  estimate_old: 7
+  estimate_new: 6
+  timestamp: 2007-01-22
+  sprint: sprint_with_assigned_tasks
+  domain: code_sprinters
+
+assigning_to_sprint:
+  task: task_for_dropped_item
+  estimate_old: nil
+  estimate_new: 10
+  timestamp: 2007-01-10
+  sprint: sprint_with_dropped_item
+  domain: code_sprinters
+
+dropping_from_sprint:
+  task: task_for_dropped_item
+  estimate_old: 10
+  estimate_new: nil
+  timestamp: 2007-01-12
+  sprint: sprint_with_dropped_item
+  domain: code_sprinters

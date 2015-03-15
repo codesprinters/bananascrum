@@ -1,0 +1,21 @@
+  <% new_layout_only do %>
+    <%= render(:partial => "shared/white_pixel_corners", :locals => {:color => 'white'}) %>
+  <%- end %>
+
+
+<%= error_messages_for :attachment %>
+
+<% url = project_attachments_url(Project.current, :item_id => @item.id) %>
+<% form_for(:attachment, :url => url) do %>
+  <p>
+    <label>Select a file to upload (maximum size is 5MB)</label><br/>
+    <button class="upload button button-medium" name="attachment[content]">Select file</button>
+
+    <%= image_tag("spinner.gif", { :class => "icon import-spinner", :height => 16, :width => 16, :style => "display: none" }) %>
+
+    <a class="hide-form" href="#">Cancel</a>
+
+    <%= image_tag("spinner.gif", { :class => "icon", :height => 16, :width => 16, :style => "display: none" }) %>
+  </p>
+<% end -%>
+

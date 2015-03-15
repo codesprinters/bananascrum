@@ -1,0 +1,12 @@
+<% task = @task.nil? ? task : @task -%>
+<% content_tag :li, task_li_hash(task) do -%>
+  <input type="hidden" name="task_estimate" value="<%= h task.estimate %>" />
+  <div class="controls">
+    <span class="task-estimate highlight" title="Click to edit"><%=h task.estimate %></span>
+    <%=h Project.current.task_unit %>
+    [<span class="task-users highlight" title="Click to edit"><%= get_users_logins(task) %></span>]
+    <%= image_tag('icons/trash.gif',:alt => "Delete this task", :height => 11, :width => 10, :class => "trash delete-task") %>
+  </div>
+  <span class="task-summary highlight" title="Click to edit"><%=h task.summary %></span>
+<% end -%>
+

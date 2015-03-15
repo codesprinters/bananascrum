@@ -1,0 +1,14 @@
+created:
+  name: created
+  open_after: true
+
+closed:
+  name: closed
+  open_after: false
+  
+reopened:
+  name: reopened
+  open_after: true
+  
+commented:
+  name: commented

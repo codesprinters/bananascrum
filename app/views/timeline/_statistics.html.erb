@@ -1,0 +1,73 @@
+<% new_layout_only do %>
+  <div class="stats">
+    <% round_box() do %>
+      <div class="section-header">
+        Project statistics
+      </div>
+      <div class="section-table-wraper">
+        <% round_box("#AEA892") do %>
+          <table class="statistics-table">
+            <tbody>
+              <tr class="odd">
+                <td class="label">Number of items completed</td><td class="value"><%= @stats[:items_completed]-%></td>
+              </tr>
+              <tr class="even">
+                <td class="label">Number of items remaining</td><td class="value"><%= @stats[:items_remaining]-%></td>
+              </tr>
+              <tr class="odd">
+                <td class="label">Time elapsed</td><td class="value"><%= @stats[:time_elapsed]-%></td>
+              </tr>
+            </tbody>
+          </table>
+        <% end %>
+      </div> 
+      <div class="section-header">
+        Velocity
+      </div>
+      <div class="section-table-wraper">
+        <% round_box("#AEA892") do %>
+          <table class="statistics-table">
+            <thead>
+              <tr>
+                <td colspan="3">Last 10 Sprints</td>
+                <td colspan="3">Overall</td>
+              </tr>
+            </thead>
+            <tbody>
+              
+              <tr class="even">
+                <td class="velocity-field">Min</td><td class="velocity-field">Max</td><td class="velocity-field">Avg</td><td class="velocity-field">Min</td><td class="velocity-field">Max</td><td class="velocity-field">Avg</td>
+              </tr>
+              <tr class="odd">
+                <td class="velocity-field"><%= @stats[:velocity][:last_10][:min]-%></td>
+                <td class="velocity-field"><%= @stats[:velocity][:last_10][:max]-%></td>
+                <td class="velocity-field"><%= @stats[:velocity][:last_10][:ave]-%></td>
+                <td class="velocity-field"><%= @stats[:velocity][:overall][:min]-%></td>
+                <td class="velocity-field"><%= @stats[:velocity][:overall][:max]-%></td>
+                <td class="velocity-field"><%= @stats[:velocity][:overall][:ave]-%></td>
+              </tr>
+            </tbody>
+          </table>
+        <% end %>
+      </div>  
+      <div class="section-header">
+        Team
+      </div>
+      <div class="section-table-wraper">
+        <% round_box("#AEA892") do %>
+          <table class="statistics-table">
+            <tbody>
+              <tr class="odd">
+                <td class="label">Average size</td><td class="value"><%= @stats[:team][:ave_size] -%></td>
+              </tr>
+              <tr class="even">
+                <td class="label">Average member velocity</td><td class="value"><%= @stats[:team][:ave_velocity] -%></td>
+              </tr>
+            </tbody>
+          </table>
+        <% end %>
+      </div> 
+    <% end %>  
+  </div>
+  <div style="clear: both;"> </div>
+<% end %>

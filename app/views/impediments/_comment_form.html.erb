@@ -1,0 +1,13 @@
+<% form_tag create_comment_project_impediment_url(@current_project, @impediment), :method => 'post' do %>
+
+<div class="error-container">
+  <%= render :partial => 'comment_form_error_messages' %>
+</div>
+<p><label for="comment_<%= @impediment.id.to_s %>">Comment</label><br/>
+<%= text_area_tag "comment", nil %></p>
+
+<p>
+  <%= submit_tag 'Create', :class => "button" %>
+  <a class="hide-form" href="#">Cancel</a>
+</p>
+<% end %>

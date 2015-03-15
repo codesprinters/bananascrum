@@ -1,0 +1,13 @@
+Dear <%=h @user.full_name %>,
+
+Your role as <%=h @removed_role.name %> in project <%= h @project.presentation_name %> has been removed.
+
+<%- if !@roles.empty? -%>
+You still are assigned to this project as <%=h @roles.map {|r| r.name}.join(', ') %>.
+<%- else -%>
+Since that was only role you had in that project you're no longer assigned to it.
+<%- end -%>
+
+Please contact any admin of your domain if you believe it was made by mistake.
+
+<%= mail_footer(:user => @user, :display_spam_info => true) %>

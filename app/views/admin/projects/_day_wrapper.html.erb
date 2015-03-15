@@ -1,0 +1,10 @@
+<div id="<%= name.downcase %>-wrapper" class="day-of-the-week-wrapper">
+  <%= label_tag "project[free_days][#{i}]", name[0..2] %><br />
+  <% if @project.free_days.blank? %>
+    <% checked = false %>
+  <% else %>
+    <% checked = @project.free_days[i.to_s] == '1' %>
+  <% end %>
+
+  <%= check_box("project[free_days]", i.to_s, { :checked => checked, :tabindex => @tabindex += 1 }) %>
+</div>

@@ -1,0 +1,48 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'mysql'
+require 'yaml'
+
+RAILS_ENV = ENV['RAILS_ENV'] || "development"
+
+def db_conn
+  if @db_conn.nil?
+    dbhash = YAML.load_file(File.dirname(__FILE__) + "/../config/database.yml")
+    dbconfig = dbhash[RAILS_ENV]
+    @db_conn = Mysql.real_connect(dbconfig['host'], dbconfig['username'], dbconfig['password'], dbconfig['database'])
+  end
+  @db_conn
+end
+
+def last_run
+  db_conn.query "SELECT kind, value FROM stat_data WHERE stat_run_id=(SELECT id FROM stat_runs ORDER BY timestamp DESC LIMIT 1)"
+end
+
+def fields
+  return if ENV['BS_FIELDS'].nil?
+  ENV['BS_FIELDS'].split(" ")
+end
+
+
+case ARGV[0]
+when "usage":
+  puts "bananascrum [config|usage]"
+when "config":
+  puts "graph_title Banana Scrum statistics"
+  puts "graph_args -l 0"
+  puts "graph_scale no"
+  last_run.each do |row|
+    field, value = row
+    if fields.nil? or fields.include?(field)
+      puts "#{row[0]}.label #{row[0]}"
+    end
+  end
+else
+  last_run.each do |row|
+    field, value = row
+    if fields.nil? or fields.include?(field)
+      puts "#{field}.value #{value}"
+    end
+  end
+end

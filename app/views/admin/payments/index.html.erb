@@ -1,0 +1,5 @@
+<% content_for :title do -%>
+  Payments
+<% end -%>
+  
+<%= render :partial => "payments_list", :locals => { :payments => @payments } %>

@@ -1,0 +1,11 @@
+<ul id='tag-cloud-list'>
+  <% for tag in @current_project.tags %>
+    <% new_layout_only do %>
+      <%= render :partial => 'tags/tag_in_tag_cloud_new', :locals => { :tag => tag }  %>
+    <% end %>
+    <% old_layout_only do %>
+      <%= render :partial => 'tags/tag_in_tag_cloud', :locals => { :tag => tag }  %>
+    <% end %>
+  <% end %>
+</ul>
+

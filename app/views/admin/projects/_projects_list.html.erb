@@ -1,0 +1,7 @@
+
+<%= render :partial => 'admin/projects/active_projects', :locals => {:projects => projects} %>
+
+<div id="archived-projects" <%= projects.archived.empty? ? 'style="display: none;"' : '' -%> class="section inactive">
+  <h2>Archived projects</h2>
+  <%= render :partial => 'admin/projects/projects', :object => projects.archived %>
+</div>

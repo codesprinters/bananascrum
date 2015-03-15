@@ -1,0 +1,31 @@
+<div id="user-project-roles" class="user-project-roles">
+  <h3>Assigned projects</h3>
+  <% unless @assigned_projects.empty? -%>
+    <div class="table-wrapper with-right-margin">
+      <% round_box do %>
+        <table class="data" id="assignments" cellSpacing='0px'>
+          <tr>
+            <th style="width: 120px;">Project</th>
+            <th>Roles</th>
+          </tr>
+          <% @assigned_projects.each do |project| -%>
+            <tr class="<%= cycle("even", "odd") %>">
+              <td><%= h(project.presentation_name) %></td>
+              <td>
+                <%= render :partial => "admin/project_roles/role_list",
+                  :locals => {
+                    :project => project,
+                    :user => @user,
+                    :collection => project.role_assignments.find(:all, :conditions => ["user_id = ?", @user[:id]])
+                  }
+                %>
+              </td>
+            </tr>
+          <% end -%>
+        </table>
+      <%end %>
+  <% else %>
+    <p>No projects assigned</p>
+  <% end -%>
+
+</div>

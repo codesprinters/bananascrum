@@ -1,0 +1,74 @@
+<% cache :id => item_new.id, :controller => :items, :action => :show, :action_suffix => :new do %>
+  <li class="<%= backlog_item_class(item_new) %> expandable visible collapsed" id="item-<%= h item_new.id%>" >
+    <% round_box do %>
+      <div class="item-top-content">
+        <input type="hidden" name="estimate" value="<%= h Item.readable_estimate(item_new.estimate) %>" />
+        <a href="#" class="expandable-link"><%= expandable_image_tag(:expanded => false) %></a>
+        <div class="done-mark"><%= image_tag('mud/done_mark.png', :class => "done-mark-icon") %></div>
+        <div class="item-user-story highlight" title="Click to edit"><%= h item_new.user_story %></div>
+
+        <%= image_tag('mud/attachment.png', :class => "attachment-icon #{ "hidden" if item_new.clips.empty? }") -%>
+
+        <%= image_tag('spinner.gif', :class => "spinner") %>
+        <% locals = {:item => item_new}.merge(defined?(read_only) ? {:read_only => true} : {}) %>
+        <%= render :partial => "items/controls", :locals => locals %>
+      </div>
+      <div style="clear:both;height:1px"></div>
+      <div class="item-shadow"></div>
+
+    <%# expanded content of item below %>
+      <div class="toggable-visibility">
+        <%= render :partial => "items/description_field", :locals => { :item => item_new } %>
+
+        <div class="tabbed-content item-tabs-<%=item_new.id-%>">
+          <ul class="item-nav">
+            <li><%= copy_item_link(item_new) -%></li>
+            <li><%= link_to "&nbsp;", project_item_path(@current_project.name, item_new), :rel => "external", :class => "item-new-tab-link", :title => "Open in a new tab" -%></li>
+            <li><%= attach_file_link(item_new) -%></li>
+            <li><%= new_task_link(item_new) -%></li>
+            <div style="clear: both;height:1px;"></div>
+          </ul>
+          <ul class="tabs-links ignore-hashpart" id="item-tabs-<%=item_new.id-%>">
+            <li class="tab current-tab tab-tasks">
+              <%- round_tab do %>
+                <%= link_to("Tasks", "#tasks-#{item_new.id}") %>
+              <%- end %>
+            </li>
+            <li class="tab tab-comments">
+              <% round_tab do %>
+                <%= link_to("Comments (<span class='number-of-comments'>#{item_new.comments.count}</span>)", "#comments-#{item_new.id}") %>
+              <%- end %>
+            </li>
+            <li class="tab tab-attachments">
+              <% round_tab do %>
+                <%= link_to("Attachments", "#attachments-#{item_new.id}") %>
+              <%- end %>
+            </li>
+            <div style="clear: left;"></div>
+          </ul>
+          <div style="clear: both;"></div>
+
+          <div class="tabs-contents item-tabs-contents">
+            <div class="tab-content current-tab-content tab-content-tasks" id="tasks-<%=item_new.id-%>">
+              <div class="new-task form-container" style="display: none;"></div>
+              <ul class="tasks">
+                <%= render(:partial => 'items/task_new', :collection => item_new.tasks) %>
+              </ul>
+            </div>
+
+            <div class="tab-content tab-content-comments" id="comments-<%=item_new.id-%>">
+              <%= render(:partial => "comments/comments_with_form", :locals => {:comment => item_new.comments.new}) %>
+                </div>
+
+            <div class="tab-content tab-content-attachments" id="attachments-<%=item_new.id-%>">
+              <div class="new-attachment form-container" style="display:none"></div>
+              <%= attachment_list(item_new) %>
+            </div>
+          </div>
+        </div>
+
+        <div class="item-footer"></div>
+      </div> <!-- end of div.toggable-visibility -->
+    <%- end %>
+  </li>
+<% end %>

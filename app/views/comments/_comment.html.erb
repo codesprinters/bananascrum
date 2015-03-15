@@ -1,0 +1,6 @@
+<li class="comment <%= cycle("even", "odd")%>">
+  <h3 class="smallprint">
+    <%= time_ago_in_words(comment.created_at) %> ago by <%=h comment.user.login %>
+  </h3>
+  <div><%= simple_format(h(comment.text)) -%></div>
+</li>

@@ -1,0 +1,14 @@
+<div class="section blue-background with-padding">
+  <h2> 
+    <% new_layout_only do %>
+      <%= round_box('#D6E1E3') %>
+    <% end %>
+    Create New Project
+  </h2>
+  <% @tabindex = 0 %>
+  <% form_tag({:action => 'create'}, {:class => 'new-project'}) do %>
+    <%= render :partial => 'user_assignment', :layout => 'form' %>
+    <br/><br/>
+    <%= submit_tag 'Create', :class => "button button-medium", :tabindex => @tabindex += 1 %>
+  <% end %>
+</div>

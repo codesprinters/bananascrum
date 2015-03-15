@@ -1,0 +1,28 @@
+# Defaults for every database
+<% jdbc = defined?(JRUBY_VERSION) ? 'jdbc' : '' %>
+defaults: &defaults
+  adapter: <%= jdbc %>mysql
+  username: username
+  password: password
+  encoding: utf8
+
+development:
+  database: bananascrum_development
+  <<: *defaults
+
+# Warning: The database defined as 'test' will be erased and
+# re-generated from your development database when you run 'rake'.
+# Do not set this db to the same as development or production.
+test:
+  database: bananascrum_test
+  <<: *defaults
+
+staging:
+  database: bananascrum_staging
+  database_stats: bananascrum_staging_stats
+  <<: *defaults
+
+production:
+  database: bananascrum_production
+  database_stats: bananascrum_stats
+  <<: *defaults

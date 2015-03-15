@@ -1,0 +1,44 @@
+<div class="section blue-background">
+  <h2>
+    <% new_layout_only do %>
+      <%= round_box('#D6E1E3') %>
+    <% end %>
+    Create new user
+  </h2>
+  
+  <% form_for 'form', :url => admin_users_path, :html => { :class => 'new-user'} do |f| %>
+      <%= render :partial => 'shared/users/form', :locals => { :f => f }%>
+
+      <% unless AppConfig.send_emails %>
+        <%= render :partial => 'shared/users/password_form', :locals => { :f => f } %>
+      <% end %>
+
+    <p>
+      <%= f.label :to_assign, "Select project:" %><br/>
+      <%= select :form, :projects_to_assign,
+            options_for_select(@projects.map { |p| [p.name, p.id] }) %>
+    </p>
+
+    <div class="new-user-role-box">
+        Assign roles<br />
+        <% @roles.each do |role| %>
+          <%= check_box_tag("form[roles_to_assign][#{role.id}]", "1", @form.roles_to_assign && @form.roles_to_assign[role.id.to_s], { :style => "width: auto; "}) %>
+          <%= label_tag "form[roles_to_assign][#{role.id}]", role.name %>
+      <%end%>
+    </div>
+      <% if AppConfig.send_emails %>
+        <p><label for="add_note_checkbox">Add note for user</label>
+        <%= check_box_tag('add_note_checkbox', "1", false, :class => "checkbox") %></p>
+        
+        <div class="note-for-user" id="note-for-user" <%= "style='display:none;'" unless @user.send_email == '1' %>>
+          <p>
+            <%= f.label :note_for_user, "Note for user" %><br/>
+            <%= f.text_area :note_for_user %>
+          </p>
+        </div>
+      <% end %>
+      
+      <p><%= f.submit 'Create', :class => "button button-medium" %></p>
+  <% end %>
+  
+</div>

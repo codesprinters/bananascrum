@@ -1,0 +1,60 @@
+<% impediment = @impediment.nil? ? impediment : @impediment -%>
+<li id="impediment-<%= impediment.id%>" class="impediment <%= (impediment.is_open? ? "" : "impediment-closed ") -%>expandable collapsed">
+  <div class="controls">
+
+  <!-- Impediment creator and creation date -->
+    <span class="right">
+      <% if impediment.creator -%>
+        Created by <%= impediment.creator.login -%>
+      <% end -%>
+
+      <% if impediment.creation_date -%>
+        [<%= impediment.creation_date -%>]
+      <% end -%>
+    </span>
+  <%= image_tag('icons/trash.gif', :alt => "Delete this impediment", :class => "trash delete-impediment", :height => 11, :width => 10) %>
+  </div>
+
+  <!-- expand image -->
+  <a href="#" class="expandable-link"><%= expandable_image_tag(:expanded => false) %></a>
+
+  <!-- Impediment name -->
+  <span class="impediment-name highlight"><%= h impediment.summary -%></span>
+
+  <%= image_tag('spinner.gif', :class => "spinner") %>
+  <!-- Impediment description -->
+  <div class="toggable-visibility">
+    <div class="item-description ">
+      <div class="impediment-description highlight">
+        <%= render :partial => "shared/redcloth_description", :locals => { :description => impediment.readable_description } -%>
+      </div>
+      <%= render :partial => 'shared/redcloth_legend'%>
+    </div>
+
+  <!-- Impediment status form -->
+  <div class="impediment-status-form">
+    <%= render(:partial => 'impediments/impediment_status', :locals => {:impediment => impediment}) %>
+  </div>
+
+
+  <!-- Impediment logs/comments -->
+  <ul class="impediment-comments">
+  <% logs= impediment.impediment_logs.sort_by{|i| (i.created_at ? i.created_at : Time.parse("01/01/00") )} -%>
+  <% # removing first log as it's displayed above
+     logs.delete_at(0) -%>
+  <% logs.each do |comment| -%>
+      <%= render(:partial => 'impediments/comment', :locals => {:comment => comment}) %>
+  <% end -%>
+  </ul>
+
+  <div class="new-comment-link">
+    <%= functional_link_to 'Add new comment', new_comment_project_impediment_url(@current_project, impediment),
+      :class => 'new-impediment-comment' %>
+  </div>
+
+
+  <!-- New Comment form -->
+  <div class="new-comment form-container" style="display: none;"></div>
+
+  </div> <!-- end of div.toggableImpedimentVisibility -->
+</li>

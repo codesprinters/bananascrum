@@ -1,0 +1,165 @@
+
+/*********************** {{{  Used in print preview  ****************************/
+
+html, body{
+    font-family: serif;
+    color: #252d46;
+    font-size: 10px;
+    width: 920px;
+}
+
+h1 {
+  font-size: 22px;
+}
+
+.backlog-items {
+    padding-left: 20px;
+}
+
+.backlog-item {
+    width: 900px;
+}
+
+.tags-and-estimate {
+    float: right;
+    text-align: right;
+}
+
+.item-estimate-container {
+    display: inline;
+    font-size: 15px;
+}
+
+
+.item-estimate {
+    font-weight: bold;
+}
+
+.backlog-item {
+    border: 1px thin black;
+    margin-bottom: 10px;
+    list-style-type: none;
+}
+
+.backlog-title {
+    text-align: center;
+}
+
+.item-log {
+    margin-top: 2px;
+    padding-left: 10px;
+    color: #555;
+    font-size: 11px;
+}
+
+.clear-right {
+    clear: right;
+}
+
+.clear {
+    clear: both;
+}
+
+.tags-list {
+    float: left;
+    margin-right: 5px;
+}
+
+.tag {
+    display:block;
+    border: solid black 1px;
+    margin-right:3px;
+    text-align: center;
+    padding: 2px 2px;
+    font-size:12px;
+}
+
+
+.item-title {
+    font-size: 18px;
+    font-weight: bold;
+    float: left;
+    color: #333;
+}
+
+.effort-stats {
+  margin-left: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+.item-description-text {
+    font-size: 16px;
+    padding-left: 10px;
+}
+
+.item-description-text ul{
+    padding-left: 20px;
+    list-style-type: circle;
+}
+
+.item-description-text ol{
+    padding-left: 20px;
+    list-style-type: decimal;
+}
+
+.item-description-text h1{
+    font-size: 16px;
+}
+
+.item-description-text h2{
+    font-size: 15px;
+    font-weight: normal;
+}
+
+.comment h3 {
+    font-size: 10px;
+    margin: 2px 0;
+}
+
+.comment p {
+    margin: 2px 0;
+    font-size: 11px;
+}
+
+.impediment-name {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.tasks {
+    list-style-type: circle;
+    padding-left: 40px;
+    margin-top: 10px;
+}
+
+.information {
+    font-size: 12px;
+}
+
+
+.attachments-title {
+    padding-left:10px;
+}
+
+.task-estimate-user {
+    float: right;
+}
+
+.task-summary {
+    font-size: 11px;
+}
+
+.items-count-container {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.items-count {
+    text-align: right;
+}
+
+.expandable-list {
+    width: 800px;
+}

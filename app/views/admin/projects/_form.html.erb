@@ -1,0 +1,44 @@
+<%= error_messages_for 'project' %>
+<!--[form:project]-->  
+<p>
+  <label for="presentation_name">Project presentation name <a href="#dfootnote1" id="footnote1" class="footnote">1</a></label><br />
+  <%= text_field 'project', 'presentation_name', :tabindex => @tabindex += 1 %>
+</p>
+<p>
+  <label for="name">Project codename <%= " (cannot be edited)" unless @project.new_record? %> <a href="#dfootnote2" id="footnote2" class="footnote">2</a></label><br />
+  <%= text_field 'project', 'name', (@codename_opts || {}).merge(:tabindex => @tabindex += 1) %>
+</p>
+<p>
+  <label for="description">Description</label><br />
+  <%= text_area 'project','description', :tabindex => @tabindex += 1 %>
+</p>
+<p>
+  <label for="time_zone">Project time zone</label><br />
+  <%= time_zone_select 'project', 'time_zone', Project.preferred_time_zones ,  { :include_blank => true }, { :tabindex => @tabindex += 1 } %>
+</p>
+
+<fieldset class="free-days">
+  <legend><strong>Free days</strong> (days of the week to exclude from the ideal burndown)</legend>
+  <div id='days'>
+  <% Date::DAYNAMES.each_with_index do |name, i| %>
+    <!-- Move sunday to the end -->
+    <% next if i == 0 %>
+    <%= render :partial => 'day_wrapper', :locals => { :name => name, :i => i } %>
+  <% end %>
+  <%= render :partial => 'day_wrapper', :locals => { :name => Date::DAYNAMES[0], :i => 0 } %>
+  </div>
+</fieldset>
+<fieldset class="visible-graphs-container">
+  <legend for="visible-graphs"><strong>Visible graphs</strong> (graph types that will be visible)</legend>
+  <input type="text" name="visible-graphs" class="visible-graphs highlight" title="Click to edit" tabindex="<%=@tabindex += 1%>" autocomplete="off"/>
+</fieldset>
+
+<%= yield %>
+
+
+<ol class="footnote">
+  <li id="dfootnote1"><a href="#footnote1">1</a>) Project presentation name appears in the user interface. It cannot be empty and can consist of any combination of alphanumeric characters.</li>
+  <li id="dfootnote2"><a href="#footnote2">2</a>) Project codename is used internally (is part of the URL). It can consist only of lowercase characters including hyphens and underscores as it is used in URLs.</li>
+</ol>
+<br/>
+

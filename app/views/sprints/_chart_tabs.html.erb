@@ -1,0 +1,19 @@
+<div id="burntabs">
+  <% unless defined?(ommit_full_screen_link) %>
+    <%= link_to "show in full screen", chart_project_sprint_path(@sprint.project, @sprint), :target => "_blank",
+      :title => 'Opens new tab with charts at full screen', :class => "full-screen-charts" %>
+  <% end %>
+  <% if @current_project.graph_visible?("Burndown") %>
+    <div class="burntype-switch" id="burn-burndown">Burndown</div>
+  <% end %>
+  <% if @current_project.graph_visible?("Items Burndown") %>
+    <div class="burntype-switch" id="burn-itemsburndown">Items Burndown</div>
+  <% end %>
+  <% if @current_project.graph_visible?("Burnup") %>
+    <div class="burntype-switch" id="burn-burnup">Burnup</div>
+  <% end %>
+  <% if @current_project.graph_visible?("Workload") %>
+    <div class="burntype-switch" id="burn-workload">Workload</div>
+  <% end %>
+    <div style="clear:both;height:1px;"></div>
+</div>

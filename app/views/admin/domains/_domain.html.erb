@@ -1,0 +1,17 @@
+<table class="data">
+  <tr>
+    <th width="17%">Domain short name</th>
+    <td><strong><tt><%= h(domain.name) %></tt></strong></td>
+  </tr>
+  <tr>
+    <th width="17%">Domain full name</th>
+    <td>
+      <span title="Click to edit" class="editable-domain-full-name highlight"><%= h(domain.full_name) %></span>
+    </td>
+  </tr>
+</table>
+
+<% if AppConfig.payments_enabled %>
+  <%= render :partial => '/admin/plans/list',
+    :locals => { :domain => domain, :plans => @plans, :current_plan => @current_plan, :not_available_plans => @not_available_plans } %>
+<% end %>

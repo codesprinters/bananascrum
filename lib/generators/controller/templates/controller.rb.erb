@@ -1,0 +1,17 @@
+class <%= class_name %>Controller < ProjectBaseController
+# ==================================================================
+# Check the base class of this controller - and adjust if neccessary
+# Then remove this comment and the below raise
+raise "The developer failed to check the base class of the controller"
+# ==================================================================
+
+
+<% if options[:scaffold] -%>
+  scaffold :<%= singular_name %>
+<% end -%>
+<% for action in actions -%>
+
+  def <%= action %>
+  end
+<% end -%>
+end

@@ -1,0 +1,117 @@
+<% content_for :title do -%>
+  Sprint: <%= @sprint.name %>
+<% end -%> 
+
+<% content_for :js_variables do -%>
+  <%= javascript_tag "bs._team = #{user_asignment_json_hash @sprint.project};" %>
+  <%= javascript_tag "bs._sprintId = #{@sprint.id};" %>
+  <%= juggernaut_tag %>
+  <%= javascript_tag "bs.burnchart._data = #{@chart_data.to_json};" %>
+  <%= javascript_tag "bs.sprint.freeDays = #{@current_project.free_days.to_json};" %>
+  <%= javascript_tag "bs.dateFormat = '#{User.current.js_prefered_date_format}';" %>
+<% end -%>
+
+<% if !@sprint.goals.blank? %> 
+  <h2>Sprint goals: <span class="sprint-goals"><%=h @sprint.goals %></span></h2>
+<% end %>
+
+<h2 id="participants-tab" class="<%= "hidden" if @sprint.users.blank? -%>">Developers participating in this sprint: <span class="participants"><%=h @sprint.participants %></span></h2>
+
+
+<div class='information sprint'>
+  <%= sprint_information(@sprint) %>
+</div>
+
+<div id="navcontainer">
+  <ul>
+    <% unless @sprint.project.archived %>
+      <li><%= link_to 'Plan', plan_project_sprint_url(@sprint.project, @sprint), :class => 'plan-sprint-link'%></li>
+      <li><%= functional_link_to 'Edit', edit_project_sprint_url(@sprint.project, @sprint), :class => 'edit-sprint-link'%></li>
+    <% end %>
+    <li><%= link_to 'Export to CSV', export_to_csv_project_backlog_url(@sprint.project, :sprint_id => @sprint.id) %></li>
+    <li><%= link_to 'Print preview', print_project_sprint_url(@sprint.project, @sprint), :rel => "external" %></li>
+    <%= render :partial => 'shared/juggernaut_status' %>
+  </ul>
+</div>
+
+<!-- Impediments -->
+<%# container needed for switching visibility, hidden if there aren't any impediments %>
+<div id="impediments_container" class="expandable collapsed"> 
+  <h2 class="impediments" id="impediments">
+    <a href="#" class="expandable-link"><%= expandable_image_tag(:expanded => false) %></a>
+    Impediments
+    <%= image_tag('icons/error.png', :width => 16, :height => 16,
+      :style => 'vertical-align: top;' + (@has_opened_impediment ? '' : 'display: none;'),
+      :id => 'impediments-icon',
+      :alt => 'There are opened impediments.', :title => 'There are opened impediments.') %>
+  </h2>
+  <div class="toggable-visibility">
+    <ul id="navcontainer">
+      <li>
+        <%= functional_link_to 'New impediment', new_project_impediment_url(@current_project), :class => 'new-impediment' , :id => 'new-impediment'%>
+      </li>
+    </ul>
+    <div id="impediment-form" class="form-container" style="display: none"></div>
+    <ul id="impediments-list" class="impediments">
+      <% @impediments.each do |impediment| %>
+        <%= render(:partial => "impediments/impediment",  :locals => { :impediment => impediment }) %>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<div class="expandable collapsed">
+  <h2>
+    <a href="#" class="expandable-link"><%= expandable_image_tag(:expanded => false) %></a>
+    Tags
+  </h2>
+  <div class="toggable-visibility">
+    <%= render :partial => 'tags/tag_cloud' %>
+  </div>
+</div>
+
+
+<h2>
+  <table width="100%">
+    <tr>
+      <td width="53%">Sprint backlog</td>
+      <td class="sprint items-count">
+        <%= render(:partial => 'sprints/items_count') %>
+      </td>
+    </tr>
+  </table>
+</h2>
+
+<% content_for :right_content do %>
+  <%= render :partial => "controls", :layout => "sprints/about" %>
+  <%= render :partial => "shared/tag_info_box" %>
+  <%= render :partial => "shared/juggernaut_info_box" %>
+  <%= render :partial => "impediments/info_box" %>
+<% end %>
+
+
+<div class="expandable-list">
+  <span class='expand-links'>
+    <a href="#" class="expand-list">Expand all</a> /
+    <a href="#" class="collapse-list">Collapse all</a>
+  </span>
+  <% form_tag( {:action => 'show', :id => @sprint}, {:method => "get", :id => "filters-form"} ) do %>
+    <div class="nav">Filter:
+      <%= select_tag("filter", options_for_select(["All", "unassigned"]) + options_from_collection_for_select(@team_members, "id", "login")) %>
+      <%= check_box_tag "hide-finished"  %><%= label_tag "hide-finished", "Hide completed" %>
+    </div>
+  <% end %>
+  <div class="pretty-hr-resizable"></div>
+
+  <div class="sprint-items-container">
+    <ul class="backlog-items <%="read-only" if @current_project.archived? || !@sprint.can_be_edited_by?(User.current) -%>" id="assigned-backlog-items">
+      <%= render(:partial => 'items/item', :collection => @assigned_items) %>
+      <li id="empty-sprint-msg" class="nosort" <%= 'style= "display: none;"' if @assigned_items && @assigned_items.length > 0%>> No backlog items to display.</li>
+    </ul>
+  </div>
+</div>
+
+
+<%= render :partial => 'sprints/chart_tabs', :layout => 'shared/burnchart' %>
+
+

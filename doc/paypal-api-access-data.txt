@@ -1,0 +1,29 @@
+
+Dane uwierzytelniające	Podpis API
+Nazwa użytkownika API	info_api1.codesprinters.com
+Hasło API	A9NBUGTTVBU6HEDH
+Podpis	AFcWxV21C7fd0v3bYYYRCpSSRl31AFS4XbW8xSFaNgF1k.Ex-bj.byE0
+Data złożenia	8 lutego 2010 12:36:59 CET
+
+paypal: &paypay_defaults
+  :billing:
+    :period: Day
+    :frequency: 1
+    :currency: EUR
+  :credentials:
+    :login: 'hq_1265204493_biz_api1.codesprinters.com'
+    :password: '1265204497'
+    :signature: 'An5ns1Kso7MWUdW4ErQKJJJ4qi4-A59WQliVESwdQmTbeh8xNrOeBorF'
+
+development:
+  <<: *paypay_defaults
+
+production:
+  paypal:
+    <<: *paypay_defaults
+    :billing:
+      :period: Day
+    :credentials:
+      :login: 'info_api1.codesprinters.com'
+      :password: 'A9NBUGTTVBU6HEDH'
+      :signature: 'AFcWxV21C7fd0v3bYYYRCpSSRl31AFS4XbW8xSFaNgF1k.Ex-bj.byE0'
