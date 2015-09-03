@@ -117,8 +117,11 @@ module Rails
     end
 
     def requirement
+      begin
       r = version_requirements
       (r == Gem::Requirement.default) ? nil : r
+      rescue
+      end
     end
 
     def built?
@@ -266,7 +269,10 @@ module Rails
     end
 
     def ==(other)
+      begin
       self.name == other.name && self.requirement == other.requirement
+      rescue
+      end
     end
     alias_method :"eql?", :"=="
 
