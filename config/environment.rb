@@ -80,11 +80,11 @@ Rails::Initializer.run do |config|
 
   # Gem dependencies
   config.gem "icalendar"
-  config.gem "right_aws"
-  config.gem "right_http_connection"
-  config.gem "thoughtbot-factory_girl", :lib => "factory_girl", :source => "http://gems.github.com"
+  #config.gem "right_aws"
+  #config.gem "right_http_connection"
+  #config.gem "thoughtbot-factory_girl", :lib => "factory_girl", :source => "http://gems.github.com"
   config.gem 'thoughtbot-paperclip', :lib => 'paperclip', :source => 'http://gems.github.com'
-  config.gem "faker"
+  #config.gem "faker"
   config.gem "jruby-openssl", :lib => 'openssl'
   # eventmachine is not needed by Rails server, but it needs to be builded
   config.gem "eventmachine"
@@ -93,22 +93,15 @@ Rails::Initializer.run do |config|
   config.gem "prawn-format", :lib => 'prawn/format', :version => '= 0.2.1'
   config.gem "prawn-layout", :lib => 'prawn/layout', :version => '= 0.2.1'
   config.gem "mime-types", :lib => 'mime/types'
-  config.gem 'thoughtbot-paperclip', :lib => 'paperclip', :source => 'http://gems.github.com'
   config.gem 'rack', :version => '= 1.0.1'
 
   # Gem dependencies for running tests
-  config.gem "thoughtbot-shoulda", :lib => "shoulda", :source => "http://gems.github.com"
-  config.gem "mocha"
-  config.gem "Selenium", :lib => 'selenium'
-  config.gem "RedCloth", :lib => 'redcloth'
-  config.gem "archive-tar-minitar", :lib => 'archive/tar/minitar'
-  config.gem "ci_reporter", :lib => 'ci/reporter/rake/test_unit_loader'
-  config.gem "builder"
-
-  # jRuby related dependecies
-  config.gem "jruby-jars"
-  config.gem "activerecord-jdbc-adapter", :lib => 'active_record/connection_adapters/jdbc_adapter'
-  config.gem "activerecord-jdbcmysql-adapter", :lib => 'active_record/connection_adapters/jdbcmysql_adapter'
+  #config.gem "thoughtbot-shoulda", :lib => "shoulda", :source => "http://gems.github.com"
+  #config.gem "mocha"
+  #config.gem "RedCloth", :lib => 'redcloth'
+  #config.gem "archive-tar-minitar", :lib => 'archive/tar/minitar'
+  #config.gem "ci_reporter", :lib => 'ci/reporter/rake/test_unit_loader'
+  #config.gem "builder"
 
   # JDBC can't dump primary keys, see
   # http://jkollage.blogspot.com/2007/05/acitverecord-jdbc-jtds-dbschemadump-i.html

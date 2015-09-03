@@ -9,11 +9,3 @@ require 'rdoc/task'
 require 'tasks/rails'
 
 require 'rubygems'
-gem 'ci_reporter'
-require 'ci/reporter/rake/test_unit'
-
-begin
-  # Optionally use metric_fu gem
-  require 'metric_fu'
-rescue LoadError
-end

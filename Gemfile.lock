@@ -1,0 +1,136 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    actionmailer (2.3.5)
+      actionpack (= 2.3.5)
+    actionpack (2.3.5)
+      activesupport (= 2.3.5)
+      rack (~> 1.0.0)
+    activerecord (2.3.5)
+      activesupport (= 2.3.5)
+    activerecord-jdbc-adapter (1.3.17)
+      activerecord (>= 2.2)
+    activerecord-jdbcmysql-adapter (1.3.17)
+      activerecord-jdbc-adapter (~> 1.3.17)
+      jdbc-mysql (>= 5.1.22)
+    activeresource (2.3.5)
+      activesupport (= 2.3.5)
+    activesupport (2.3.5)
+    archive-tar-minitar (0.5.2)
+    bouncy-castle-java (1.5.0147)
+    builder (3.0.4)
+    capistrano (3.4.0)
+      i18n
+      rake (>= 10.0.0)
+      sshkit (~> 1.3)
+    colorize (0.7.7)
+    columnize (0.9.0)
+    eventmachine (1.0.8-java)
+    highline (1.6.21)
+    hiredis (0.6.0-java)
+    i18n (0.7.0)
+    icalendar (2.3.0)
+    jdbc-mysql (5.1.36)
+    jruby-jars (9.0.1.0)
+    jruby-openssl (0.7.7)
+      bouncy-castle-java (>= 1.5.0146.1)
+    jruby-rack (1.1.19)
+    json (1.8.3-java)
+    juggernaut (2.1.1)
+      redis
+    metaclass (0.0.4)
+    mime-types (2.6.1)
+    mocha (1.1.0)
+      metaclass (~> 0.0.1)
+    msgpack (0.5.12-java)
+    net-scp (1.2.1)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.9.2)
+    nido (1.0.0)
+    ohm (2.3.0)
+      msgpack (~> 0.5.0)
+      nido
+      redic (~> 1.5.0)
+      stal
+    prawn (0.5.1)
+      prawn-core (>= 0.5.1, < 0.6)
+      prawn-format (>= 0.2.1)
+      prawn-layout (>= 0.2.1)
+    prawn-core (0.5.1)
+    prawn-format (0.2.1)
+      prawn-core
+    prawn-layout (0.2.1)
+    rack (1.0.1)
+    rails (2.3.5)
+      actionmailer (= 2.3.5)
+      actionpack (= 2.3.5)
+      activerecord (= 2.3.5)
+      activeresource (= 2.3.5)
+      activesupport (= 2.3.5)
+      rake (>= 0.8.3)
+    rake (10.4.2)
+    rdoc (4.2.0)
+      json (~> 1.4)
+    redic (1.5.0)
+      hiredis
+    redis (3.2.1)
+    right_aws (3.1.0)
+      right_http_connection (>= 1.2.5)
+    right_http_connection (1.5.0)
+    ruby-debug (0.10.4)
+      columnize (>= 0.1)
+      ruby-debug-base (~> 0.10.4.0)
+    ruby-debug-base (0.10.4-java)
+    sshkit (1.7.1)
+      colorize (>= 0.7.0)
+      net-scp (>= 1.1.2)
+      net-ssh (>= 2.8.0)
+    stal (0.1.0)
+      redic
+    thoughtbot-paperclip (2.3.1)
+    thoughtbot-shoulda (2.11.1)
+    trinidad (1.4.6)
+      jruby-rack (~> 1.1.13)
+      trinidad_jars (>= 1.3.0, < 1.5.0)
+    trinidad_daemon_extension (0.4.0)
+      trinidad (>= 1.3.5)
+    trinidad_init_services (1.3.1)
+      trinidad (>= 1.3.5)
+    trinidad_jars (1.4.1)
+
+PLATFORMS
+  java
+
+DEPENDENCIES
+  activerecord-jdbcmysql-adapter
+  archive-tar-minitar (~> 0.5.2)
+  builder (~> 3.0.0)
+  capistrano
+  eventmachine
+  highline (~> 1.6.0)
+  icalendar
+  jruby-jars
+  jruby-openssl (~> 0.7.4)
+  juggernaut
+  mime-types
+  mocha
+  ohm
+  prawn (= 0.5.1)
+  prawn-core (= 0.5.1)
+  prawn-format (= 0.2.1)
+  prawn-layout (= 0.2.1)
+  rack
+  rails (= 2.3.5)
+  rake
+  rdoc
+  right_aws
+  right_http_connection
+  ruby-debug
+  thoughtbot-paperclip
+  thoughtbot-shoulda (~> 2.10)
+  trinidad
+  trinidad_daemon_extension
+  trinidad_init_services
+
+BUNDLED WITH
+   1.10.6
